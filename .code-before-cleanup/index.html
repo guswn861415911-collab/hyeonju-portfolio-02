@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyeonju Hwang — Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body[data-page="home"] .home-redesign-content {
+        display: flex;
+        flex: 1;
+        padding-bottom: 0;
+      }
+
+      body[data-page="home"] .home-redesign-page {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
+        gap: clamp(1.2rem, 2.4vw, 2.8rem);
+        align-items: end;
+      }
+
+      body[data-page="home"] .home-redesign-copy {
+        align-self: start;
+        padding-top: 2rem;
+        min-width: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      body[data-page="home"] .home-redesign-intro {
+        border-top: none !important;
+        padding-top: 0 !important;
+      }
+
+      body[data-page="home"] .home-redesign-image {
+        background: transparent !important;
+        overflow: visible !important;
+        display: flex;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        align-self: end;
+        height: min(78vh, 860px);
+        padding-bottom: 0;
+        transform: translateX(78px);
+        position: relative;
+        z-index: 1;
+      }
+
+      body[data-page="home"] .home-redesign-image picture { display: contents; }
+
+      body[data-page="home"] .home-redesign-image img {
+        width: auto !important;
+        height: 100% !important;
+        max-width: 100%;
+        object-fit: contain !important;
+        object-position: center bottom !important;
+        display: block;
+        background: transparent !important;
+      }
+
+      body[data-page="home"] .home-redesign-contact-strip {
+        width: calc(100% + 260px);
+        max-width: 1080px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 2.2rem;
+        border: 1px solid rgba(39, 67, 90, 0.16) !important;
+        border-radius: 14px;
+        overflow: hidden;
+        background: transparent !important;
+        position: relative;
+        z-index: 3;
+      }
+
+      body[data-page="home"] .home-redesign-contact-item {
+        min-width: 0;
+        min-height: 76px;
+        padding: 7px;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: #27435a;
+        position: relative;
+        text-decoration: none;
+      }
+
+      body[data-page="home"]
+        .home-redesign-contact-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 17px;
+        right: 0;
+        bottom: 17px;
+        width: 1px;
+        background: rgba(39, 67, 90, 0.14);
+      }
+
+      body[data-page="home"] .home-contact-inner {
+        width: 100%;
+        min-height: 62px;
+        display: grid;
+        grid-template-columns: 28px minmax(0, 1fr) 30px;
+        align-items: center;
+        gap: 11px;
+        padding: 0 13px;
+        border-radius: 10px;
+        background: transparent;
+        color: #27435a;
+        transition:
+          background-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      body[data-page="home"]
+        .home-redesign-contact-item:hover
+        .home-contact-inner {
+        background: rgba(255, 255, 255, 0.48);
+        box-shadow: 0 8px 22px rgba(39, 67, 90, 0.055);
+        transform: translateY(-1px);
+      }
+
+      body[data-page="home"] .home-redesign-contact-icon {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        color: rgba(39, 67, 90, 0.76);
+        transition:
+          color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      body[data-page="home"] .home-redesign-contact-icon svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      body[data-page="home"]
+        .home-redesign-contact-item:hover
+        .home-redesign-contact-icon {
+        color: #27435a;
+        transform: scale(1.08);
+      }
+
+      body[data-page="home"] .home-contact-copy {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      body[data-page="home"] .home-contact-label {
+        color: rgba(39, 67, 90, 0.46);
+        font-size: 0.52rem;
+        font-weight: 750;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        transition: color 0.25s ease;
+      }
+
+      body[data-page="home"]
+        .home-redesign-contact-item:hover
+        .home-contact-label {
+        color: rgba(39, 67, 90, 0.58);
+      }
+
+      body[data-page="home"] .home-contact-value {
+        min-width: 0;
+        color: #27435a;
+        font-size: 0.66rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      body[data-page="home"] .home-contact-arrow {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: transparent;
+        color: rgba(39, 67, 90, 0.4);
+        font-size: 0.76rem;
+        font-weight: 700;
+        transition:
+          background-color 0.25s ease,
+          color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      body[data-page="home"]
+        .home-redesign-contact-item:hover
+        .home-contact-arrow {
+        background: rgba(240, 229, 151, 0.72);
+        color: #27435a;
+        transform: translate(1px, -1px);
+      }
+
+      body[data-page="home"] .home-redesign-action-row {
+        width: calc(100% + 260px);
+        max-width: 1080px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+        margin-top: 1.25rem;
+      }
+
+      body[data-page="home"] .home-redesign-work-button {
+        min-width: 190px;
+        min-height: 52px;
+        padding: 0 20px;
+        background: #f0e597 !important;
+        border: 0 !important;
+        border-radius: 999px !important;
+        color: #27435a !important;
+        box-shadow: 0 8px 20px rgba(138, 126, 45, 0.08);
+      }
+
+      body[data-page="home"] .home-redesign-work-button:hover {
+        background: #eadf88 !important;
+        color: #27435a !important;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 1400px) {
+        body[data-page="home"] .home-redesign-contact-strip,
+        body[data-page="home"] .home-redesign-action-row {
+          width: calc(100% + 180px);
+        }
+
+        body[data-page="home"] .home-redesign-image {
+          transform: translateX(50px);
+        }
+      }
+
+      @media (max-width: 1180px) {
+        body[data-page="home"] .home-redesign-contact-strip,
+        body[data-page="home"] .home-redesign-action-row {
+          width: 100%;
+          max-width: none;
+        }
+
+        body[data-page="home"] .home-redesign-contact-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        body[data-page="home"] .home-redesign-contact-item::after {
+          display: none;
+        }
+
+        body[data-page="home"]
+          .home-redesign-contact-item:nth-child(odd)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 17px;
+          right: 0;
+          bottom: 17px;
+          width: 1px;
+          height: auto;
+          background: rgba(39, 67, 90, 0.14);
+        }
+
+        body[data-page="home"]
+          .home-redesign-contact-item:nth-child(1)::before,
+        body[data-page="home"]
+          .home-redesign-contact-item:nth-child(2)::before {
+          content: "";
+          position: absolute;
+          left: 20px;
+          right: 20px;
+          bottom: 0;
+          height: 1px;
+          background: rgba(39, 67, 90, 0.14);
+        }
+
+        body[data-page="home"] .home-redesign-image {
+          transform: translateX(16px);
+        }
+      }
+
+      @media (max-width: 767px) {
+        body[data-page="home"] .home-redesign-page {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        body[data-page="home"] .home-redesign-copy {
+          align-self: auto;
+          padding-top: 0;
+          width: 100%;
+          order: 1;
+        }
+
+        body[data-page="home"] .home-redesign-image {
+          width: 100%;
+          height: auto;
+          min-height: auto;
+          aspect-ratio: 4 / 5;
+          order: 2;
+          align-self: auto;
+          transform: none;
+          display: flex;
+          justify-content: center !important;
+        }
+
+        body[data-page="home"] .home-redesign-image img {
+          width: 100% !important;
+          height: 100% !important;
+        }
+
+        body[data-page="home"] .home-redesign-contact-strip {
+          width: 100%;
+          grid-template-columns: 1fr;
+        }
+
+        body[data-page="home"] .home-redesign-contact-item::after {
+          display: none !important;
+        }
+
+        body[data-page="home"] .home-redesign-contact-item::before {
+          display: none;
+        }
+
+        body[data-page="home"]
+          .home-redesign-contact-item:not(:last-child)::before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 20px;
+          right: 20px;
+          bottom: 0;
+          height: 1px;
+          background: rgba(39, 67, 90, 0.14);
+        }
+
+        body[data-page="home"] .home-redesign-action-row {
+          width: 100%;
+          margin-top: 1rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="home-mobile.css" media="(max-width: 767px)" />
+  <link rel="stylesheet" href="portfolio-motion.css" /></head>
+
+  <body data-page="home">
+    <canvas
+      id="cursorTrailCanvas"
+      class="cursor-trail-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <div id="customCursor" class="custom-cursor" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <div class="site-frame">
+      <header class="browser-bar">
+        <nav class="browser-tabs" aria-label="Main navigation">
+          <a class="browser-tab active" href="index.html">Home</a>
+          <a class="browser-tab" href="about.html">About</a>
+          <a class="browser-tab" href="work.html">Projects</a>
+          <a class="browser-tab" href="contact.html">Me</a>
+        </nav>
+
+        <span class="browser-url">INDEX · 01 / 04</span>
+      </header>
+
+      <div class="site-content home-redesign-content">
+        <main class="home-page home-redesign-page">
+          <section class="home-redesign-copy">
+            <p class="home-redesign-kicker">
+              VISUAL DESIGNER&nbsp;&nbsp;·&nbsp;&nbsp;CONTENT CREATOR
+            </p>
+
+            <h1 class="portfolio-title home-redesign-title">
+              Portfolio
+            </h1>
+
+            <div class="home-redesign-intro">
+              <p class="home-redesign-intro-title">
+                아이디어를 시각적으로 풀어내는
+                <br />
+                디자이너 황현주입니다.
+              </p>
+
+              <p class="home-redesign-intro-description">
+                상세페이지부터 웹, 영상, AI 콘텐츠까지
+                <br />
+                다양한 매체를 연결해 새로운 경험을 디자인합니다.
+              </p>
+            </div>
+
+            <div class="home-redesign-contact-strip">
+              <a
+                class="home-redesign-contact-item"
+                href="tel:01028371219"
+              >
+                <span class="home-contact-inner">
+                  <span class="home-redesign-contact-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M7.2 4.7h2.2l1.1 3.5-1.5 1.4c.7 1.5 1.8 2.7 3.3 3.4l1.5-1.5 3.6 1.1v2.2c0 .7-.5 1.2-1.2 1.3-5.3.3-9.8-4.3-9.5-9.6.1-.7.6-1.2 1.2-1.2Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+
+                  <span class="home-contact-copy">
+                    <span class="home-contact-label">Phone</span>
+                    <span class="home-contact-value">
+                      010-2837-1219
+                    </span>
+                  </span>
+
+                  <span class="home-contact-arrow">↗</span>
+                </span>
+              </a>
+
+              <a
+                class="home-redesign-contact-item"
+                href="#" role="button" data-copy-email="guswn8614@naver.com" aria-label="이메일 주소 복사"
+              >
+                <span class="home-contact-inner">
+                  <span class="home-redesign-contact-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <rect
+                        x="4"
+                        y="6"
+                        width="16"
+                        height="12"
+                        rx="2"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <path
+                        d="M5.5 7.5 12 12.4l6.5-4.9"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+
+                  <span class="home-contact-copy">
+                    <span class="home-contact-label">Email</span>
+                    <span class="home-contact-value">
+                      guswn8614@naver.com
+                    </span>
+                  </span>
+
+                  <span class="home-contact-arrow">↗</span>
+                </span>
+              </a>
+
+              <a
+                class="home-redesign-contact-item"
+                href="https://www.instagram.com/hyeon_dyu/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="home-contact-inner">
+                  <span class="home-redesign-contact-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <rect
+                        x="4.5"
+                        y="4.5"
+                        width="15"
+                        height="15"
+                        rx="4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="3.4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="17"
+                        cy="7"
+                        r="1"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+
+                  <span class="home-contact-copy">
+                    <span class="home-contact-label">
+                      Instagram
+                    </span>
+                    <span class="home-contact-value">
+                      @hyeon_dyu
+                    </span>
+                  </span>
+
+                  <span class="home-contact-arrow">↗</span>
+                </span>
+              </a>
+
+              <a
+                class="home-redesign-contact-item"
+                href="https://blog.naver.com/hyeon_dyu"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="home-contact-inner">
+                  <span class="home-redesign-contact-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <rect
+                        x="5"
+                        y="4.5"
+                        width="14"
+                        height="15"
+                        rx="2.5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <path
+                        d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </span>
+
+                  <span class="home-contact-copy">
+                    <span class="home-contact-label">Blog</span>
+                    <span class="home-contact-value">
+                      blog.naver.com/hyeon_dyu
+                    </span>
+                  </span>
+
+                  <span class="home-contact-arrow">↗</span>
+                </span>
+              </a>
+            </div>
+
+            <div class="home-redesign-action-row">
+              <a
+                class="home-redesign-work-button"
+                href="work.html"
+              >
+                <span>View My Work</span>
+                <span class="home-redesign-work-arrow">↗</span>
+              </a>
+            </div>
+          </section>
+
+          <div class="cover-image-wrap home-redesign-image">
+            <picture>
+              <source media="(max-width: 767px)" srcset="images/profile-hyeonju.png" />
+            <img
+              src="images/cover-camera.png"
+              alt="카메라를 들고 있는 황현주"
+            />
+            </picture>
+          </div>
+        </main>
+      </div>
+
+      <footer class="home-redesign-footer">
+        <p>© 2026 HYEONJU HWANG. ALL RIGHTS RESERVED.</p>
+
+        <p>
+          PORTFOLIO
+          <span>·</span>
+          DESIGN
+          <span>·</span>
+          VIDEO
+          <span>·</span>
+          AI
+        </p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  <script src="portfolio-motion.js" defer></script></body>
+</html>

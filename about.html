@@ -1,0 +1,1155 @@
+<!doctype html>
+<!-- About 화면입니다. 프로필과 경력·전문분야·학력 정보를 담고 있습니다. -->
+
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Hyeonju Hwang</title>
+
+    <!-- =========================================================
+         FONT
+         사이트 전체에서 사용하는 Instrument Sans 폰트입니다.
+         ========================================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..800&display=swap"
+      rel="stylesheet" />
+
+    <!-- =========================================================
+         공통 CSS
+         디자인 수정은 대부분 style.css에서 합니다.
+         ========================================================= -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="about-profile.css" />
+    <link rel="stylesheet" href="tab-headings.css" />
+    <link rel="stylesheet" href="about-compact.css" />
+    <link rel="stylesheet" href="modals-mobile.css" />
+    <link rel="stylesheet" href="portfolio-motion.css"
+  />  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  </head>
+
+  <body data-page="about">
+    <!-- =========================================================
+         커스텀 마우스 커서
+
+         script.js가 아래 두 요소를 이용해
+         마우스를 따라다니는 커서와 컬러 잔상을 만듭니다.
+
+         모바일에서는 자동으로 숨겨집니다.
+         ========================================================= -->
+    <canvas
+      id="cursorTrailCanvas"
+      class="cursor-trail-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <div id="customCursor" class="custom-cursor" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <!-- =========================================================
+         사이트 전체 프레임
+         ========================================================= -->
+    <div class="site-frame">
+      <!-- =======================================================
+           상단 네비게이션
+
+           현재 About 페이지이므로
+           About에만 active 클래스가 들어갑니다.
+
+           Home     → index.html
+           About    → about.html
+           Projects → work.html
+           Contact  → contact.html
+           ======================================================= -->
+      <header class="browser-bar">
+        <nav class="browser-tabs" aria-label="Main navigation">
+          <a class="browser-tab" href="index.html">Home</a>
+          <a class="browser-tab active" href="about.html">About</a>
+          <a class="browser-tab" href="work.html">Projects</a>
+          <a class="browser-tab" href="contact.html">Me</a>
+        </nav>
+
+        <span class="browser-url">INDEX · 02 / 04</span>
+      </header>
+
+      <!-- =======================================================
+           ABOUT 전체 콘텐츠
+           ======================================================= -->
+      <div class="site-content">
+        <main class="about-page">
+          <!-- =====================================================
+               PC / 태블릿 ABOUT HERO
+               ===================================================== -->
+          <section class="about-hero">
+            <!-- ===================================================
+                 왼쪽 소개 영역
+                 =================================================== -->
+            <section class="about-copy">
+              <p class="eyebrow">ABOUT · PROFILE</p>
+
+              <h1>About</h1>
+
+              <p class="about-lede">
+                Hello, I’m
+                <br />
+                <em>Hyeonju Hwang.</em>
+              </p>
+
+              <p class="about-storyline">
+                데이터를 통해 새로운 이야기를 짓는
+                <br />
+                트렌드 스토리텔러입니다.
+              </p>
+
+              <!-- =================================================
+                   연락처 목록
+                   ================================================= -->
+              <div class="about-contact-list">
+                <!-- 전화번호 -->
+                <a class="about-contact-row" href="tel:01028371219">
+                  <span class="about-contact-label">
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="about-inline-icon"
+                      fill="none"
+                    >
+                      <path
+                        d="M6.7 4.5H9l1.2 3.8-1.6 1.5c.7 1.5 1.9 2.8 3.4 3.5l1.6-1.6 3.9 1.2v2.3c0 .7-.5 1.2-1.2 1.3-5.6.4-10.4-4.5-10-10.1.1-.6.6-1.1 1.2-1.1Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    Contact
+                  </span>
+
+                  <span class="about-contact-value">
+                    <span>010-2837-1219</span>
+
+                    <span class="about-link-arrow">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="about-inline-icon"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 17L17 7M9 7H17V15"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+
+                <!-- Instagram -->
+                <a
+                  class="about-contact-row"
+                  href="https://www.instagram.com/hyeon_dyu/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="about-contact-label">
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="about-inline-icon"
+                      fill="none"
+                    >
+                      <rect
+                        x="4.5"
+                        y="4.5"
+                        width="15"
+                        height="15"
+                        rx="4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="3.5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle cx="17" cy="7.2" r="1" fill="currentColor" />
+                    </svg>
+
+                    Instagram
+                  </span>
+
+                  <span class="about-contact-value">
+                    <span>@hyeon_dyu</span>
+
+                    <span class="about-link-arrow">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="about-inline-icon"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 17L17 7M9 7H17V15"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+
+                <!-- Blog -->
+                <a
+                  class="about-contact-row"
+                  href="https://blog.naver.com/hyeon_dyu"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="about-contact-label">
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="about-inline-icon"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 5.5h8.5a3.5 3.5 0 0 1 3.5 3.5v8.5H9.5A3.5 3.5 0 0 1 6 14V5.5Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+
+                      <path
+                        d="M9 9.3h5.7M9 12h4.8M9 14.7h3.4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+
+                    Blog
+                  </span>
+
+                  <span class="about-contact-value">
+                    <span>blog.naver.com/hyeon_dyu</span>
+
+                    <span class="about-link-arrow">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="about-inline-icon"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 17L17 7M9 7H17V15"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+
+                <!-- YouTube -->
+                <a
+                  class="about-contact-row"
+                  href="https://www.youtube.com/@Study_ebeb/shorts"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="about-contact-label">
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="about-inline-icon"
+                      fill="none"
+                    >
+                      <rect
+                        x="3.8"
+                        y="6.5"
+                        width="16.4"
+                        height="11"
+                        rx="3.2"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <path d="M10.2 9.6L15 12l-4.8 2.4V9.6Z" fill="currentColor" />
+                    </svg>
+
+                    YouTube
+                  </span>
+
+                  <span class="about-contact-value about-contact-value-stack">
+                    <span>@Study_ebeb</span>
+                    <small>youtube.com/@Study_ebeb/shorts</small>
+
+                    <span class="about-link-arrow">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="about-inline-icon"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 17L17 7M9 7H17V15"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </section>
+
+            <!-- ===================================================
+                 오른쪽 프로필 이미지
+
+                 실제 사진:
+                 images/profile-hyeonju.png
+
+                 ★ 사진 크기/위치는 HTML이 아니라
+                 style.css의 아래 부분에서 조절합니다.
+
+                 .about-profile
+                 .about-profile-shell
+                 .portrait
+                 .portrait-image
+                 =================================================== -->
+            <section class="about-profile">
+              <div class="about-profile-shell">
+                <div class="profile-topline">
+                  <span>PROFILE</span>
+                  <span>2026</span>
+                </div>
+
+                <div class="portrait">
+                  <img
+                    src="images/profile-hyeonju.png"
+                    alt="황현주 프로필"
+                    class="portrait-image"
+                  />
+                </div>
+
+                <div class="portrait-caption">
+                  <strong>HYEONJU HWANG</strong>
+                  <span>VISUAL DESIGN · PORTFOLIO PROFILE</span>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <!-- =====================================================
+               모바일 전용 ABOUT
+
+               ★ PC에서는 숨김
+               ★ 화면 폭 767px 이하에서만 표시
+
+               이 부분은 삭제하면 안 됩니다.
+               ===================================================== -->
+          <section class="about-mobile-only">
+            <!-- 모바일 상단 -->
+            <section class="about-mobile-hero">
+              <!-- 모바일 소개 -->
+              <div class="about-mobile-intro">
+                <p class="eyebrow">ABOUT · PROFILE</p>
+
+                <h1>About</h1>
+
+                <p class="about-mobile-lede">
+                  Hello, I’m
+                  <br />
+                  <em>Hyeonju Hwang.</em>
+                </p>
+
+                <p class="about-mobile-storyline">
+                  데이터를 통해 새로운 이야기를 짓는
+                  <br />
+                  트렌드 스토리텔러입니다.
+                </p>
+
+                <!-- 모바일 연락처 -->
+                <div class="about-mobile-contact-list">
+                  <!-- 전화 -->
+                  <a href="tel:01028371219" class="about-mobile-contact-row">
+                    <span class="about-mobile-contact-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M6.7 4.5H9l1.2 3.8-1.6 1.5c.7 1.5 1.9 2.8 3.4 3.5l1.6-1.6 3.9 1.2v2.3c0 .7-.5 1.2-1.2 1.3-5.6.4-10.4-4.5-10-10.1.1-.6.6-1.1 1.2-1.1Z"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+
+                    <strong>010-2837-1219</strong>
+
+                    <span class="about-mobile-contact-arrow" aria-hidden="true"> ↗ </span>
+                  </a>
+
+                  <!-- Instagram -->
+                  <a
+                    href="https://www.instagram.com/hyeon_dyu/"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="about-mobile-contact-row"
+                  >
+                    <span class="about-mobile-contact-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect
+                          x="4.5"
+                          y="4.5"
+                          width="15"
+                          height="15"
+                          rx="4"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                        />
+
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="3.5"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                        />
+
+                        <circle cx="17" cy="7.2" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+
+                    <strong>@hyeon_dyu</strong>
+
+                    <span class="about-mobile-contact-arrow" aria-hidden="true"> ↗ </span>
+                  </a>
+
+                  <!-- Blog -->
+                  <a
+                    href="https://blog.naver.com/hyeon_dyu"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="about-mobile-contact-row"
+                  >
+                    <span class="about-mobile-contact-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M6 5.5h8.5a3.5 3.5 0 0 1 3.5 3.5v8.5H9.5A3.5 3.5 0 0 1 6 14V5.5Z"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M9 9.3h5.7M9 12h4.8M9 14.7h3.4"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </span>
+
+                    <strong>blog.naver.com/hyeon_dyu</strong>
+
+                    <span class="about-mobile-contact-arrow" aria-hidden="true"> ↗ </span>
+                  </a>
+
+                  <!-- YouTube -->
+                  <a
+                    href="https://www.youtube.com/@Study_ebeb/shorts"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="about-mobile-contact-row about-mobile-contact-row-youtube"
+                  >
+                    <span class="about-mobile-contact-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect
+                          x="3.8"
+                          y="6.5"
+                          width="16.4"
+                          height="11"
+                          rx="3.2"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                        />
+
+                        <path d="M10.2 9.6L15 12l-4.8 2.4V9.6Z" fill="currentColor" />
+                      </svg>
+                    </span>
+
+                    <span class="about-mobile-contact-copy">
+                      <strong>@Study_ebeb</strong>
+                      <small>youtube.com/@Study_ebeb/shorts</small>
+                    </span>
+
+                    <span class="about-mobile-contact-arrow" aria-hidden="true"> ↗ </span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- =================================================
+                   모바일 프로필 사진
+
+                   ★ 이미지 크기 변경:
+                   style.css에서
+                   .about-mobile-portrait img
+                   값을 수정합니다.
+                   ================================================= -->
+              <div class="about-mobile-profile">
+                <div class="about-mobile-portrait">
+                  <img src="images/profile-hyeonju.png" alt="황현주 프로필" />
+                </div>
+
+                <div class="about-mobile-profile-caption">
+                  <strong>HYEONJU HWANG</strong>
+                  <span>VISUAL DESIGN · PORTFOLIO PROFILE</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ===================================================
+                 01 EXPERIENCE
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-experience">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">01</span>
+                <h3>Experience</h3>
+                <small>경력사항</small>
+              </header>
+
+              <div class="about-mobile-card-body">
+                <ul class="about-mobile-timeline">
+                  <li>
+                    <div class="about-mobile-row-title">
+                      <strong>카즈온(주)</strong>
+                      <span> 2020. 01 – 2024. 11 (4년 11개월) </span>
+                    </div>
+
+                    <p>제품 설계, 상세페이지 디자인, 입출고 관리</p>
+                  </li>
+
+                  <li>
+                    <div class="about-mobile-row-title">
+                      <strong>국제뷰티발건강진흥원</strong>
+                      <span> 2019. 01 – 2019. 11 (11개월) </span>
+                    </div>
+
+                    <p>상세페이지 디자인, SNS 콘텐츠 디자인 및 마케팅</p>
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ===================================================
+                 02 EXPERTISE
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-expertise">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">02</span>
+                <h3>Expertise</h3>
+                <small>주요 업무 역량</small>
+              </header>
+
+              <div class="about-mobile-card-body">
+                <ul class="about-mobile-bullet-list">
+                  <li>상세페이지, 카드뉴스, 블로그 템플릿 제작</li>
+
+                  <li>
+                    AI tools를 활용한 image / video / webpage creation &amp; design
+                  </li>
+
+                  <li>동영상 및 이미지 수정, 편집, 리터칭 작업</li>
+
+                  <li>브랜드 메시지 정리, 레이아웃 구성, 시각 스토리텔링</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ===================================================
+                 03 EDUCATION
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-education">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">03</span>
+                <h3>Education</h3>
+                <small>학력사항</small>
+              </header>
+
+              <div class="about-mobile-card-body">
+                <ul class="about-mobile-timeline about-mobile-education-list">
+                  <li>
+                    <div class="about-mobile-row-title">
+                      <strong> 부평디자인과학고등학교 </strong>
+
+                      <span>2015 졸업</span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="about-mobile-row-title">
+                      <strong> 오산대학교 산업디자인과 </strong>
+
+                      <span>2015 – 2017 졸업</span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="about-mobile-row-title">
+                      <strong>
+                        AI 기반 이미지·영상 제작 &amp; 반응형 웹 개발 과정
+                      </strong>
+                    </div>
+
+                    <p>
+                      실무 중심 전문 교육 · 6개월 집중 과정
+                      <br />
+                      AI 이미지·영상 제작, 콘텐츠 편집, 반응형 웹 디자인·개발 이론 및 실습
+                      <br />
+                      팀 프로젝트 기반 반응형 웹 기획·UI 디자인·퍼블리싱 및 포트폴리오
+                      제작
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ===================================================
+                 04 WORKS
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-works">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">04</span>
+                <h3>Works</h3>
+                <small>주요 작업 분야</small>
+              </header>
+
+              <div class="about-mobile-card-body">
+                <ul class="about-mobile-bullet-list">
+                  <li>Web design / 상세페이지 / SNS card design</li>
+
+                  <li>숏폼(9:16) · 롱폼(16:9) 영상 콘텐츠 작업</li>
+
+                  <li>Goodnotes template design &amp; blog publishing</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ===================================================
+                 05 TOOLS
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-tools">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">05</span>
+                <h3>Tools</h3>
+                <small>보유기술</small>
+              </header>
+
+              <div class="about-mobile-card-body">
+                <p class="about-mobile-tools">
+                  Photoshop, Illustrator, PowerPoint, Figma
+                  <br />
+                  Premiere Pro, After Effects, CapCut
+                  <br />
+                  NotebookLM, ChatGPT, Gemini
+                  <br />
+                  Canva, MiriCanvas
+                </p>
+              </div>
+            </article>
+
+            <!-- ===================================================
+                 06 ACHIEVEMENTS
+                 =================================================== -->
+            <article class="about-mobile-card mobile-card-achievements">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">06</span>
+                <h3>Achievements</h3>
+                <small>수상경력</small>
+              </header>
+
+              <div class="about-mobile-card-body about-mobile-achievement-body">
+                <div>
+                  <p class="about-mobile-achievement-title">
+                    2026 화장품 안전성 평가 제도 숏폼 공모전
+                    <br />
+                    장려상 수상
+                  </p>
+
+                  <div class="about-mobile-achievement-actions">
+                    <span class="about-mobile-award-chip">
+                      장려상 · Encouragement Award
+                    </span>
+
+                    <!--
+                      이 버튼을 누르면
+                      아래의 shortsModal이 열립니다.
+
+                      동작은 script.js의
+                      setupAboutModal()이 담당합니다.
+                    -->
+                    <button
+                      type="button"
+                      class="about-mobile-shorts-button"
+                      data-modal-open="shortsModal"
+                    >
+                      수상작 Shorts 보기
+                      <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 메달 아이콘 -->
+                <div class="about-mobile-medal" aria-hidden="true">
+                  <svg viewBox="0 0 120 120">
+                    <defs>
+                      <linearGradient id="mobileRibbonLeft" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#d26467" />
+                        <stop offset="100%" stop-color="#b14e55" />
+                      </linearGradient>
+
+                      <linearGradient id="mobileRibbonRight" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#8fb7dc" />
+                        <stop offset="100%" stop-color="#6d98c3" />
+                      </linearGradient>
+
+                      <linearGradient id="mobileMedalMain" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffd45c" />
+                        <stop offset="55%" stop-color="#f2bd2b" />
+                        <stop offset="100%" stop-color="#dd9f12" />
+                      </linearGradient>
+
+                      <linearGradient id="mobileMedalInner" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffe894" />
+                        <stop offset="100%" stop-color="#f6c63f" />
+                      </linearGradient>
+                    </defs>
+
+                    <path d="M28 12h22l10 34H38L28 12Z" fill="url(#mobileRibbonLeft)" />
+
+                    <path d="M70 12h22L82 46H60l10-34Z" fill="url(#mobileRibbonRight)" />
+
+                    <rect
+                      x="49"
+                      y="35"
+                      width="22"
+                      height="16"
+                      rx="5"
+                      fill="#f4f6fb"
+                      opacity="0.95"
+                    />
+
+                    <circle cx="60" cy="74" r="30" fill="url(#mobileMedalMain)" />
+
+                    <circle cx="60" cy="74" r="22" fill="url(#mobileMedalInner)" />
+
+                    <circle
+                      cx="60"
+                      cy="74"
+                      r="29"
+                      fill="none"
+                      stroke="#d39a1b"
+                      stroke-width="2.5"
+                    />
+
+                    <path
+                      d="M60 60.8l4.1 8.2 9 .9-6.5 6.1 1.6 8.7-8.2-4.3-8.2 4.3 1.6-8.7-6.5-6.1 9-.9 4.1-8.2Z"
+                      fill="#fff7d5"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </article>
+
+            <div class="about-mobile-site-pill">portfolio-02.v0.build</div>
+          </section>
+
+          <!-- =====================================================
+               PC / 태블릿 정보 카드
+               ===================================================== -->
+          <section class="about-info-grid">
+            <!-- EXPERIENCE -->
+            <article class="about-info-card">
+              <h3>Experience</h3>
+
+              <ul class="about-info-list about-info-list-detail">
+                <li>
+                  <strong>카즈온(주)</strong>
+
+                  <span>
+                    제품 설계, 상세페이지 디자인, 입출고 관리
+                    <br />
+                    2020.01 – 2024.11
+                  </span>
+                </li>
+
+                <li>
+                  <strong>국제뷰티발건강진흥원</strong>
+
+                  <span>
+                    상세페이지 디자인, SNS 콘텐츠 디자인 및 마케팅
+                    <br />
+                    2019.01 – 2019.11
+                  </span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- EXPERTISE -->
+            <article class="about-info-card">
+              <h3>Expertise</h3>
+
+              <ul class="about-info-list">
+                <li>상세페이지, 카드뉴스, 블로그 템플릿 제작</li>
+
+                <li> AI tools를 활용한 image / video / webpage creation &amp; design </li>
+
+                <li>동영상 및 이미지 수정, 편집, 리터칭 작업</li>
+
+                <li>브랜드 메시지 정리, 레이아웃 구성, 시각 스토리텔링</li>
+              </ul>
+            </article>
+
+            <!-- EDUCATION -->
+            <article class="about-info-card">
+              <h3>Education</h3>
+
+              <ul class="about-info-list about-info-list-detail">
+                <li>
+                  <strong> 부평디자인과학고등학교 </strong>
+
+                  <span>2015 졸업</span>
+                </li>
+
+                <li>
+                  <strong> 오산대학교 산업디자인과 </strong>
+
+                  <span>2015 – 2017 · 졸업</span>
+                </li>
+
+                <li>
+                  <strong> AI 기반 이미지·영상 제작 &amp; 반응형 웹 개발 과정 </strong>
+
+                  <span> 실무 중심 전문 교육 · 6개월 집중 과정 </span>
+
+                  <span>
+                    AI 이미지·영상 제작, 콘텐츠 편집, 반응형 웹 디자인·개발 이론 및 실습
+                  </span>
+
+                  <span>
+                    팀 프로젝트 기반 반응형 웹 기획·UI 디자인·퍼블리싱 및 포트폴리오 제작
+                  </span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- WORKS -->
+            <article class="about-info-card">
+              <h3>Works</h3>
+
+              <ul class="about-info-list">
+                <li>Web design / 상세페이지 / SNS card design</li>
+
+                <li>숏폼(9:16) · 롱폼(16:9) 영상 콘텐츠 작업</li>
+
+                <li>Goodnotes template design &amp; blog publishing</li>
+              </ul>
+            </article>
+
+            <!-- TOOLS -->
+            <article class="about-info-card">
+              <h3>Tools</h3>
+
+              <ul class="about-info-list">
+                <li>Photoshop, Illustrator, PowerPoint, Figma</li>
+
+                <li>Premiere Pro, After Effects, CapCut</li>
+
+                <li>NotebookLM, ChatGPT, Gemini</li>
+
+                <li>Canva, MiriCanvas</li>
+              </ul>
+            </article>
+
+            <!-- ACHIEVEMENTS -->
+            <article class="about-info-card about-info-card-award">
+              <!-- 메달 아이콘 -->
+              <div class="award-medal" aria-hidden="true">
+                <svg viewBox="0 0 120 120" class="award-medal-svg">
+                  <defs>
+                    <linearGradient id="ribbonLeft" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#d26467" />
+
+                      <stop offset="100%" stop-color="#b14e55" />
+                    </linearGradient>
+
+                    <linearGradient id="ribbonRight" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#8fb7dc" />
+
+                      <stop offset="100%" stop-color="#6d98c3" />
+                    </linearGradient>
+
+                    <linearGradient id="medalMain" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#ffd45c" />
+
+                      <stop offset="55%" stop-color="#f2bd2b" />
+
+                      <stop offset="100%" stop-color="#dd9f12" />
+                    </linearGradient>
+
+                    <linearGradient id="medalInner" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#ffe894" />
+
+                      <stop offset="100%" stop-color="#f6c63f" />
+                    </linearGradient>
+                  </defs>
+
+                  <path d="M28 12h22l10 34H38L28 12Z" fill="url(#ribbonLeft)" />
+
+                  <path d="M70 12h22L82 46H60l10-34Z" fill="url(#ribbonRight)" />
+
+                  <rect
+                    x="49"
+                    y="35"
+                    width="22"
+                    height="16"
+                    rx="5"
+                    fill="#f4f6fb"
+                    opacity="0.95"
+                  />
+
+                  <circle cx="60" cy="74" r="30" fill="url(#medalMain)" />
+
+                  <circle cx="60" cy="74" r="22" fill="url(#medalInner)" />
+
+                  <circle
+                    cx="60"
+                    cy="74"
+                    r="29"
+                    fill="none"
+                    stroke="#d39a1b"
+                    stroke-width="2.5"
+                  />
+
+                  <path
+                    d="M60 60.8l4.1 8.2 9 .9-6.5 6.1 1.6 8.7-8.2-4.3-8.2 4.3 1.6-8.7-6.5-6.1 9-.9 4.1-8.2Z"
+                    fill="#fff7d5"
+                  />
+                </svg>
+              </div>
+
+              <h3>Achievements</h3>
+
+              <p class="achievement-title">
+                2026 화장품 안전성 평가 제도
+                <br />
+                숏폼 공모전 장려상 수상작
+              </p>
+
+              <div class="achievement-chip">장려상 · Encouragement Award</div>
+
+              <!--
+                클릭하면 아래 shortsModal이 열립니다.
+                script.js의 setupAboutModal()과 연결됩니다.
+              -->
+              <button
+                type="button"
+                class="achievement-open"
+                data-modal-open="shortsModal"
+              >
+                수상작 Shorts 보기
+
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="about-inline-icon"
+                  fill="none"
+                >
+                  <path
+                    d="M7 17L17 7M9 7H17V15"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </article>
+          </section>
+          <footer class="about-profile-footer">
+            <span>© 2026 HYEONJU HWANG. ALL RIGHTS RESERVED.</span>
+            <span>PORTFOLIO · DESIGN · VIDEO · AI</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         수상작 SHORTS 모달
+
+         기본 상태 = hidden
+         버튼 클릭 → JavaScript가 모달 표시
+         ========================================================= -->
+    <div id="shortsModal" class="shorts-modal-backdrop" hidden>
+      <div
+        class="shorts-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="awardModalTitle"
+      >
+        <!-- 닫기 버튼 -->
+        <button
+          type="button"
+          class="shorts-close"
+          data-modal-close
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <!-- 왼쪽 설명 -->
+        <div class="shorts-modal-copy">
+          <p class="shorts-kicker">AWARD SHORT-FORM</p>
+
+          <h2 id="awardModalTitle"
+            ><span>2026 화장품 안전성 평가 제도</span
+            ><span>숏폼 공모전 장려상 수상작</span></h2
+          >
+
+          <p class="shorts-description">
+            모바일에서 보는 YouTube Shorts 느낌으로 감상할 수 있게 구성한 모달입니다.
+            <br />
+            아래 버튼을 누르면 실제 유튜브 링크로도 이동할 수 있습니다.
+          </p>
+
+          <div class="shorts-chip-row">
+            <span class="shorts-info-chip"> Short-form Contest </span>
+
+            <span class="shorts-info-chip"> Encouragement Award </span>
+
+            <span class="shorts-info-chip"> 조회수 522회 </span>
+          </div>
+
+          <div class="shorts-action-row">
+            <a
+              class="shorts-direct-link"
+              href="https://youtube.com/shorts/vJjWN50Z5XM?si=CLgzOjrh5IGIuVw_"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open on YouTube
+              <span class="modal-pill-icon" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="shorts-channel-link"
+              href="https://www.youtube.com/@Study_ebeb/shorts"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @Study_ebeb
+              <span class="modal-pill-icon" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             오른쪽 스마트폰 Shorts 화면
+             ===================================================== -->
+        <div class="shorts-phone-wrap">
+          <div class="iphone-17-pro">
+            <div class="iphone-btn-action" aria-hidden="true"></div>
+            <div class="iphone-btn-vol-up" aria-hidden="true"></div>
+            <div class="iphone-btn-vol-down" aria-hidden="true"></div>
+            <div class="iphone-btn-power" aria-hidden="true"></div>
+            <div class="iphone-chassis">
+              <div class="iphone-dynamic-island" aria-hidden="true">
+                <span class="iphone-sensor"></span>
+              </div>
+              <div class="iphone-status-bar" aria-hidden="true">
+                <span>9:41</span>
+                <div class="iphone-status-icons">
+                  <span>▂▄▆</span><span>5G</span><span>▰</span>
+                </div>
+              </div>
+              <div class="iphone-screen">
+                <iframe
+                  class="iphone-video-iframe"
+                  src="about:blank"
+                  title="2026 화장품 안전성 평가 제도 숏폼 공모전 장려상 수상작"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="iphone-home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         스크롤 안내 버튼
+
+         페이지가 화면보다 길 때만
+         script.js가 자동으로 표시합니다.
+         ========================================================= -->
+    <button
+      class="scroll-cue"
+      id="scrollCue"
+      type="button"
+      aria-label="아래로 스크롤"
+      hidden
+    >
+      <span>Scroll</span>
+
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 6V18M12 18L7 13M12 18L17 13"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- =========================================================
+         공통 JavaScript 연결
+
+         ★ script.js는 반드시 about.html과
+           같은 폴더에 있어야 합니다.
+         ========================================================= -->
+    <script src="script.js"></script>
+    <script src="about-profile.js"></script>
+    <script src="modals-mobile.js" defer></script>
+    <script src="portfolio-motion.js" defer></script
+  ></body>
+</html>

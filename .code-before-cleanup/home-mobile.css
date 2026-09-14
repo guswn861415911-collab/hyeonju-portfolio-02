@@ -1,0 +1,83 @@
+/* Mobile home composition, matching the compact portrait reference. */
+body[data-page="home"] .site-frame {
+  height: calc(100dvh - 12px); min-height: 0; margin: 6px;
+  display: grid; grid-template-rows: 3rem minmax(0, 1fr) auto;
+}
+body[data-page="home"] .home-redesign-content { display: block; min-height: 0; padding: 26px 10px 0; }
+body[data-page="home"] .home-redesign-page {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 0;
+  align-items: start; position: relative;
+  height: 100%; min-height: 0;
+  grid-template-rows: auto auto auto minmax(44px, 1fr) auto;
+}
+body[data-page="home"] .home-redesign-copy { display: contents; }
+body[data-page="home"] .home-redesign-kicker {
+  grid-row: 1; margin: 0 6px 8px; font-size: clamp(7px, 2vw, 10px);
+  letter-spacing: .14em; line-height: 1.4;
+}
+body[data-page="home"] .home-redesign-title {
+  grid-row: 2; margin: 0 6px 8px; font-size: clamp(44px, 7dvh, 64px);
+  line-height: .95; letter-spacing: -.065em;
+}
+body[data-page="home"] .home-redesign-intro { grid-row: 3; margin: 0 6px; position: relative; z-index: 2; }
+body[data-page="home"] .home-redesign-intro-title { font-size: clamp(12px, 3.25vw, 18px); line-height: 1.55; }
+body[data-page="home"] .home-redesign-intro-description { font-size: clamp(10px, 2.7vw, 15px); line-height: 1.75; margin-top: 10px; }
+body[data-page="home"] .home-redesign-action-row {
+  grid-row: 4; grid-column: 1; align-self: start; width: 47%;
+  margin: 8px 0 0 2px; position: relative; z-index: 3;
+}
+body[data-page="home"] .home-redesign-work-button {
+  width: 100%; min-width: 0; min-height: 44px; padding: 0 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  font-size: clamp(10px, 2.7vw, 14px);
+}
+body[data-page="home"] .home-redesign-image {
+  grid-row: 4; grid-column: 1; justify-self: end; align-self: end;
+  width: 80%; height: 100%; min-height: 0; aspect-ratio: auto;
+  margin: 0; transform: none; padding: 0;
+  position: relative; z-index: 1;
+}
+body[data-page="home"] .home-redesign-image picture { display: block; width: 100%; height: 100%; min-height: 0; }
+body[data-page="home"] .home-redesign-image img { width: 100% !important; height: 100% !important; max-width: 100%; object-fit: contain !important; object-position: right bottom !important; }
+body[data-page="home"] .home-redesign-contact-strip {
+  grid-row: 5; grid-column: 1; width: 100%; max-width: none; margin: -1px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0;
+  border: 1px solid rgba(39,67,90,.16) !important; border-radius: 12px;
+  background: transparent !important; overflow: hidden; z-index: 3;
+}
+body[data-page="home"] .home-redesign-contact-item {
+  min-height: 68px; padding: 10px;
+  border: 0 !important; border-radius: 0 !important;
+  background: transparent !important; box-shadow: none;
+}
+body[data-page="home"] .home-redesign-contact-item:nth-child(odd) { border-right: 1px solid rgba(39,67,90,.16) !important; }
+body[data-page="home"] .home-redesign-contact-item:nth-child(-n + 2) { border-bottom: 1px solid rgba(39,67,90,.16) !important; }
+body[data-page="home"] .home-contact-inner { display: grid; grid-template-columns: 14px minmax(0, 1fr) 10px; gap: 4px; min-height: 46px; padding: 0; align-items: center; }
+body[data-page="home"] .home-redesign-contact-icon { grid-column: auto; width: 18px; height: 20px; justify-content: start; }
+body[data-page="home"] .home-redesign-contact-icon svg { width: 16px; height: 16px; }
+body[data-page="home"] .home-contact-copy { gap: 6px; container-type: inline-size; }
+body[data-page="home"] .home-contact-label { font-size: 9px; letter-spacing: .1em; }
+body[data-page="home"] .home-contact-value { font-size: clamp(10px, 2.7vw, 12px); white-space: nowrap; overflow-wrap: normal; line-height: 1.5; overflow: visible; }
+body[data-page="home"] .home-redesign-contact-item:is(:nth-child(2), :nth-child(4)) .home-contact-value {
+  font-size: min(10px, 8cqi);
+  letter-spacing: -.055em;
+}
+body[data-page="home"] .home-contact-arrow { width: 16px; height: 18px; font-size: 13px; }
+body[data-page="home"] .home-redesign-contact-item::before { display: none !important; }
+body[data-page="home"] .home-redesign-contact-item:not(:last-child)::after { display: none !important; }
+body[data-page="home"] .home-redesign-footer {
+  flex-direction: row; padding: 8px 10px; gap: 12px; border-top: 0;
+  font-size: clamp(5px, 1.45vw, 8px); line-height: 1.65; letter-spacing: .04em;
+}
+body[data-page="home"] .home-redesign-footer p:first-child { max-width: 38%; }
+body[data-page="home"] .home-redesign-footer p:last-child { white-space: nowrap; }
+body[data-page="home"] .home-redesign-footer span { margin: 0 2px; }
+
+@media (max-height: 600px) {
+  body[data-page="home"] .home-redesign-content { padding-top: 18px; }
+  body[data-page="home"] .home-redesign-title { font-size: 38px; margin-bottom: 6px; }
+  body[data-page="home"] .home-redesign-intro-title { font-size: 12px; }
+  body[data-page="home"] .home-redesign-intro-description { font-size: 10px; margin-top: 5px; line-height: 1.5; }
+  body[data-page="home"] .home-redesign-contact-item { min-height: 58px; padding: 6px 10px; }
+  body[data-page="home"] .home-redesign-work-button { min-height: 38px; }
+}

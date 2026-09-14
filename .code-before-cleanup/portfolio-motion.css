@@ -1,0 +1,44 @@
+:root { --motion-ease: cubic-bezier(.22,.61,.36,1); }
+.browser-tabs a { transition: scale .2s var(--motion-ease), background-color .25s ease; }
+.browser-tabs a:active { scale: .97; }
+@media (hover:hover) and (pointer:fine) {
+  .folder-card { transition: translate .35s var(--motion-ease), transform .35s var(--motion-ease); }
+  .folder-card:hover { translate: 0 -8px; transform: none; }
+  .folder-card-surface { transition: box-shadow .35s ease; }
+  .folder-card:hover .folder-card-surface { box-shadow: 0 14px 28px #23456618; }
+  .folder-card-preview { transition: translate .35s var(--motion-ease), scale .35s var(--motion-ease); }
+  .folder-card:hover .folder-card-preview { translate: 0 -5px; }
+  .is-video-modal-trigger:hover .folder-card-preview { scale: 1.02; }
+  .folder-card .project-arrow { opacity: .55; transition: opacity .25s ease, translate .25s ease; }
+  .folder-card:hover .project-arrow { opacity: 1; translate: 3px 0; }
+  .is-video-modal-trigger .folder-card-preview::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg,transparent 30%,#ffffff12 50%,transparent 70%); translate: -110% 0; z-index: 4; }
+  .is-video-modal-trigger:hover .folder-card-preview::after { animation: quiet-reflection .8s ease-out; }
+  :is(.me-programs img,.me-program-symbol,.contact-skill-icon,.contact-tool-icons > span) { transition: scale .25s ease, filter .25s ease; }
+  :is(.me-programs img,.me-program-symbol,.contact-skill-icon,.contact-tool-icons > span):hover { scale: 1.08; filter: drop-shadow(0 0 7px #b8cfe866); }
+  :is(.contact-links a,.about-contact-row,.home-redesign-contact-item) { transition: background-color .25s ease; }
+  :is(.contact-links a,.about-contact-row,.home-redesign-contact-item):hover { background-color: #ffffff66; }
+  :is(.contact-links b,.about-link-arrow,.home-contact-arrow) { transition: translate .25s ease; }
+  :is(.contact-links a,.about-contact-row,.home-redesign-contact-item):hover :is(b,.about-link-arrow,.home-contact-arrow) { translate: 5px 0; }
+}
+@media (hover:none) {
+  :is(.folder-card,.mobile-category-folder,button,.contact-links a) { transition: scale .18s ease; }
+  :is(.folder-card,.mobile-category-folder,button,.contact-links a):active { scale: .97; }
+}
+.motion-toast { position: fixed; z-index: 1000001; bottom: 28px; left: 50%; translate: -50% 0; padding: 12px 20px; border: 1px solid #d9e0e7; border-radius: 14px; background: #f7f7f1; color: #234566; box-shadow: 0 8px 24px #23456615; font-size: 13px; pointer-events: none; }
+@keyframes quiet-reflection { to { translate: 110% 0; } }
+@media (prefers-reduced-motion:reduce) { :is(.folder-card,.folder-card-preview,.browser-tabs a,button,.contact-links a) { transition: none !important; } .folder-card:hover { translate: none; } .is-video-modal-trigger:hover .folder-card-preview::after { animation: none; } }
+.db-nav { background-image: linear-gradient(#FFFC38,#FFFC38); background-repeat:no-repeat; background-position:left bottom; background-size:var(--db-reading-progress,0%) 2px; transition:background-size .3s ease; }
+
+/* Signature folder reveal: all movement stays inside the folder surface. */
+.folder-open-hint { display: none; }
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .folder-card { transition: translate 250ms cubic-bezier(.22,1,.36,1), transform 250ms cubic-bezier(.22,1,.36,1); }
+  .folder-tab-piece { transition: translate 250ms cubic-bezier(.22,1,.36,1); }
+  .folder-card:hover .folder-tab-piece { translate: 0 -3px; }
+  .folder-card-surface { transition: box-shadow 250ms ease-out; }
+  .folder-card-preview { transition: translate 250ms cubic-bezier(.22,1,.36,1), scale 250ms ease-out; }
+  .folder-card:hover .folder-card-preview { translate: 0 -10px; scale: 1; }
+  .folder-open-hint { display: block; position: absolute; z-index: 5; bottom: 5px; right: 12px; color: #234566; font-size: 10px; font-weight: 650; line-height: 1; pointer-events: none; opacity: 0; translate: 0 5px; transition: opacity 250ms ease-out, translate 250ms cubic-bezier(.22,1,.36,1); }
+  .folder-card:hover .folder-open-hint { opacity: 1; translate: 0 0; }
+  .folder-card:hover .folder-video-open-hint { opacity: 0; }
+}

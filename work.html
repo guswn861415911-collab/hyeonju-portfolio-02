@@ -1,0 +1,3031 @@
+<!doctype html>
+<!-- Projects 화면입니다. 폴더 목록과 각 프로젝트 모달의 실제 내용을 담고 있습니다. -->
+
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projects — Hyeonju Hwang</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..800&display=swap"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dippingbook-modal.css" />
+    <link rel="stylesheet" href="tab-headings.css" />
+    <link rel="stylesheet" href="projects-mobile.css" />
+    <link rel="stylesheet" href="modals-mobile.css" />
+    <link rel="stylesheet" href="portfolio-motion.css"
+  />  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" />
+  </head>
+
+  <body data-page="work">
+    <!-- =====================================================
+         커스텀 커서
+         ===================================================== -->
+    <canvas
+      id="cursorTrailCanvas"
+      class="cursor-trail-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <div id="customCursor" class="custom-cursor" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <!-- =====================================================
+         사이트 프레임
+         ===================================================== -->
+    <div class="site-frame">
+      <!-- ===================================================
+           상단 네비게이션
+           =================================================== -->
+      <header class="browser-bar">
+        <nav class="browser-tabs" aria-label="Main navigation">
+          <a class="browser-tab" href="index.html"> Home </a>
+
+          <a class="browser-tab" href="about.html"> About </a>
+
+          <a class="browser-tab active" href="work.html"> Projects </a>
+
+          <a class="browser-tab" href="contact.html"> Me </a>
+        </nav>
+
+        <span class="browser-url"> INDEX · 03 / 04 </span>
+      </header>
+
+      <!-- ===================================================
+           PROJECTS
+           =================================================== -->
+      <div class="site-content">
+        <main class="work-page">
+          <!-- 페이지 제목 -->
+          <header class="work-heading">
+            <div class="work-heading-copy">
+              <p class="eyebrow"> SELECTED WORK / 03 </p>
+
+              <h1>Projects</h1>
+            </div>
+
+            <p class="work-description">
+              브랜드의 메시지를 정리하고
+              <br />
+              콘텐츠를 선명한 경험으로 디자인합니다.
+            </p>
+          </header>
+
+          <!-- =================================================
+               PC 필터
+               ================================================= -->
+          <div class="desktop-filter-wrap">
+            <div class="filters" aria-label="Project filter">
+              <button type="button" class="selected" data-filter="all"> All work </button>
+
+              <button type="button" data-filter="web"> Web design </button>
+
+              <button type="button" data-filter="video"> Video content </button>
+
+              <button type="button" data-filter="marketing"> Marketing design </button>
+
+              <button type="button" data-filter="goodnotes"> Goodnotes </button>
+
+              <button type="button" data-filter="student"> Student work </button>
+            </div>
+          </div>
+
+          <!-- =================================================
+               모바일 카테고리
+               767px 이하에서 사용
+               ================================================= -->
+          <div class="mobile-category-grid-html" aria-label="Mobile project filter">
+            <button
+              type="button"
+              class="mobile-category-folder folder-butter selected"
+              data-filter="all"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 01 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>All work</strong>
+                    <small>전체 프로젝트</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mobile-category-folder folder-blue"
+              data-filter="web"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 02 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>Web design</strong>
+                    <small>웹 디자인</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mobile-category-folder folder-lilac"
+              data-filter="video"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 03 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>Video content</strong>
+                    <small>영상 콘텐츠</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mobile-category-folder folder-peach"
+              data-filter="marketing"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 04 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>Marketing</strong>
+                    <small>마케팅 디자인</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mobile-category-folder folder-pink"
+              data-filter="goodnotes"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 05 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>Goodnotes</strong>
+                    <small>템플릿 디자인</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mobile-category-folder folder-blue"
+              data-filter="student"
+            >
+              <span class="mobile-category-visual">
+                <span class="mobile-category-tab"></span>
+
+                <span class="mobile-category-surface">
+                  <span class="mobile-category-index"> 06 </span>
+
+                  <span class="mobile-category-copy">
+                    <strong>Student work</strong>
+                    <small>학생 작업</small>
+                  </span>
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <div class="mobile-category-invitation">
+            <div class="category-invitation-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M12 19v-5h10l4 4h12v17H11l4-16h23"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="m5 6 4 5M1 14l6 2M13 2l1 6"
+                  stroke="#a89fe3"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <p class="category-invitation-label">CHOOSE A CATEGORY</p>
+            <p class="category-invitation-message">원하는 프로젝트를 클릭해 보세요!</p>
+            <span class="category-invitation-arrow" aria-hidden="true">↓</span>
+            <svg
+              class="category-invitation-wave"
+              viewBox="0 0 400 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path d="M0 15C80 18 116 94 210 87S337 32 400 16V100H0Z" fill="#e9eef3" />
+            </svg>
+          </div>
+
+          <!-- =================================================
+               프로젝트 카드
+               ================================================= -->
+          <section class="folders-grid desktop-folders-grid" id="projectGrid">
+            <!-- =================================================
+                 01. DIPPINGBOOK
+                 ================================================= -->
+            <a
+              class="folder-card folder-butter is-link"
+              href="#dippingbookModal"
+              data-dippingbook-open
+              target="_blank"
+              rel="noopener noreferrer"
+              data-category="web"
+              data-preview-time="0.15"
+              aria-label="DIPPINGBOOK 프로젝트 상세 보기"
+              aria-haspopup="dialog"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div class="folder-card-preview is-landscape">
+                    <video
+                      class="folder-card-video folder-card-video-landscape"
+                      src="videos/dippingbook-card-preview.mp4"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                    ></video>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p>DIPPINGBOOK</p>
+
+                  <span> Interactive web project · Video preview </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>OPEN WEBSITE</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- =================================================
+                 02. 훈민정음 롱폼
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-blue is-video-modal-trigger"
+              data-category="video"
+              data-video-open
+              data-project-number="02"
+              data-project-title="훈민정음 창제 : 세종의 비밀 프로젝트, 글자 전쟁"
+              data-project-kicker="LONG-FORM PROJECT"
+              data-project-description="세종은 백성들이 글을 모르는 이유를 무지가 아닌
+누구나 쉽게 사용할 수 있는 문자의 부재에서 찾았습니다.
+
+입 모양과 발음 원리를 바탕으로 훈민정음을 창제하고,
+수많은 반대 속에서도 이를 세상에 전했습니다.
+
+이 영상은 한글이 단순한 문자가 아니라
+모든 사람이 자신의 생각과 뜻을 기록할 수 있도록 만든
+위대한 설계였음을 담아낸 작품입니다.
+
+영상 제작을 통해 오늘날 우리가 자유롭게 소통하고
+표현할 수 있는 이유가 한글에 있다는 사실을
+다시금 되새길 수 있었습니다."
+              data-project-orientation="landscape"
+              data-youtube-id="uudhaBaXUUs"
+              data-project-meta="16:9 · LONG-FORM"
+              aria-label="훈민정음 창제 프로젝트 영상 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div class="folder-card-preview is-landscape">
+                    <video
+                      class="folder-card-video folder-card-video-landscape"
+                      src="videos/hunmin-card-preview.mp4"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                    ></video>
+
+                    <span class="folder-video-open-hint"> VIEW VIDEO ↗ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 훈민정음 창제 : 세종의 비밀 프로젝트, 글자 전쟁 </p>
+
+                  <span> 16:9 · Long-form video work </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>LONG-FORM</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 03. 화장품 안전성 평가 숏폼
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-lilac is-video-modal-trigger"
+              data-category="video"
+              data-video-open
+              data-project-number="03"
+              data-project-title="2026 화장품 안전성 평가 제도 숏폼 공모전"
+              data-project-kicker="SHORT-FORM PROJECT"
+              data-project-description="9:16 세로형 영상 프로젝트입니다. 포트폴리오 안에서 모바일 숏폼을 보는 느낌으로 감상할 수 있도록 구성했습니다."
+              data-project-orientation="portrait"
+              data-youtube-id="vJjWN50Z5XM"
+              data-project-meta="SHORTS 01"
+              data-preview-time="0.15"
+              data-hover-start="0"
+              aria-label="2026 화장품 안전성 평가 제도 숏폼 영상 보기"
+            >
+              <div class="folder-visual"
+                ><div class="award-medal" aria-hidden="true">
+                  <svg viewBox="0 0 120 120" class="award-medal-svg">
+                    <defs>
+                      <linearGradient id="ribbonLeft" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#d26467" />
+
+                        <stop offset="100%" stop-color="#b14e55" />
+                      </linearGradient>
+
+                      <linearGradient id="ribbonRight" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#8fb7dc" />
+
+                        <stop offset="100%" stop-color="#6d98c3" />
+                      </linearGradient>
+
+                      <linearGradient id="medalMain" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffd45c" />
+
+                        <stop offset="55%" stop-color="#f2bd2b" />
+
+                        <stop offset="100%" stop-color="#dd9f12" />
+                      </linearGradient>
+
+                      <linearGradient id="medalInner" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffe894" />
+
+                        <stop offset="100%" stop-color="#f6c63f" />
+                      </linearGradient>
+                    </defs>
+
+                    <path d="M28 12h22l10 34H38L28 12Z" fill="url(#ribbonLeft)" />
+
+                    <path d="M70 12h22L82 46H60l10-34Z" fill="url(#ribbonRight)" />
+
+                    <rect
+                      x="49"
+                      y="35"
+                      width="22"
+                      height="16"
+                      rx="5"
+                      fill="#f4f6fb"
+                      opacity="0.95"
+                    />
+
+                    <circle cx="60" cy="74" r="30" fill="url(#medalMain)" />
+
+                    <circle cx="60" cy="74" r="22" fill="url(#medalInner)" />
+
+                    <circle
+                      cx="60"
+                      cy="74"
+                      r="29"
+                      fill="none"
+                      stroke="#d39a1b"
+                      stroke-width="2.5"
+                    />
+
+                    <path
+                      d="M60 60.8l4.1 8.2 9 .9-6.5 6.1 1.6 8.7-8.2-4.3-8.2 4.3 1.6-8.7-6.5-6.1 9-.9 4.1-8.2Z"
+                      fill="#fff7d5"
+                    />
+                  </svg>
+                </div>
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head">
+                    <svg
+                      class="folder-award-badge"
+                      viewBox="38 124 464 144"
+                      role="img"
+                      aria-label="장려상 수상 · AWARD WINNER"
+                    >
+                      <defs>
+                        <clipPath id="folderAwardOutline" clipPathUnits="userSpaceOnUse">
+                          <path
+                            d="M84 163 Q80 153 94 150 L150 142 L158 140 Q166 139 169 150 L398 148 C432 148 459 172 459 203 C459 235 435 259 403 259 L130 260 Q113 267 103 262 Q87 266 79 255 Q62 255 59 241 Q49 235 53 222 Q46 211 55 200 Q53 187 64 180 Q65 164 78 164 Z"
+                          />
+                          <path
+                            d="M158 125 L161 134 L169 137 L161 141 L158 151 L155 141 L147 137 L155 134 Z M463 135 L467 146 L478 151 L467 156 L463 168 L459 156 L449 151 L459 147 Z M485 169 L489 178 L499 183 L489 187 L485 198 L482 187 L473 183 L482 179 Z M47 205 L50 213 L57 217 L50 222 L47 232 L44 222 L39 217 L44 213 Z"
+                          />
+                        </clipPath>
+                      </defs>
+                      <image
+                        href="images/award-design-source.png"
+                        width="1307"
+                        height="1203"
+                        clip-path="url(#folderAwardOutline)"
+                      />
+                    </svg>
+                  </div>
+
+                  <div class="folder-card-preview is-portrait portrait-preview-cosmetics">
+                    <video
+                      class="folder-card-video folder-card-video-blur portrait-video-blur-cosmetics"
+                      src="videos/cosmetics-card-preview.mp4"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      aria-hidden="true"
+                      tabindex="-1"
+                    ></video>
+
+                    <div class="portrait-video-mat">
+                      <video
+                        class="folder-card-video folder-card-video-portrait"
+                        src="videos/cosmetics-card-preview.mp4"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                      ></video>
+                    </div>
+
+                    <div class="portrait-video-side-fade" aria-hidden="true"></div>
+
+                    <span class="folder-video-open-hint"> PLAY SHORTS ↗ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 2026 화장품 안전성 평가 제도 숏폼 공모전 </p>
+
+                  <span> 9:16 · Vertical short-form video </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>SHORTS 01</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 04. 한글 AI 아트
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-peach is-video-modal-trigger"
+              data-category="video"
+              data-video-open
+              data-project-number="04"
+              data-project-title="2026 한글 AI아트 창작 공모전"
+              data-project-kicker="SHORT-FORM PROJECT"
+              data-project-description="9:16 세로형 영상 프로젝트입니다. 포트폴리오 안에서 모바일 숏폼을 보는 느낌으로 감상할 수 있도록 구성했습니다."
+              data-project-orientation="portrait"
+              data-youtube-id="yqp4EKRR_ek"
+              data-project-meta="SHORTS 02"
+              data-preview-time="5"
+              data-hover-start="0"
+              aria-label="한글 AI아트 창작 공모전 영상 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div class="folder-card-preview is-portrait portrait-preview-hangeul">
+                    <video
+                      class="folder-card-video folder-card-video-blur portrait-video-blur-hangeul"
+                      src="videos/hangeul-card-preview.mp4"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      aria-hidden="true"
+                      tabindex="-1"
+                    ></video>
+
+                    <div class="portrait-video-mat">
+                      <video
+                        class="folder-card-video folder-card-video-portrait"
+                        src="videos/hangeul-card-preview.mp4"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                      ></video>
+                    </div>
+
+                    <div class="portrait-video-side-fade" aria-hidden="true"></div>
+
+                    <span class="folder-video-open-hint"> PLAY SHORTS ↗ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 한글 AI아트 창작 공모전 </p>
+
+                  <span> 9:16 · Vertical short-form video </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>SHORTS 02</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 05. SKINEX PPF
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-lilac is-detail-modal-trigger"
+              data-category="marketing"
+              data-detail-open
+              data-project-number="05"
+              data-project-title="SKINEX PPF 상세페이지"
+              data-project-kicker="MARKETING DESIGN PROJECT"
+              data-project-description="쿠팡 판매 페이지처럼 보이도록 구성한 상세페이지 디자인 프로젝트입니다. 폴더를 누르면 노트북 화면 안에서 상세페이지가 크게 열리도록 만들었습니다."
+              data-project-orientation="detail"
+              data-project-image="images/PPF.png"
+              data-project-meta="Desktop detail page · Coupang-style layout"
+              data-product-image="images/bugatti-product-main.jpg"
+              data-product-title="스킨엑스 G80 페이스리프트 실내필수패키지 PPF 차량보호필름"
+              data-product-category="자동차용품 › 익스테리어 › PPF / 보호필름"
+              data-product-price="38,000원"
+              aria-label="SKINEX PPF 상세페이지 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div
+                    class="folder-card-preview detail-card-preview detail-scroll-preview"
+                    data-detail-preview-scroll
+                  >
+                    <div class="detail-scroll-preview-track">
+                      <img
+                        src="images/PPF.png"
+                        alt="SKINEX PPF 긴 상세페이지 미리보기"
+                        class="detail-scroll-preview-image"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <span class="folder-video-open-hint"> SCROLL PREVIEW ↘ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> SKINEX PPF 상세페이지 </p>
+
+                  <span> Coupang-style detail page design </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>Detail page</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 06. 휠 데칼
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-lilac is-detail-modal-trigger"
+              data-category="marketing"
+              data-detail-open
+              data-project-number="06"
+              data-project-title="휠 데칼 상세페이지"
+              data-project-kicker="MARKETING DESIGN PROJECT"
+              data-project-description="자동차 휠 데칼의 컬러 변화와 적용 이미지를 중심으로 구성한 제품 상세페이지 디자인입니다."
+              data-project-orientation="detail"
+              data-project-image="images/휠 데칼.png"
+              data-project-meta="Long detail page · Wheel decal"
+              data-product-image="images/휠 데칼 메인.png"
+              data-product-title="휠 데칼 스티커"
+              data-product-category="자동차용품 › 익스테리어 › 휠 데칼"
+              data-product-price="DETAIL PAGE"
+              aria-label="휠 데칼 상세페이지 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div
+                    class="folder-card-preview detail-card-preview detail-scroll-preview"
+                    data-detail-preview-scroll
+                  >
+                    <div class="detail-scroll-preview-track">
+                      <img
+                        src="images/휠 데칼.png"
+                        alt="휠 데칼 긴 상세페이지 미리보기"
+                        class="detail-scroll-preview-image"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <span class="folder-video-open-hint"> SCROLL PREVIEW ↘ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 휠 데칼 상세페이지 </p>
+
+                  <span> Automotive wheel decal detail page design </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>Detail page</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 07. 아이트로닉스 에어컨필터
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-peach is-detail-modal-trigger"
+              data-category="marketing"
+              data-detail-open
+              data-project-number="07"
+              data-project-title="아이트로닉스 에어컨필터 상세페이지"
+              data-project-kicker="MARKETING DESIGN PROJECT"
+              data-project-description="자동차용 에어컨필터의 기능과 교체 필요성을 긴 상세페이지 흐름으로 구성한 마케팅 디자인입니다."
+              data-project-orientation="detail"
+              data-project-image="images/아이트로닉스 에어컨필터.png"
+              data-project-meta="Long detail page · Air conditioner filter"
+              data-product-image="images/아이트로닉스 에어컨필터 메인.png"
+              data-product-title="아이트로닉스 에어컨필터"
+              data-product-category="자동차용품 › 필터 › 에어컨필터"
+              data-product-price="DETAIL PAGE"
+              aria-label="아이트로닉스 에어컨필터 상세페이지 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div
+                    class="folder-card-preview detail-card-preview detail-scroll-preview"
+                    data-detail-preview-scroll
+                  >
+                    <div class="detail-scroll-preview-track">
+                      <img
+                        src="images/아이트로닉스 에어컨필터.png"
+                        alt="아이트로닉스 에어컨필터 긴 상세페이지 미리보기"
+                        class="detail-scroll-preview-image"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <span class="folder-video-open-hint"> SCROLL PREVIEW ↘ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 아이트로닉스 에어컨필터 </p>
+
+                  <span> Automotive filter detail page design </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>Detail page</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 08. 포레스트 스카이 에어컨필터
+                 ================================================= -->
+            <button
+              type="button"
+              class="folder-card folder-blue is-detail-modal-trigger"
+              data-category="marketing"
+              data-detail-open
+              data-project-number="08"
+              data-project-title="포레스트 스카이 에어컨필터 상세페이지"
+              data-project-kicker="MARKETING DESIGN PROJECT"
+              data-project-description="쾌적한 공기와 필터 성능을 중심으로 제품 장점을 전달하도록 구성한 자동차용 에어컨필터 상세페이지입니다."
+              data-project-orientation="detail"
+              data-project-image="images/포레스트 스카이 에어컨필터.jpg"
+              data-project-meta="Long detail page · Automotive filter"
+              data-product-image="images/포레스트 스카이 에어컨필터 메인.jpg.png"
+              data-product-title="포레스트 스카이 에어컨필터"
+              data-product-category="자동차용품 › 필터 › 에어컨필터"
+              data-product-price="DETAIL PAGE"
+              aria-label="포레스트 스카이 에어컨필터 상세페이지 보기"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+
+                  <div
+                    class="folder-card-preview detail-card-preview detail-scroll-preview"
+                    data-detail-preview-scroll
+                  >
+                    <div class="detail-scroll-preview-track">
+                      <img
+                        src="images/포레스트 스카이 에어컨필터.jpg"
+                        alt="포레스트 스카이 에어컨필터 긴 상세페이지 미리보기"
+                        class="detail-scroll-preview-image"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <span class="folder-video-open-hint"> SCROLL PREVIEW ↘ </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p> 포레스트 스카이 에어컨필터 </p>
+
+                  <span> Automotive filter detail page design </span>
+                </div>
+
+                <div class="folder-card-meta-side">
+                  <small>Detail page</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- Goodnotes personal project -->
+            <button
+              type="button"
+              class="folder-card folder-pink"
+              data-category="goodnotes"
+              data-planner-open
+              aria-haspopup="dialog"
+              aria-controls="plannerModal"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+                  <div class="folder-card-preview">
+                    <img
+                      class="folder-card-image planner-cover-preview"
+                      src="images/goodnotes/gradient-planner/preview.png"
+                      alt="그라데이션 스터디 플래너 표지 4종과 시간표 미리보기"
+                      loading="lazy"
+                    />
+                    <span class="folder-video-open-hint">VIEW TEMPLATE ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy"
+                  ><p>그라데이션 스터디 플래너</p
+                  ><span>Goodnotes template · Personal work</span></div
+                >
+                <div class="folder-card-meta-side"
+                  ><small>Goodnotes</small><span class="project-arrow">↗</span></div
+                >
+              </div>
+            </button>
+            <button
+              type="button"
+              class="folder-card folder-pink"
+              data-category="goodnotes"
+              data-planner-open
+              aria-haspopup="dialog"
+              aria-controls="diaryPlannerModal"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+                  <div class="folder-card-preview">
+                    <img
+                      class="folder-card-image planner-cover-preview"
+                      src="images/goodnotes/my-diary-planner/preview.png"
+                      alt="마이 다이어리 플래너 표지와 플래너 내지 미리보기"
+                      loading="lazy"
+                    />
+                    <span class="folder-video-open-hint">VIEW TEMPLATE ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy"
+                  ><p>마이 다이어리 플래너</p
+                  ><span>Goodnotes template · Personal work</span></div
+                >
+                <div class="folder-card-meta-side"
+                  ><small>Goodnotes</small><span class="project-arrow">↗</span></div
+                >
+              </div>
+            </button>
+            <button
+              type="button"
+              class="folder-card folder-pink"
+              data-category="goodnotes"
+              data-planner-open
+              aria-haspopup="dialog"
+              aria-controls="studyNotesModal"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+                  <div class="folder-card-preview">
+                    <img
+                      class="folder-card-image planner-cover-preview"
+                      src="images/goodnotes/study-notes/preview.png"
+                      alt="심플 스터디 플래너 표지와 플래너 내지 미리보기"
+                      loading="lazy"
+                    />
+                    <span class="folder-video-open-hint">VIEW TEMPLATE ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy"
+                  ><p>심플 스터디 플래너</p
+                  ><span>Goodnotes template · Personal work</span></div
+                >
+                <div class="folder-card-meta-side"
+                  ><small>Goodnotes</small><span class="project-arrow">↗</span></div
+                >
+              </div>
+            </button>
+            <button
+              type="button"
+              class="folder-card"
+              style="--folder-color: #dce8bd"
+              data-category="goodnotes"
+              data-planner-open
+              aria-haspopup="dialog"
+              aria-controls="lifePlannerModal"
+            >
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+                  <div class="folder-card-preview">
+                    <img
+                      class="folder-card-image planner-cover-preview"
+                      src="images/goodnotes/life-planner/preview.png"
+                      alt="플래너 표지와 플래너 내지 미리보기"
+                      loading="lazy"
+                    />
+                    <span class="folder-video-open-hint">VIEW TEMPLATE ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy"
+                  ><p>라이프 플래너</p
+                  ><span>Goodnotes template · Personal work</span></div
+                >
+                <div class="folder-card-meta-side"
+                  ><small>Goodnotes</small><span class="project-arrow">↗</span></div
+                >
+              </div>
+            </button>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         VIDEO PROJECT MODAL
+         -----------------------------------------------------
+         02번 = iPad
+         03/04번 = iPhone
+
+         ★ 이번 수정:
+         기기 아래 Footer를 전부 삭제했습니다.
+         ===================================================== -->
+    <div id="projectVideoModal" class="shorts-modal-backdrop" hidden>
+      <div
+        id="projectVideoModalPanel"
+        class="shorts-modal project-video-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="projectModalTitle"
+      >
+        <!-- 닫기 -->
+        <button
+          type="button"
+          class="shorts-close"
+          id="projectModalClose"
+          aria-label="영상 닫기"
+        >
+          ×
+        </button>
+
+        <!-- =================================================
+             왼쪽 프로젝트 설명
+             ================================================= -->
+        <div class="shorts-modal-copy detail-copy-unified">
+          <p class="shorts-kicker" id="projectModalKicker"> VIDEO PROJECT </p>
+
+          <h2 id="projectModalTitle"> 프로젝트 제목 </h2>
+          <div id="hunminDescriptionHeading" hidden>작품 설명</div>
+
+          <p class="shorts-description" id="projectModalDescription"> 프로젝트 설명 </p>
+          <blockquote id="hunminQuote" hidden
+            >“말할 수 있는 사람에게,<br />자신의 뜻을 기록할 가능성을 건넨
+            설계였다.”</blockquote
+          >
+          <p id="hunminNote" hidden
+            >한글의 탄생을 현대적인 영상 언어로 재해석한 프로젝트.</p
+          >
+
+          <div class="project-modal-chip-row">
+            <span class="shorts-info-chip" id="projectModalRatioChip">
+              16:9 Landscape
+            </span>
+
+            <span class="shorts-info-chip" id="projectModalTypeChip"> Long-form </span>
+
+            <span class="shorts-info-chip" id="projectModalGenreChip">
+              Video Project
+            </span>
+          </div>
+
+          <span class="project-number-chip" id="projectModalNumber"> PROJECT 02 </span>
+          <a
+            id="hunminYoutubeLink"
+            class="project-number-chip"
+            href="https://youtu.be/uudhaBaXUUs?si=710YOmpxzzR8DSBp"
+            target="_blank"
+            rel="noopener noreferrer"
+            hidden
+            ><span class="modal-pill-icon" aria-hidden="true">▶</span>Watch on YouTube</a
+          >
+        </div>
+
+        <!-- =================================================
+             02번 iPad
+             ================================================= -->
+        <div id="landscapeModalView" class="project-modal-view project-landscape-wrap">
+          <div class="ipad-pro">
+            <!-- 장식 버튼 -->
+            <div class="ipad-btn-power" aria-hidden="true"></div>
+
+            <div class="ipad-btn-vol-up" aria-hidden="true"></div>
+
+            <div class="ipad-btn-vol-down" aria-hidden="true"></div>
+
+            <!-- iPad 본체 -->
+            <div class="ipad-chassis">
+              <div class="ipad-camera-dot" aria-hidden="true"></div>
+
+              <div class="ipad-screen">
+                <video
+                  id="landscapeModalVideo"
+                  class="ipad-video"
+                  controls
+                  playsinline
+                ></video>
+                <iframe
+                  id="hunminModalIframe"
+                  title="훈민정음 창제 : 세종의 비밀 프로젝트, 글자 전쟁"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowfullscreen
+                  hidden
+                ></iframe>
+              </div>
+
+              <div class="ipad-home-bar" aria-hidden="true"></div>
+            </div>
+
+            <!--
+              ★ 삭제된 부분
+
+              기존에는 이 아래에
+
+              프로젝트 제목
+              iPad Pro · 16:9 LONG-FORM
+
+              이 표시됐지만
+              듀듀 요청대로 완전히 삭제했습니다.
+            -->
+          </div>
+        </div>
+
+        <!-- =================================================
+             03 / 04번 iPhone
+             ================================================= -->
+        <div id="portraitModalView" class="project-modal-view shorts-phone-wrap" hidden>
+          <div class="iphone-17-pro">
+            <!-- 장식 버튼 -->
+            <div class="iphone-btn-action" aria-hidden="true"></div>
+
+            <div class="iphone-btn-vol-up" aria-hidden="true"></div>
+
+            <div class="iphone-btn-vol-down" aria-hidden="true"></div>
+
+            <div class="iphone-btn-power" aria-hidden="true"></div>
+
+            <!-- iPhone 본체 -->
+            <div class="iphone-chassis">
+              <!-- Dynamic Island -->
+              <div class="iphone-dynamic-island" aria-hidden="true">
+                <span class="iphone-sensor"></span>
+              </div>
+
+              <!-- 상태바 -->
+              <div class="iphone-status-bar" aria-hidden="true">
+                <span class="iphone-status-time"> 9:41 </span>
+
+                <div class="iphone-status-icons">
+                  <span class="iphone-icon-signal"> ●●● </span>
+
+                  <span class="iphone-icon-wifi"> 5G </span>
+
+                  <span class="iphone-icon-battery"> ■ </span>
+                </div>
+              </div>
+
+              <!-- 실제 YouTube Shorts -->
+              <div class="iphone-screen">
+                <iframe
+                  id="portraitModalIframe"
+                  class="iphone-video-iframe"
+                  src=""
+                  title="YouTube Shorts"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <div class="iphone-home-indicator" aria-hidden="true"></div>
+            </div>
+
+            <!--
+              ★ 삭제된 부분
+
+              iPhone 17 Pro Mockup
+              03 / 04
+
+              둘 다 완전히 삭제했습니다.
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         05 ~ 08 DETAIL PAGE MODAL
+         -----------------------------------------------------
+         노트북 목업 아래 Footer 삭제
+         ===================================================== -->
+    <div id="detailPageModal" class="detail-page-modal-backdrop" hidden>
+      <div
+        class="detail-page-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="detailPageModalTitle"
+      >
+        <!-- 닫기 -->
+        <button
+          type="button"
+          class="detail-page-modal-close"
+          id="detailPageModalClose"
+          aria-label="상세페이지 닫기"
+        >
+          ×
+        </button>
+
+        <!-- =================================================
+             왼쪽 설명
+             ================================================= -->
+        <div class="detail-page-modal-copy detail-copy-unified">
+          <p class="shorts-kicker" id="detailPageModalKicker">
+            MARKETING DESIGN PROJECT
+          </p>
+
+          <h2 id="detailPageModalTitle"> SKINEX PPF 상세페이지 </h2>
+
+          <p class="detail-description-label">작품 설명</p>
+          <div class="shorts-description" id="detailPageModalDescription"></div>
+
+          <div id="detailProjectDetails">
+            <blockquote class="detail-project-quote" id="detailProjectQuote"></blockquote>
+            <p class="detail-project-note" id="detailProjectNote"></p>
+            <dl class="detail-project-meta">
+              <div><dt>COMPANY</dt><dd>카즈온(주)</dd></div>
+              <div><dt>PERIOD</dt><dd>2020.01 – 2024.11</dd></div>
+            </dl>
+          </div>
+
+          <div class="project-modal-chip-row" id="detailPageModalTags">
+            <span class="shorts-info-chip"> Desktop Detail Page </span>
+
+            <span class="shorts-info-chip"> Marketing Design </span>
+
+            <span class="shorts-info-chip"> Commercial Project </span>
+          </div>
+
+          <span class="project-number-chip" id="detailPageModalNumber"> PROJECT 05 </span>
+        </div>
+
+        <!-- =================================================
+             오른쪽 노트북
+             ================================================= -->
+        <div class="project-laptop-wrap">
+          <div class="project-laptop-player">
+            <div class="project-laptop-shell">
+              <!-- 노트북 화면 -->
+              <div class="project-laptop-lid">
+                <div class="project-laptop-camera" aria-hidden="true"></div>
+
+                <div class="project-laptop-screen">
+                  <div class="detail-scroll-guide" aria-hidden="true" hidden>
+                    <svg class="detail-scroll-mouse" viewBox="0 0 24 32" fill="none">
+                      <rect
+                        x="4"
+                        y="2"
+                        width="16"
+                        height="27"
+                        rx="8"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        class="detail-scroll-wheel"
+                        d="M12 8v4"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    <span>Scroll</span>
+                    <svg class="detail-scroll-arrow" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M8 3v9m-4-4 4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div class="detail-browser">
+                    <!-- =========================================
+                         Chrome 상단
+                         ========================================= -->
+                    <div class="detail-browser-bar">
+                      <div class="detail-browser-window-top">
+                        <div class="detail-browser-tab is-active">
+                          <span class="detail-browser-tab-logo" aria-hidden="true"></span>
+
+                          <span class="detail-browser-tab-title"> 새 탭 </span>
+
+                          <span class="detail-browser-tab-close" aria-hidden="true">
+                            ×
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          class="detail-browser-tab-add"
+                          aria-label="새 탭 추가"
+                        >
+                          +
+                        </button>
+
+                        <div
+                          class="detail-browser-window-actions"
+                          aria-label="브라우저 창 버튼"
+                        >
+                          <button
+                            type="button"
+                            class="detail-browser-window-button"
+                            tabindex="-1"
+                          >
+                            —
+                          </button>
+
+                          <button
+                            type="button"
+                            class="detail-browser-window-button"
+                            tabindex="-1"
+                          >
+                            □
+                          </button>
+
+                          <button
+                            type="button"
+                            class="detail-browser-window-button is-close"
+                            tabindex="-1"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- 주소창 -->
+                      <div class="detail-browser-toolbar">
+                        <div class="detail-browser-nav" aria-hidden="true">
+                          <span>←</span>
+                          <span>→</span>
+                          <span>⟳</span>
+                        </div>
+
+                        <div class="detail-browser-address">
+                          <span class="detail-browser-address-logo" aria-hidden="true">
+                            G
+                          </span>
+
+                          <span id="detailBrowserAddress">
+                            Google에 물어보기나 URL을 입력하세요.
+                          </span>
+                        </div>
+
+                        <div class="detail-browser-toolbar-actions" aria-hidden="true">
+                          <span class="detail-browser-toolbar-profile"></span>
+
+                          <span class="detail-browser-toolbar-menu"> ⋮ </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- =========================================
+                         실제 쇼핑 상세페이지 영역
+                         ========================================= -->
+                    <div class="detail-page-scroll-area">
+                      <!-- 최상단 작은 메뉴 -->
+                      <div class="coupang-mini-topbar">
+                        <div class="coupang-mini-topbar-left">
+                          <span>즐겨찾기</span>
+                          <span>입점신청 ▾</span>
+                        </div>
+
+                        <div class="coupang-mini-topbar-right">
+                          <span>로그인</span>
+                          <span>회원가입</span>
+                          <span>고객센터</span>
+                          <span>판매자 가입</span>
+                        </div>
+                      </div>
+
+                      <!-- 쿠팡형 헤더 -->
+                      <div class="coupang-product-header">
+                        <div class="coupang-category-box">
+                          <span class="coupang-category-icon"> ☰ </span>
+
+                          <strong>카테고리</strong>
+                        </div>
+
+                        <img
+                          src="images/coupang-logo.jpg"
+                          alt="Coupang"
+                          class="detail-coupang-logo"
+                          onerror="
+                            this.onerror = null;
+                            this.src = 'images/coupang-logo.jpg';
+                          "
+                        />
+
+                        <div class="coupang-search">
+                          <span class="coupang-search-select"> 전체 ▾ </span>
+
+                          <span class="coupang-search-placeholder">
+                            찾고 싶은 상품을 검색해보세요!
+                          </span>
+
+                          <span class="coupang-search-icon"> ⌕ </span>
+                        </div>
+
+                        <div class="coupang-header-icon">
+                          <span>♡</span>
+                          <small>마이쿠팡</small>
+                        </div>
+
+                        <div class="coupang-header-icon">
+                          <span>🛒</span>
+                          <small>장바구니</small>
+                        </div>
+                      </div>
+
+                      <!-- 빠른 메뉴 -->
+                      <div class="coupang-quick-menu">
+                        <span>▶ 쿠팡플레이</span>
+                        <span>🚀 로켓배송</span>
+                        <span>🚀 로켓프레시</span>
+                        <span>🔥 2026 추천</span>
+                        <span>🛍 다시 구매</span>
+                        <span>biz 쿠팡비즈</span>
+                        <span>🎁 로켓직구</span>
+                        <span>골드박스</span>
+                      </div>
+
+                      <!-- 상품 경로 -->
+                      <div class="coupang-breadcrumb" id="detailProductBreadcrumb">
+                        쿠팡 홈 &nbsp;›&nbsp; 자동차용품 &nbsp;›&nbsp; 익스테리어
+                        &nbsp;›&nbsp; PPF / 보호필름
+                      </div>
+
+                      <!-- =======================================
+                           상품 정보
+                           ======================================= -->
+                      <section class="coupang-product-main">
+                        <!-- 썸네일 -->
+                        <div class="coupang-thumb-column">
+                          <button type="button" class="is-active" id="detailThumbBtn1">
+                            <img
+                              id="detailProductThumb1"
+                              src="images/bugatti-product-main.jpg"
+                              alt="상품 대표 썸네일"
+                            />
+                          </button>
+
+                          <button
+                            type="button"
+                            id="detailThumbBtn2"
+                            style="display: none"
+                          >
+                            <img id="detailProductThumb2" src="" alt="추가 썸네일" />
+                          </button>
+                        </div>
+
+                        <!-- 대표 이미지 -->
+                        <div class="coupang-product-image-box">
+                          <img
+                            id="detailProductMainImage"
+                            src="images/bugatti-product-main.jpg"
+                            alt="상품 대표 이미지"
+                            class="coupang-product-main-image"
+                          />
+                        </div>
+
+                        <!-- 상품 정보 -->
+                        <div class="coupang-product-info">
+                          <div class="coupang-product-title-row">
+                            <h3 id="detailProductTitle">
+                              스킨엑스 G80 페이스리프트 실내필수패키지 PPF 차량보호필름
+                            </h3>
+
+                            <div class="coupang-product-round-icons">
+                              <span>♡</span>
+                              <span class="modal-pill-icon" aria-hidden="true">↗</span>
+                            </div>
+                          </div>
+
+                          <div class="coupang-rating">
+                            <strong>★★★★★</strong>
+                            <span>6개 상품평</span>
+                          </div>
+
+                          <div class="coupang-product-price">
+                            <strong id="detailProductPrice"> 38,000원 </strong>
+
+                            <span id="detailProductPriceSub">
+                              (포트폴리오 상품 페이지)
+                            </span>
+                          </div>
+
+                          <p class="coupang-delivery-fee"> 배송비 3,000원 </p>
+
+                          <div class="coupang-info-line">
+                            <strong> 모레(목) 도착 예정 </strong>
+                          </div>
+
+                          <div class="coupang-info-line">
+                            <span>판매자</span>
+
+                            <strong> SKINEX </strong>
+
+                            <button type="button"> 판매자 상품 보러가기 </button>
+                          </div>
+
+                          <div class="coupang-info-line">
+                            <span>배송사</span>
+
+                            <strong> CJ 대한통운 </strong>
+                          </div>
+
+                          <div class="coupang-info-line">
+                            <span>수량</span>
+
+                            <strong> 1개 </strong>
+                          </div>
+
+                          <div class="coupang-point-line">
+                            <strong>적립</strong>
+
+                            <span> 최대 1,900원 쿠팡캐시 적립 </span>
+
+                            <a href="#"> 혜택보기 › </a>
+                          </div>
+
+                          <!-- 구매 버튼 -->
+                          <div class="coupang-buy-row">
+                            <div class="coupang-qty-box">
+                              <button type="button"> − </button>
+
+                              <span>1</span>
+
+                              <button type="button"> ＋ </button>
+                            </div>
+
+                            <button type="button" class="coupang-cart-button">
+                              장바구니 담기
+                            </button>
+
+                            <button type="button" class="coupang-buy-button">
+                              바로구매 ›
+                            </button>
+                          </div>
+
+                          <ul class="coupang-product-bullets">
+                            <li> 차량 시리즈: 제네시스 </li>
+
+                            <li> 현재 품목: 완제품 </li>
+
+                            <li> 포함 구성 요소: 본품 </li>
+
+                            <li> 색상계열: 투명계열 </li>
+
+                            <li> 도어가드 형태: 부착형 </li>
+                          </ul>
+                        </div>
+                      </section>
+
+                      <!-- 상세정보 탭 -->
+                      <div class="coupang-detail-tabs">
+                        <button type="button" class="is-active"> 상품상세 </button>
+
+                        <button type="button"> 상품평 </button>
+
+                        <button type="button"> 상품문의 </button>
+
+                        <button type="button"> 배송/교환/반품 안내 </button>
+                      </div>
+
+                      <!-- 긴 상세페이지 이미지 -->
+                      <section class="coupang-long-detail">
+                        <p class="coupang-long-detail-label"> PRODUCT DETAIL </p>
+
+                        <img
+                          id="detailPageModalImage"
+                          class="detail-page-image"
+                          src="images/PPF.png"
+                          alt="상세페이지 이미지"
+                          onerror="
+                            this.onerror = null;
+                            this.src = 'images/PPF.png';
+                          "
+                        />
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 노트북 받침 -->
+              <div class="project-laptop-base" aria-hidden="true">
+                <span class="project-laptop-trackpad"></span>
+              </div>
+            </div>
+
+            <!--
+              ★ 삭제된 부분
+
+              기존에는 이 아래에
+
+              SKINEX PPF 상세페이지
+              COUPANG-STYLE · PROJECT 05
+
+              같은 문구가 표시됐지만
+              모든 노트북 목업에서 완전히 제거했습니다.
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         스크롤 안내
+         ===================================================== -->
+    <button
+      class="scroll-cue"
+      id="scrollCue"
+      type="button"
+      aria-label="Scroll down"
+      hidden
+    >
+      <span>Scroll</span>
+
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 6V18M12 18L7 13M12 18L17 13"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- 공통 JavaScript -->
+    <script src="script.js"></script>
+
+    <dialog data-goodnotes-modal id="plannerModal" aria-labelledby="plannerTitle">
+      <button type="button" class="planner-close" aria-label="템플릿 닫기">×</button>
+      <div class="planner-layout">
+        <div class="planner-copy">
+          <p class="eyebrow">GOODNOTES TEMPLATE</p>
+          <h2 id="plannerTitle">Dreamy Study Planner</h2>
+          <p class="planner-section-label">작품 설명</p
+          ><div class="planner-description"
+            ><p
+              >몽환적인 분위기와 부드러운 컬러감을 담아 제작한 GoodNotes 스터디 플래너
+              템플릿입니다.</p
+            ><p
+              >심플한 레이아웃 위에 감성적인 컬러를 더해 공부와 기록이 즐거워질 수 있도록
+              디자인했습니다.</p
+            ><p
+              >핑크, 퍼플, 옐로우, 블루 총 4가지 컬러를 제공하여 취향에 맞게 사용할 수
+              있도록 구성했습니다.</p
+            ><p
+              >레이아웃 디자인, 컬러 시스템, 아이패드 사용성을 고려하여 오랫동안 사용해도
+              편안한 플래너를 목표로 제작했습니다.</p
+            ></div
+          ><blockquote class="planner-quote"
+            >“기록하는 시간을 더욱 즐겁게 만들어주는 감성 GoodNotes
+            템플릿입니다.”</blockquote
+          ><p class="planner-note"
+            >개인 프로젝트로 제작한 GoodNotes 스터디 플래너 디자인입니다.</p
+          ><section class="planner-performance" aria-label="Performance"
+            ><h3>Performance</h3
+            ><dl
+              ><div
+                ><dt><span aria-hidden="true">👁</span> Views</dt><dd>7,312</dd></div
+              ><div
+                ><dt><span aria-hidden="true">♡</span> Likes</dt><dd>134</dd></div
+              ><div
+                ><dt><span aria-hidden="true">💬</span> Comments</dt><dd>47</dd></div
+              ></dl
+            ></section
+          >
+          <div class="planner-tags"
+            ><span>Personal work</span><span>4 Colors</span><span>44 Pages</span></div
+          >
+          <span class="planner-project-number">PROJECT 09</span>
+        </div>
+        <div class="planner-device"
+          ><div class="planner-gallery-controls"
+            ><fieldset class="planner-colors">
+              <legend>Color</legend>
+              <div class="planner-color-options">
+                <button
+                  type="button"
+                  data-planner-color="0"
+                  aria-pressed="true"
+                  style="--swatch: #f0c9d6"
+                  ><span aria-hidden="true"></span>Pink</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="1"
+                  aria-pressed="false"
+                  style="--swatch: #baa7ca"
+                  ><span aria-hidden="true"></span>Purple</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="2"
+                  aria-pressed="false"
+                  style="--swatch: #efe599"
+                  ><span aria-hidden="true"></span>Yellow</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="3"
+                  aria-pressed="false"
+                  style="--swatch: #c9dceb"
+                  ><span aria-hidden="true"></span>Blue</button
+                >
+              </div>
+            </fieldset>
+            <label for="plannerPageSelect">페이지 선택</label>
+            <select id="plannerPageSelect" data-planner-select>
+              <option
+                value="0"
+                data-src="images/goodnotes/gradient-planner/pink/page-01.png"
+                >01 · 핑크 · 표지</option
+              >
+              <option
+                value="1"
+                data-src="images/goodnotes/gradient-planner/pink/page-02.png"
+                >02 · 핑크 · 시간표</option
+              >
+              <option
+                value="2"
+                data-src="images/goodnotes/gradient-planner/pink/page-03.png"
+                >03 · 핑크 · 목표 · 데일리 루틴</option
+              >
+              <option
+                value="3"
+                data-src="images/goodnotes/gradient-planner/pink/page-04.png"
+                >04 · 핑크 · 만다라트</option
+              >
+              <option
+                value="4"
+                data-src="images/goodnotes/gradient-planner/pink/page-05.png"
+                >05 · 핑크 · 과목별 계획</option
+              >
+              <option
+                value="5"
+                data-src="images/goodnotes/gradient-planner/pink/page-06.png"
+                >06 · 핑크 · 월간 계획</option
+              >
+              <option
+                value="6"
+                data-src="images/goodnotes/gradient-planner/pink/page-07.png"
+                >07 · 핑크 · 주간 계획</option
+              >
+              <option
+                value="7"
+                data-src="images/goodnotes/gradient-planner/pink/page-08.png"
+                >08 · 핑크 · 일간 학습 계획</option
+              >
+              <option
+                value="8"
+                data-src="images/goodnotes/gradient-planner/pink/page-09.png"
+                >09 · 핑크 · 시험 계획</option
+              >
+              <option
+                value="9"
+                data-src="images/goodnotes/gradient-planner/pink/page-10.png"
+                >10 · 핑크 · 단어장</option
+              >
+              <option
+                value="10"
+                data-src="images/goodnotes/gradient-planner/pink/page-11.png"
+                >11 · 핑크 · 줄 노트</option
+              >
+              <option
+                value="11"
+                data-src="images/goodnotes/gradient-planner/purple/page-01.png"
+                >01 · 퍼플 · 표지</option
+              >
+              <option
+                value="12"
+                data-src="images/goodnotes/gradient-planner/purple/page-02.png"
+                >02 · 퍼플 · 시간표</option
+              >
+              <option
+                value="13"
+                data-src="images/goodnotes/gradient-planner/purple/page-03.png"
+                >03 · 퍼플 · 목표 · 데일리 루틴</option
+              >
+              <option
+                value="14"
+                data-src="images/goodnotes/gradient-planner/purple/page-04.png"
+                >04 · 퍼플 · 만다라트</option
+              >
+              <option
+                value="15"
+                data-src="images/goodnotes/gradient-planner/purple/page-05.png"
+                >05 · 퍼플 · 과목별 계획</option
+              >
+              <option
+                value="16"
+                data-src="images/goodnotes/gradient-planner/purple/page-06.png"
+                >06 · 퍼플 · 월간 계획</option
+              >
+              <option
+                value="17"
+                data-src="images/goodnotes/gradient-planner/purple/page-07.png"
+                >07 · 퍼플 · 주간 계획</option
+              >
+              <option
+                value="18"
+                data-src="images/goodnotes/gradient-planner/purple/page-08.png"
+                >08 · 퍼플 · 일간 학습 계획</option
+              >
+              <option
+                value="19"
+                data-src="images/goodnotes/gradient-planner/purple/page-09.png"
+                >09 · 퍼플 · 시험 계획</option
+              >
+              <option
+                value="20"
+                data-src="images/goodnotes/gradient-planner/purple/page-10.png"
+                >10 · 퍼플 · 단어장</option
+              >
+              <option
+                value="21"
+                data-src="images/goodnotes/gradient-planner/purple/page-11.png"
+                >11 · 퍼플 · 줄 노트</option
+              >
+              <option
+                value="22"
+                data-src="images/goodnotes/gradient-planner/yellow/page-01.png"
+                >01 · 옐로우 · 표지</option
+              >
+              <option
+                value="23"
+                data-src="images/goodnotes/gradient-planner/yellow/page-02.png"
+                >02 · 옐로우 · 시간표</option
+              >
+              <option
+                value="24"
+                data-src="images/goodnotes/gradient-planner/yellow/page-03.png"
+                >03 · 옐로우 · 목표 · 데일리 루틴</option
+              >
+              <option
+                value="25"
+                data-src="images/goodnotes/gradient-planner/yellow/page-04.png"
+                >04 · 옐로우 · 만다라트</option
+              >
+              <option
+                value="26"
+                data-src="images/goodnotes/gradient-planner/yellow/page-05.png"
+                >05 · 옐로우 · 과목별 계획</option
+              >
+              <option
+                value="27"
+                data-src="images/goodnotes/gradient-planner/yellow/page-06.png"
+                >06 · 옐로우 · 월간 계획</option
+              >
+              <option
+                value="28"
+                data-src="images/goodnotes/gradient-planner/yellow/page-07.png"
+                >07 · 옐로우 · 주간 계획</option
+              >
+              <option
+                value="29"
+                data-src="images/goodnotes/gradient-planner/yellow/page-08.png"
+                >08 · 옐로우 · 일간 학습 계획</option
+              >
+              <option
+                value="30"
+                data-src="images/goodnotes/gradient-planner/yellow/page-09.png"
+                >09 · 옐로우 · 시험 계획</option
+              >
+              <option
+                value="31"
+                data-src="images/goodnotes/gradient-planner/yellow/page-10.png"
+                >10 · 옐로우 · 단어장</option
+              >
+              <option
+                value="32"
+                data-src="images/goodnotes/gradient-planner/yellow/page-11.png"
+                >11 · 옐로우 · 줄 노트</option
+              >
+              <option
+                value="33"
+                data-src="images/goodnotes/gradient-planner/blue/page-01.png"
+                >01 · 블루 · 표지</option
+              >
+              <option
+                value="34"
+                data-src="images/goodnotes/gradient-planner/blue/page-02.png"
+                >02 · 블루 · 시간표</option
+              >
+              <option
+                value="35"
+                data-src="images/goodnotes/gradient-planner/blue/page-03.png"
+                >03 · 블루 · 목표 · 데일리 루틴</option
+              >
+              <option
+                value="36"
+                data-src="images/goodnotes/gradient-planner/blue/page-04.png"
+                >04 · 블루 · 만다라트</option
+              >
+              <option
+                value="37"
+                data-src="images/goodnotes/gradient-planner/blue/page-05.png"
+                >05 · 블루 · 과목별 계획</option
+              >
+              <option
+                value="38"
+                data-src="images/goodnotes/gradient-planner/blue/page-06.png"
+                >06 · 블루 · 월간 계획</option
+              >
+              <option
+                value="39"
+                data-src="images/goodnotes/gradient-planner/blue/page-07.png"
+                >07 · 블루 · 주간 계획</option
+              >
+              <option
+                value="40"
+                data-src="images/goodnotes/gradient-planner/blue/page-08.png"
+                >08 · 블루 · 일간 학습 계획</option
+              >
+              <option
+                value="41"
+                data-src="images/goodnotes/gradient-planner/blue/page-09.png"
+                >09 · 블루 · 시험 계획</option
+              >
+              <option
+                value="42"
+                data-src="images/goodnotes/gradient-planner/blue/page-10.png"
+                >10 · 블루 · 단어장</option
+              >
+              <option
+                value="43"
+                data-src="images/goodnotes/gradient-planner/blue/page-11.png"
+                >11 · 블루 · 줄 노트</option
+              >
+            </select></div
+          >
+          <div class="ipad-pro">
+            <div class="ipad-btn-power" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-up" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-down" aria-hidden="true"></div>
+            <div class="ipad-chassis">
+              <div class="ipad-camera-dot" aria-hidden="true"></div>
+              <div class="ipad-screen">
+                <img
+                  id="plannerPageImage"
+                  data-planner-image
+                  src="images/goodnotes/gradient-planner/pink/page-01.png"
+                  alt="그라데이션 스터디 플래너 · 핑크 표지"
+                  width="3792"
+                  height="5062"
+                />
+              </div>
+              <div class="ipad-home-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="planner-navigation" role="group" aria-label="템플릿 페이지 탐색">
+            <button type="button" data-planner-prev aria-label="이전 페이지"
+              ><span class="planner-nav-arrow" aria-hidden="true">←</span
+              ><span>Previous</span></button
+            >
+            <p
+              id="plannerPageStatus"
+              data-planner-status
+              aria-live="polite"
+              aria-atomic="true"
+              >01 / 11</p
+            >
+            <button type="button" data-planner-next aria-label="다음 페이지"
+              ><span>Next</span
+              ><span class="planner-nav-arrow" aria-hidden="true">→</span></button
+            >
+          </div>
+        </div>
+      </div>
+      <a
+        class="planner-blog-link"
+        href="https://blog.naver.com/hyeon_dyu/223908503396"
+        target="_blank"
+        rel="noopener noreferrer"
+        >블로그 보기 <span class="modal-pill-icon" aria-hidden="true">→</span></a
+      ></dialog
+    >
+
+    <dialog
+      data-goodnotes-modal
+      id="diaryPlannerModal"
+      class="planner-landscape"
+      aria-labelledby="diaryPlannerTitle"
+    >
+      <button type="button" class="planner-close" aria-label="템플릿 닫기">×</button>
+      <div class="planner-layout">
+        <div class="planner-copy">
+          <p class="eyebrow">GOODNOTES TEMPLATE</p>
+          <h2 id="diaryPlannerTitle">My Daily Planner</h2>
+          <p class="planner-section-label">작품 설명</p
+          ><div class="planner-description"
+            ><p
+              >일정 관리와 메모를 보다 편리하게 할 수 있도록 제작한 GoodNotes 데일리
+              플래너입니다.</p
+            ><p
+              >깔끔한 구성과 여백 중심의 레이아웃으로 하루의 일정, 목표, 메모를 한눈에
+              정리할 수 있도록 설계했습니다.</p
+            ><p
+              >복잡한 장식을 최소화하여 공부, 업무, 일상 등 다양한 용도로 사용할 수 있도록
+              디자인했습니다.</p
+            ><p
+              >레이아웃 구성, 필기 편의성, 정보 정리를 고려하여 실용성을 중심으로
+              제작했습니다.</p
+            ></div
+          ><blockquote class="planner-quote"
+            >“매일의 기록이 더욱 편안하고 효율적이도록 실용성에 집중한 GoodNotes
+            템플릿입니다.”</blockquote
+          ><p class="planner-note"
+            >개인 프로젝트로 제작한 GoodNotes 데일리 플래너 디자인입니다.</p
+          ><section class="planner-performance" aria-label="Performance"
+            ><h3>Performance</h3
+            ><dl
+              ><div
+                ><dt><span aria-hidden="true">👁</span> Views</dt><dd>6,180</dd></div
+              ><div
+                ><dt><span aria-hidden="true">♡</span> Likes</dt><dd>86</dd></div
+              ><div
+                ><dt><span aria-hidden="true">💬</span> Comments</dt><dd>21</dd></div
+              ></dl
+            ></section
+          >
+          <div class="planner-tags"
+            ><span>Personal work</span><span>8 Pages</span><span>Landscape</span></div
+          >
+          <span class="planner-project-number">PROJECT 10</span>
+        </div>
+        <div class="planner-device"
+          ><div class="planner-gallery-controls"
+            ><label for="diaryPlannerPageSelect">페이지 선택</label>
+            <select id="diaryPlannerPageSelect" data-planner-select>
+              <option value="0" data-src="images/goodnotes/my-diary-planner/page-01.png"
+                >01 · 표지</option
+              >
+              <option value="1" data-src="images/goodnotes/my-diary-planner/page-02.png"
+                >02 · 연간 계획 · 1–6월</option
+              >
+              <option value="2" data-src="images/goodnotes/my-diary-planner/page-03.png"
+                >03 · 연간 계획 · 7–12월</option
+              >
+              <option value="3" data-src="images/goodnotes/my-diary-planner/page-04.png"
+                >04 · 1월 월간 계획</option
+              >
+              <option value="4" data-src="images/goodnotes/my-diary-planner/page-05.png"
+                >05 · 주간 계획</option
+              >
+              <option value="5" data-src="images/goodnotes/my-diary-planner/page-06.png"
+                >06 · 데일리 플래너</option
+              >
+              <option value="6" data-src="images/goodnotes/my-diary-planner/page-07.png"
+                >07 · 다이어리 · 가로 사진</option
+              >
+              <option value="7" data-src="images/goodnotes/my-diary-planner/page-08.png"
+                >08 · 다이어리 · 세로 사진</option
+              >
+            </select></div
+          >
+          <div class="ipad-pro">
+            <div class="ipad-btn-power" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-up" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-down" aria-hidden="true"></div>
+            <div class="ipad-chassis">
+              <div class="ipad-camera-dot" aria-hidden="true"></div>
+              <div class="ipad-screen">
+                <img
+                  id="diaryPlannerPageImage"
+                  data-planner-image
+                  src="images/goodnotes/my-diary-planner/page-01.png"
+                  alt="마이 다이어리 플래너 · 표지"
+                  width="5984"
+                  height="4634"
+                />
+              </div>
+              <div class="ipad-home-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="planner-navigation" role="group" aria-label="템플릿 페이지 탐색">
+            <button type="button" data-planner-prev aria-label="이전 페이지"
+              ><span class="planner-nav-arrow" aria-hidden="true">←</span
+              ><span>Previous</span></button
+            >
+            <p
+              id="diaryPlannerPageStatus"
+              data-planner-status
+              aria-live="polite"
+              aria-atomic="true"
+              >01 / 08</p
+            >
+            <button type="button" data-planner-next aria-label="다음 페이지"
+              ><span>Next</span
+              ><span class="planner-nav-arrow" aria-hidden="true">→</span></button
+            >
+          </div>
+        </div>
+      </div>
+      <a
+        class="planner-blog-link"
+        href="https://blog.naver.com/hyeon_dyu/223652163555"
+        target="_blank"
+        rel="noopener noreferrer"
+        >블로그 보기 <span class="modal-pill-icon" aria-hidden="true">→</span></a
+      ></dialog
+    >
+    <dialog data-goodnotes-modal id="studyNotesModal" aria-labelledby="studyNotesTitle">
+      <button type="button" class="planner-close" aria-label="템플릿 닫기">×</button>
+      <div class="planner-layout">
+        <div class="planner-copy">
+          <p class="eyebrow">GOODNOTES TEMPLATE</p>
+          <h2 id="studyNotesTitle">Simple Study Planner</h2>
+          <p class="planner-section-label">작품 설명</p
+          ><div class="planner-description"
+            ><p
+              >버스 안에서 아이패드로 열심히 필기하는 학생을 보고 영감을 받아 제작한
+              GoodNotes 스터디 플래너입니다.</p
+            ><p
+              >학생들이 공부에 더욱 집중할 수 있도록 복잡한 요소를 줄이고 필기에 최적화된
+              레이아웃으로 구성했습니다.</p
+            ><p
+              >화이트, 핑크, 퍼플, 옐로우, 블루 총 5가지 컬러를 제공하여 사용자의 취향에
+              맞게 선택할 수 있습니다.</p
+            ><p
+              >심플한 디자인과 넉넉한 필기 공간으로 학습 효율을 높일 수 있도록
+              제작했습니다.</p
+            ></div
+          ><blockquote class="planner-quote"
+            >“공부에 집중할 수 있는 가장 심플한 공간을 만들고 싶었습니다.”</blockquote
+          ><p class="planner-note"
+            >개인 프로젝트로 제작한 GoodNotes 스터디 플래너 디자인입니다.</p
+          ><section class="planner-performance" aria-label="Performance"
+            ><h3>Performance</h3
+            ><dl
+              ><div
+                ><dt><span aria-hidden="true">👁</span> Views</dt><dd>16,576</dd></div
+              ><div
+                ><dt><span aria-hidden="true">♡</span> Likes</dt><dd>97</dd></div
+              ><div
+                ><dt><span aria-hidden="true">💬</span> Comments</dt><dd>24</dd></div
+              ></dl
+            ></section
+          >
+          <div class="planner-tags"
+            ><span>Personal work</span><span>5 Colors</span><span>40 Pages</span></div
+          >
+          <span class="planner-project-number">PROJECT 11</span>
+        </div>
+        <div class="planner-device"
+          ><div class="planner-gallery-controls"
+            ><fieldset class="planner-colors">
+              <legend>Color</legend>
+              <div class="planner-color-options">
+                <button
+                  type="button"
+                  data-planner-color="0"
+                  aria-pressed="true"
+                  style="--swatch: #fffdf9"
+                  ><span aria-hidden="true"></span>White</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="1"
+                  aria-pressed="false"
+                  style="--swatch: #f0c9d6"
+                  ><span aria-hidden="true"></span>Pink</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="2"
+                  aria-pressed="false"
+                  style="--swatch: #baa7ca"
+                  ><span aria-hidden="true"></span>Purple</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="3"
+                  aria-pressed="false"
+                  style="--swatch: #efe599"
+                  ><span aria-hidden="true"></span>Yellow</button
+                >
+                <button
+                  type="button"
+                  data-planner-color="4"
+                  aria-pressed="false"
+                  style="--swatch: #c9dceb"
+                  ><span aria-hidden="true"></span>Blue</button
+                >
+              </div>
+            </fieldset>
+            <label for="studyNotesPageSelect">페이지 선택</label>
+            <select id="studyNotesPageSelect" data-planner-select>
+              <option value="0" data-src="images/goodnotes/study-notes/page-01.png"
+                >01 · 화이트 · 표지 1</option
+              >
+              <option value="1" data-src="images/goodnotes/study-notes/page-02.png"
+                >02 · 화이트 · 표지 2</option
+              >
+              <option value="2" data-src="images/goodnotes/study-notes/page-03.png"
+                >03 · 화이트 · 시간표</option
+              >
+              <option value="3" data-src="images/goodnotes/study-notes/page-04.png"
+                >04 · 화이트 · 만다라트</option
+              >
+              <option value="4" data-src="images/goodnotes/study-notes/page-05.png"
+                >05 · 화이트 · 월간 계획</option
+              >
+              <option value="5" data-src="images/goodnotes/study-notes/page-06.png"
+                >06 · 화이트 · 주간 계획</option
+              >
+              <option value="6" data-src="images/goodnotes/study-notes/page-07.png"
+                >07 · 화이트 · 일간 학습</option
+              >
+              <option value="7" data-src="images/goodnotes/study-notes/page-08.png"
+                >08 · 화이트 · 줄 노트</option
+              >
+              <option value="8" data-src="images/goodnotes/study-notes/page-09.png"
+                >09 · 핑크 · 표지 1</option
+              >
+              <option value="9" data-src="images/goodnotes/study-notes/page-10.png"
+                >10 · 핑크 · 표지 2</option
+              >
+              <option value="10" data-src="images/goodnotes/study-notes/page-11.png"
+                >11 · 핑크 · 시간표</option
+              >
+              <option value="11" data-src="images/goodnotes/study-notes/page-12.png"
+                >12 · 핑크 · 만다라트</option
+              >
+              <option value="12" data-src="images/goodnotes/study-notes/page-13.png"
+                >13 · 핑크 · 월간 계획</option
+              >
+              <option value="13" data-src="images/goodnotes/study-notes/page-14.png"
+                >14 · 핑크 · 주간 계획</option
+              >
+              <option value="14" data-src="images/goodnotes/study-notes/page-15.png"
+                >15 · 핑크 · 일간 학습</option
+              >
+              <option value="15" data-src="images/goodnotes/study-notes/page-16.png"
+                >16 · 핑크 · 줄 노트</option
+              >
+              <option value="16" data-src="images/goodnotes/study-notes/page-17.png"
+                >17 · 퍼플 · 표지 1</option
+              >
+              <option value="17" data-src="images/goodnotes/study-notes/page-18.png"
+                >18 · 퍼플 · 표지 2</option
+              >
+              <option value="18" data-src="images/goodnotes/study-notes/page-19.png"
+                >19 · 퍼플 · 시간표</option
+              >
+              <option value="19" data-src="images/goodnotes/study-notes/page-20.png"
+                >20 · 퍼플 · 만다라트</option
+              >
+              <option value="20" data-src="images/goodnotes/study-notes/page-21.png"
+                >21 · 퍼플 · 월간 계획</option
+              >
+              <option value="21" data-src="images/goodnotes/study-notes/page-22.png"
+                >22 · 퍼플 · 주간 계획</option
+              >
+              <option value="22" data-src="images/goodnotes/study-notes/page-23.png"
+                >23 · 퍼플 · 일간 학습</option
+              >
+              <option value="23" data-src="images/goodnotes/study-notes/page-24.png"
+                >24 · 퍼플 · 줄 노트</option
+              >
+              <option value="24" data-src="images/goodnotes/study-notes/page-25.png"
+                >25 · 옐로우 · 표지 1</option
+              >
+              <option value="25" data-src="images/goodnotes/study-notes/page-26.png"
+                >26 · 옐로우 · 표지 2</option
+              >
+              <option value="26" data-src="images/goodnotes/study-notes/page-27.png"
+                >27 · 옐로우 · 시간표</option
+              >
+              <option value="27" data-src="images/goodnotes/study-notes/page-28.png"
+                >28 · 옐로우 · 만다라트</option
+              >
+              <option value="28" data-src="images/goodnotes/study-notes/page-29.png"
+                >29 · 옐로우 · 월간 계획</option
+              >
+              <option value="29" data-src="images/goodnotes/study-notes/page-30.png"
+                >30 · 옐로우 · 주간 계획</option
+              >
+              <option value="30" data-src="images/goodnotes/study-notes/page-31.png"
+                >31 · 옐로우 · 일간 학습</option
+              >
+              <option value="31" data-src="images/goodnotes/study-notes/page-32.png"
+                >32 · 옐로우 · 줄 노트</option
+              >
+              <option value="32" data-src="images/goodnotes/study-notes/page-33.png"
+                >33 · 블루 · 표지 1</option
+              >
+              <option value="33" data-src="images/goodnotes/study-notes/page-34.png"
+                >34 · 블루 · 표지 2</option
+              >
+              <option value="34" data-src="images/goodnotes/study-notes/page-35.png"
+                >35 · 블루 · 시간표</option
+              >
+              <option value="35" data-src="images/goodnotes/study-notes/page-36.png"
+                >36 · 블루 · 만다라트</option
+              >
+              <option value="36" data-src="images/goodnotes/study-notes/page-37.png"
+                >37 · 블루 · 월간 계획</option
+              >
+              <option value="37" data-src="images/goodnotes/study-notes/page-38.png"
+                >38 · 블루 · 주간 계획</option
+              >
+              <option value="38" data-src="images/goodnotes/study-notes/page-39.png"
+                >39 · 블루 · 일간 학습</option
+              >
+              <option value="39" data-src="images/goodnotes/study-notes/page-40.png"
+                >40 · 블루 · 줄 노트</option
+              >
+            </select></div
+          >
+          <div class="ipad-pro">
+            <div class="ipad-btn-power" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-up" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-down" aria-hidden="true"></div>
+            <div class="ipad-chassis">
+              <div class="ipad-camera-dot" aria-hidden="true"></div>
+              <div class="ipad-screen">
+                <img
+                  id="studyNotesPageImage"
+                  data-planner-image
+                  src="images/goodnotes/study-notes/page-01.png"
+                  alt="심플 스터디 플래너 · 화이트 · 표지 1"
+                  width="4634"
+                  height="5984"
+                />
+              </div>
+              <div class="ipad-home-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="planner-navigation" role="group" aria-label="템플릿 페이지 탐색">
+            <button type="button" data-planner-prev aria-label="이전 페이지"
+              ><span class="planner-nav-arrow" aria-hidden="true">←</span
+              ><span>Previous</span></button
+            >
+            <p
+              id="studyNotesPageStatus"
+              data-planner-status
+              aria-live="polite"
+              aria-atomic="true"
+              >01 / 08</p
+            >
+            <button type="button" data-planner-next aria-label="다음 페이지"
+              ><span>Next</span
+              ><span class="planner-nav-arrow" aria-hidden="true">→</span></button
+            >
+          </div>
+        </div>
+      </div>
+      <a
+        class="planner-blog-link"
+        href="https://blog.naver.com/hyeon_dyu/223622703660"
+        target="_blank"
+        rel="noopener noreferrer"
+        >블로그 보기 <span class="modal-pill-icon" aria-hidden="true">→</span></a
+      ></dialog
+    >
+    <dialog data-goodnotes-modal id="lifePlannerModal" aria-labelledby="lifePlannerTitle">
+      <button type="button" class="planner-close" aria-label="템플릿 닫기">×</button>
+      <div class="planner-layout">
+        <div class="planner-copy">
+          <p class="eyebrow">GOODNOTES TEMPLATE</p>
+          <h2 id="lifePlannerTitle">Planner Collection</h2>
+          <p class="planner-section-label">작품 설명</p
+          ><div class="planner-description"
+            ><p>업무 관리와 일정 기록을 중심으로 제작한 GoodNotes 플래너 컬렉션입니다.</p
+            ><p
+              >데일리, 위클리, 먼슬리 등 다양한 레이아웃을 제공하여 사용 목적에 맞게
+              활용할 수 있도록 구성했습니다.</p
+            ><p
+              >업무 일정, 할 일 관리, 기록, 계획까지 효율적으로 정리할 수 있도록 실용성을
+              중심으로 디자인했습니다.</p
+            ><p
+              >다양한 디자인 스타일을 적용하여 사용자의 취향에 맞는 플래너를 선택할 수
+              있도록 제작했습니다.</p
+            ></div
+          ><blockquote class="planner-quote"
+            >“계획이 자연스럽게 습관이 되는 실용적인 GoodNotes 플래너를 목표로
+            디자인했습니다.”</blockquote
+          ><p class="planner-note"
+            >개인 프로젝트로 제작한 GoodNotes 플래너 컬렉션입니다.</p
+          ><section class="planner-performance" aria-label="Performance"
+            ><h3>Performance</h3
+            ><dl
+              ><div
+                ><dt><span aria-hidden="true">👁</span> Views</dt><dd>11,670</dd></div
+              ><div
+                ><dt><span aria-hidden="true">♡</span> Likes</dt><dd>117</dd></div
+              ><div
+                ><dt><span aria-hidden="true">💬</span> Comments</dt><dd>56</dd></div
+              ></dl
+            ></section
+          >
+          <div class="planner-tags"><span>Personal work</span><span>18 Pages</span></div>
+          <span class="planner-project-number">PROJECT 12</span>
+        </div>
+        <div class="planner-device"
+          ><div class="planner-gallery-controls"
+            ><label for="lifePlannerPageSelect">페이지 선택</label>
+            <select id="lifePlannerPageSelect" data-planner-select>
+              <option value="0" data-src="images/goodnotes/life-planner/page-01.jpg"
+                >01 · 표지</option
+              >
+              <option value="1" data-src="images/goodnotes/life-planner/page-02.jpg"
+                >02 · 개인 정보</option
+              >
+              <option value="2" data-src="images/goodnotes/life-planner/page-03.jpg"
+                >03 · 목차</option
+              >
+              <option value="3" data-src="images/goodnotes/life-planner/page-04.jpg"
+                >04 · 연간 계획 · 상반기</option
+              >
+              <option value="4" data-src="images/goodnotes/life-planner/page-05.jpg"
+                >05 · 연간 계획 · 하반기</option
+              >
+              <option value="5" data-src="images/goodnotes/life-planner/page-06.jpg"
+                >06 · 월간 계획</option
+              >
+              <option value="6" data-src="images/goodnotes/life-planner/page-07.jpg"
+                >07 · 주간 계획</option
+              >
+              <option value="7" data-src="images/goodnotes/life-planner/page-08.jpg"
+                >08 · 일간 계획 1</option
+              >
+              <option value="8" data-src="images/goodnotes/life-planner/page-09.jpg"
+                >09 · 일간 계획 2</option
+              >
+              <option value="9" data-src="images/goodnotes/life-planner/page-10.jpg"
+                >10 · 컬러 차트</option
+              >
+              <option value="10" data-src="images/goodnotes/life-planner/page-11.jpg"
+                >11 · 줄 노트</option
+              >
+              <option value="11" data-src="images/goodnotes/life-planner/page-12.jpg"
+                >12 · 하루 시간 계획</option
+              >
+              <option value="12" data-src="images/goodnotes/life-planner/page-13.jpg"
+                >13 · 가계부</option
+              >
+              <option value="13" data-src="images/goodnotes/life-planner/page-14.jpg"
+                >14 · 버킷리스트</option
+              >
+              <option value="14" data-src="images/goodnotes/life-planner/page-15.jpg"
+                >15 · 독서 기록</option
+              >
+              <option value="15" data-src="images/goodnotes/life-planner/page-16.jpg"
+                >16 · 명함 기록</option
+              >
+              <option value="16" data-src="images/goodnotes/life-planner/page-17.jpg"
+                >17 · 비밀번호 기록</option
+              >
+              <option value="17" data-src="images/goodnotes/life-planner/page-18.jpg"
+                >18 · 회의록</option
+              >
+            </select></div
+          >
+          <div class="ipad-pro">
+            <div class="ipad-btn-power" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-up" aria-hidden="true"></div>
+            <div class="ipad-btn-vol-down" aria-hidden="true"></div>
+            <div class="ipad-chassis">
+              <div class="ipad-camera-dot" aria-hidden="true"></div>
+              <div class="ipad-screen">
+                <img
+                  id="lifePlannerPageImage"
+                  data-planner-image
+                  src="images/goodnotes/life-planner/page-01.jpg"
+                  alt="플래너 · 표지"
+                  width="466"
+                  height="583"
+                />
+              </div>
+              <div class="ipad-home-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="planner-navigation" role="group" aria-label="템플릿 페이지 탐색">
+            <button type="button" data-planner-prev aria-label="이전 페이지"
+              ><span class="planner-nav-arrow" aria-hidden="true">←</span
+              ><span>Previous</span></button
+            >
+            <p
+              id="lifePlannerPageStatus"
+              data-planner-status
+              aria-live="polite"
+              aria-atomic="true"
+              >01 / 18</p
+            >
+            <button type="button" data-planner-next aria-label="다음 페이지"
+              ><span>Next</span
+              ><span class="planner-nav-arrow" aria-hidden="true">→</span></button
+            >
+          </div>
+        </div>
+      </div>
+      <a
+        class="planner-blog-link"
+        href="https://blog.naver.com/hyeon_dyu/223617509304"
+        target="_blank"
+        rel="noopener noreferrer"
+        >블로그 보기 <span class="modal-pill-icon" aria-hidden="true">→</span></a
+      ></dialog
+    >
+    <div id="shortsModal" class="shorts-modal-backdrop" hidden>
+      <div
+        class="shorts-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="awardModalTitle"
+      >
+        <!-- 닫기 버튼 -->
+        <button
+          type="button"
+          class="shorts-close"
+          data-modal-close
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        <!-- 왼쪽 설명 -->
+        <div class="shorts-modal-copy">
+          <p class="shorts-kicker">AWARD SHORT-FORM</p>
+
+          <h2 id="awardModalTitle"
+            ><span>2026 화장품 안전성 평가 제도</span
+            ><span>숏폼 공모전 장려상 수상작</span></h2
+          >
+
+          <p class="shorts-description">
+            모바일에서 보는 YouTube Shorts 느낌으로 감상할 수 있게 구성한 모달입니다.
+            <br />
+            아래 버튼을 누르면 실제 유튜브 링크로도 이동할 수 있습니다.
+          </p>
+
+          <div class="shorts-chip-row">
+            <span class="shorts-info-chip"> Short-form Contest </span>
+
+            <span class="shorts-info-chip"> Encouragement Award </span>
+
+            <span class="shorts-info-chip"> 조회수 522회 </span>
+          </div>
+
+          <div class="shorts-action-row">
+            <a
+              class="shorts-direct-link"
+              href="https://youtube.com/shorts/vJjWN50Z5XM?si=CLgzOjrh5IGIuVw_"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open on YouTube
+              <span class="modal-pill-icon" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="shorts-channel-link"
+              href="https://www.youtube.com/@Study_ebeb/shorts"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @Study_ebeb
+              <span class="modal-pill-icon" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             오른쪽 스마트폰 Shorts 화면
+             ===================================================== -->
+        <div class="shorts-phone-wrap">
+          <div class="iphone-17-pro">
+            <div class="iphone-btn-action" aria-hidden="true"></div>
+            <div class="iphone-btn-vol-up" aria-hidden="true"></div>
+            <div class="iphone-btn-vol-down" aria-hidden="true"></div>
+            <div class="iphone-btn-power" aria-hidden="true"></div>
+            <div class="iphone-chassis">
+              <div class="iphone-dynamic-island" aria-hidden="true">
+                <span class="iphone-sensor"></span>
+              </div>
+              <div class="iphone-status-bar" aria-hidden="true">
+                <span>9:41</span>
+                <div class="iphone-status-icons">
+                  <span>▂▄▆</span><span>5G</span><span>▰</span>
+                </div>
+              </div>
+              <div class="iphone-screen">
+                <iframe
+                  class="iphone-video-iframe"
+                  src="about:blank"
+                  title="2026 화장품 안전성 평가 제도 숏폼 공모전 장려상 수상작"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="iphone-home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dialog id="dippingbookModal" class="db-modal" aria-label="DippingBook 프로젝트 소개">
+      <div class="db-shell">
+        <button type="button" class="db-close" aria-label="모달 닫기">×</button>
+        <div class="db-hero">
+          <div class="db-hero-copy">
+            <span class="db-project-label">LONG-FORM PROJECT</span>
+            <h2>DippingBook</h2>
+            <h3>AI로 먼저 맛보는 독서 프리뷰 플랫폼</h3>
+            <p
+              >책을 한 번에 다 읽기 부담스럽다면?<br />AI 트레일러와 쉬운 글로 도서의
+              핵심만<br />가볍게 디핑(Dipping)해보세요.</p
+            >
+            <div class="db-tags"
+              ><span>Text Hip</span><span>AI Preview</span><span>Easy Reading</span
+              ><span>Book Experience</span></div
+            >
+            <div class="db-project-meta"
+              ><div
+                ><b>ROLE</b><p>UX/UI Design<br />Web Publishing<br />Team Project</p></div
+              ><div><b>PERIOD</b><p>2026, 07 – 08.</p></div
+              ><div
+                ><b>TOOLS</b
+                ><div class="db-tool-art"
+                  ><img
+                    src="images/dippingbook-case/tools/18_Figma_Alt.png"
+                    alt="Figma" /><img
+                    src="images/dippingbook-case/tools/06_Gemini.png"
+                    alt="Gemini" /><img
+                    src="images/dippingbook-case/tools/07_ChatGPT.png"
+                    alt="ChatGPT" /><img
+                    src="images/dippingbook-case/tools/05_HTML_CSS_JS.png"
+                    alt="HTML, CSS, JavaScript" /></div></div
+            ></div>
+          </div>
+          <div
+            class="db-device-art"
+            role="img"
+            aria-label="DippingBook 노트북과 모바일 웹사이트 목업"
+          ></div>
+          <footer class="db-footer"
+            ><a
+              href="https://dipping-book.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >사이트 방문하기
+              <span class="modal-pill-icon" aria-hidden="true">→</span></a
+            ></footer
+          >
+        </div>
+        <nav class="db-nav" aria-label="프로젝트 상세 섹션">
+          <div class="db-tabs" role="tablist" aria-label="DippingBook 소개">
+            <button
+              type="button"
+              role="tab"
+              id="db-tab-0"
+              aria-controls="db-panel-0"
+              aria-selected="true"
+              tabindex="0"
+              data-db-tab="0"
+              ><span>01</span>Problem</button
+            ><button
+              type="button"
+              role="tab"
+              id="db-tab-1"
+              aria-controls="db-panel-1"
+              aria-selected="false"
+              tabindex="-1"
+              data-db-tab="1"
+              ><span>02</span>Solution</button
+            ><button
+              type="button"
+              role="tab"
+              id="db-tab-2"
+              aria-controls="db-panel-2"
+              aria-selected="false"
+              tabindex="-1"
+              data-db-tab="2"
+              ><span>03</span>Key Features</button
+            ><button
+              type="button"
+              role="tab"
+              id="db-tab-3"
+              aria-controls="db-panel-3"
+              aria-selected="false"
+              tabindex="-1"
+              data-db-tab="3"
+              ><span>04</span>UI Preview</button
+            ><button
+              type="button"
+              role="tab"
+              id="db-tab-4"
+              aria-controls="db-panel-4"
+              aria-selected="false"
+              tabindex="-1"
+              data-db-tab="4"
+              ><span>05</span>Design System</button
+            >
+          </div>
+          <div class="db-pagination"
+            ><span class="db-count" aria-live="polite">1 / 5</span
+            ><button type="button" class="db-prev" aria-label="이전 섹션">←</button
+            ><button type="button" class="db-next" aria-label="다음 섹션">→</button></div
+          >
+        </nav>
+        <div class="db-panels">
+          <section
+            role="tabpanel"
+            id="db-panel-0"
+            aria-labelledby="db-tab-0"
+            class="db-panel db-panel-1 db-live-panel"
+          >
+            <div class="db-panel-heading"
+              ><b>01</b><h2>Problem</h2
+              ><p
+                >읽고 싶은 마음은 있는데,<br />책을 시작하기까지는 여전히 어렵다.</p
+              ></div
+            >
+            <div class="db-problem-copy"
+              ><p
+                >책에 대한 관심은 다시 높아지고 있지만,<br />시간 부족, 타 콘텐츠와의
+                경쟁, 정보 이해의 어려움은<br />여전히 독서의 진입장벽으로 남아
+                있습니다.</p
+              ><blockquote
+                >문제는 책이 없는 것이 아니라,<br /><mark
+                  >책을 ‘시작하기까지의 거리’였습니다.</mark
+                ></blockquote
+              ></div
+            > </section
+          ><section
+            role="tabpanel"
+            id="db-panel-1"
+            aria-labelledby="db-tab-1"
+            class="db-panel db-panel-2 db-live-panel"
+            hidden
+          >
+            <div class="db-panel-heading"
+              ><b>02</b><h2>Solution</h2
+              ><p
+                >누구나 책을 더 가깝게 만날 수 있는 방법,<br />디핑북이 제안합니다.</p
+              ></div
+            >
+            <div class="db-feature-list">
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 3h8l5 5v13H7z" />
+                    <path d="M15 3v6h5" /></svg></span
+                ><div
+                  ><h3>EASY</h3
+                  ><p
+                    >어려운 문장을 쉬운 글로 변환해<br />누구나 이해할 수 있어요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="10" cy="8" r="4" />
+                    <path
+                      d="M3 21v-3a7 7 0 0 1 14 0v3M17 4a4 4 0 0 1 0 8M21 21v-3a7 7 0 0 0-3-6"
+                    /></svg></span
+                ><div
+                  ><h3>WARM</h3
+                  ><p
+                    >책을 좋아하는 사람들이 모여<br />소통하고 취향을 공유할 수 있어요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m6 3 15 9-15 9z" /></svg></span
+                ><div
+                  ><h3>PREVIEW</h3
+                  ><p
+                    >AI 이미지와 영상으로 책의 분위기를 미리 경험하고<br />나에게 맞는
+                    책을 발견해요.</p
+                  ></div
+                ></div
+              >
+            </div>
+          </section>
+          <section
+            role="tabpanel"
+            id="db-panel-2"
+            aria-labelledby="db-tab-2"
+            class="db-panel db-panel-3 db-live-panel"
+            hidden
+          >
+            <div class="db-panel-heading"
+              ><b>03</b><h2>Key Features</h2
+              ><p>발견하고, 경험하고, 이해하고,<br />소통하는 하나의 독서 흐름</p></div
+            >
+            <div class="db-feature-list">
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="10" cy="10" r="7" />
+                    <path d="m15 15 7 7" /></svg></span
+                ><div
+                  ><h3>도서 탐색</h3
+                  ><p
+                    >TOP10, 장르별 추천, AI 키워드 추천으로<br />새로운 책을 쉽게 발견할
+                    수 있어요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m6 3 15 9-15 9z" /></svg></span
+                ><div
+                  ><h3>AI 프리뷰</h3
+                  ><p
+                    >책의 분위기를 담은 AI 이미지·영상으로<br />읽기 전, 책을 먼저 경험할
+                    수 있어요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 3h8l5 5v13H7z" />
+                    <path d="M15 3v6h5" /></svg></span
+                ><div
+                  ><h3>쉬운 글 해석</h3
+                  ><p
+                    >긴 문장도 쉽게, 누구나 읽을 수 있도록<br />핵심 내용을 쉽게
+                    풀어줘요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="10" cy="8" r="4" />
+                    <path
+                      d="M3 21v-3a7 7 0 0 1 14 0v3M17 4a4 4 0 0 1 0 8M21 21v-3a7 7 0 0 0-3-6"
+                    /></svg></span
+                ><div
+                  ><h3>커뮤니티</h3
+                  ><p
+                    >리뷰, 감상 공유를 통해<br />책을 좋아하는 사람들과 소통할 수
+                    있어요.</p
+                  ></div
+                ></div
+              >
+              <div class="db-feature"
+                ><span class="db-feature-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 10c0 6-8 13-8 13S4 16 4 10a8 8 0 1 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" /></svg></span
+                ><div
+                  ><h3>주변 도서관/서점</h3
+                  ><p
+                    >내 위치 기반으로<br />주변 도서관, 서점을 쉽게 찾을 수 있어요.</p
+                  ></div
+                ></div
+              >
+            </div> </section
+          ><section
+            role="tabpanel"
+            id="db-panel-3"
+            aria-labelledby="db-tab-3"
+            class="db-panel db-panel-4 db-live-panel"
+            hidden
+          >
+            <div class="db-panel-heading"
+              ><b>04</b><h2>UI Preview</h2
+              ><p
+                >직관적이고 간결한 인터페이스로<br />누구나 쉽게, 책을 더 가깝게.</p
+              ></div
+            >
+            <div class="db-card-grid">
+              <article class="db-info-card"
+                ><div
+                  class="db-ui-shot db-ui-home"
+                  role="img"
+                  aria-label="홈 화면 미리보기"
+                ></div
+                ><h3>홈 화면</h3
+                ><p>추천 도서와 AI 프리뷰로<br />시작하는 경험</p></article
+              >
+              <article class="db-info-card"
+                ><div
+                  class="db-ui-shot db-ui-book"
+                  role="img"
+                  aria-label="도서 상세 화면 미리보기"
+                ></div
+                ><h3>도서 상세</h3><p>핵심 내용과 쉬운 글 해석 제공</p></article
+              >
+              <article class="db-info-card"
+                ><div
+                  class="db-ui-shot db-ui-ai"
+                  role="img"
+                  aria-label="AI 프리뷰 화면 미리보기"
+                ></div
+                ><h3>AI 프리뷰</h3
+                ><p>AI가 요약한 핵심 내용과<br />영상으로 미리 경험</p></article
+              >
+              <article class="db-info-card"
+                ><div
+                  class="db-ui-shot db-ui-community"
+                  role="img"
+                  aria-label="커뮤니티 화면 미리보기"
+                ></div
+                ><h3>커뮤니티</h3
+                ><p>책을 좋아하는 사람들과<br />소통하는 공간</p></article
+              >
+            </div> </section
+          ><section
+            role="tabpanel"
+            id="db-panel-4"
+            aria-labelledby="db-tab-4"
+            class="db-panel db-panel-5 db-live-panel"
+            hidden
+          >
+            <div class="db-panel-heading"
+              ><b>05</b><h2>Design System</h2
+              ><p>일관된 비주얼로<br />더 나은 독서 경험을 만듭니다.</p></div
+            >
+            <div class="db-card-grid">
+              <article class="db-info-card"
+                ><h3>Color Palette</h3
+                ><p>책을 더 가깝게 만드는<br />따뜻하고 산뜻한 컬러</p
+                ><div class="db-swatches"
+                  ><div
+                    ><i style="--swatch: #fffc38"></i><b>#FFFC38</b
+                    ><span>Primary</span></div
+                  ><div
+                    ><i style="--swatch: #0b1320"></i><b>#0B1320</b><span>Text</span></div
+                  ><div
+                    ><i style="--swatch: #43c4e0"></i><b>#43C4E0</b
+                    ><span>Secondary</span></div
+                  ><div
+                    ><i style="--swatch: #ff5757"></i><b>#FF5757</b
+                    ><span>Accent</span></div
+                  ></div
+                ></article
+              >
+              <article class="db-info-card db-typography-card"
+                ><h3>Typography</h3
+                ><p>가독성과 감성을 모두 담은<br />깔끔한 타이포그래피</p
+                ><div class="db-type-sample"
+                  ><div><strong>Aa</strong><span>Noto Sans KR</span></div
+                  ><div
+                    ><b>Bold</b><b>SemiBold</b><span>Medium</span
+                    ><span>Regular</span></div
+                  ></div
+                ><h3>책이 더 가까워지는<br />새로운 방법, DippingBook</h3
+                ><p>누구나 쉽게, 책의 핵심을<br />먼저 경험할 수 있습니다.</p></article
+              >
+              <article class="db-info-card"
+                ><h3>Icon System</h3><p>직관적인 아이콘으로<br />더 편리한 사용 경험</p
+                ><div
+                  class="db-icon-art"
+                  role="img"
+                  aria-label="홈, 검색, 프로필, 책, 재생, 북마크, 좋아요, 대화, 설정 아이콘"
+                ></div
+              ></article>
+              <article class="db-info-card"
+                ><h3>UI Components</h3><p>일관된 스타일로<br />완성도 있는 인터페이스</p
+                ><div class="db-component-demo" aria-label="UI 구성 요소 예시"
+                  ><div class="db-demo-login">로그인</div
+                  ><div class="db-demo-search"
+                    >책 제목, 작가를 검색해보세요. <span>⌕</span></div
+                  ><div class="db-demo-tabs"
+                    ><b>전체</b><span>도서</span><span>커뮤니티</span></div
+                  ><div class="db-demo-pages"
+                    ><span>←</span><b>1 / 5</b><span>→</span></div
+                  ></div
+                ></article
+              >
+            </div>
+          </section>
+        </div>
+      </div>
+    </dialog>
+    <script src="dippingbook-modal.js" defer></script>
+    <script src="projects-mobile-preview.js" defer></script>
+    <script src="modals-mobile.js" defer></script>
+    <script src="portfolio-motion.js" defer></script
+  ></body>
+</html>

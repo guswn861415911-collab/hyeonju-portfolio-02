@@ -1,0 +1,46 @@
+/* Compact mobile profile: retain every slide's content and fit the viewport. */
+@media (max-width: 767px) {
+  body[data-page="about"] .site-frame { margin: 6px; min-height: calc(100dvh - 12px); }
+  body[data-page="about"] .site-content { min-height: 0; padding: 16px 14px 8px; }
+  body[data-page="about"] .about-page { min-height: 0; padding: 0; max-width: none; transform-origin: top left; }
+  body[data-page="about"] .about-page > .about-hero { margin-bottom: 8px; gap: 12px; }
+  body[data-page="about"] .about-copy > h1 { margin-bottom: 4px; }
+  body[data-page="about"] .about-lede { font-size: 17px; margin-top: 4px; }
+  body[data-page="about"] .about-storyline { margin: 8px 0; font-size: 10px; line-height: 1.4; }
+  .about-stats { padding: 9px 10px; border-radius: 10px; }
+  .about-stats > p { font-size: 7px; margin-bottom: 7px; }
+  .about-stat-pair strong { font-size: 23px; }
+  .about-stats span { font-size: 8px; line-height: 1.25; }
+  .about-stat-pair > div + div { padding-left: 12px; }
+  .about-stat-design { margin-top: 7px; padding-top: 6px; }
+  .about-stat-design strong { font-size: 14px; margin-bottom: 3px; }
+  .about-stat-design span br { display: none; }
+  body[data-page="about"] .about-profile { padding-top: 16px; }
+  body[data-page="about"] .portrait { max-height: 205px; }
+  body[data-page="about"] .portrait-caption { padding-top: 5px; }
+  body[data-page="about"] .about-contact-row { padding: 6px 4px; }
+  body[data-page="about"] .about-contact-label svg { width: 14px; height: 14px; flex-basis: 14px; }
+  body[data-page="about"] .about-contact-value { font-size: 10px; }
+  body[data-page="about"] .about-contact-value-stack small { font-size: 8px; }
+  body[data-page="about"] .about-page > .about-contact-list { margin-bottom: 8px; }
+  body[data-page="about"] .about-carousel { padding-bottom: 32px; }
+  body[data-page="about"] .about-carousel .about-info-grid > .about-info-card { min-height: 0; padding: 12px 26px 8px; }
+  .about-slide-meta { font-size: 9px; margin-bottom: 12px; }
+  .about-slide-icon { top: 34px; left: 25px; width: 28px; height: 28px; }
+  .about-slide-icon svg { width: 16px; height: 16px; }
+  body[data-page="about"] .about-carousel h3 { min-height: 28px; padding-left: 36px; font-size: 19px; margin-bottom: 4px; }
+  .about-slide-subtitle { font-size: 10px; line-height: 1.45; margin: 8px 0 10px; }
+  body[data-page="about"] .about-carousel .about-info-list { gap: 7px; }
+  body[data-page="about"] .about-carousel .about-info-list li,
+  body[data-page="about"] .about-carousel .about-info-list-detail span { font-size: 10px; line-height: 1.45; }
+  body[data-page="about"] .about-carousel .about-info-list-detail strong { font-size: 11px; }
+  body[data-page="about"] .about-carousel .about-info-list-detail li { gap: 2px; }
+  body[data-page="about"] .about-carousel .about-info-list-detail li + li { padding-top: 7px; }
+  body[data-page="about"] .about-carousel .achievement-title { font-size: 12px; }
+  body[data-page="about"] .about-carousel .achievement-chip,
+  body[data-page="about"] .about-carousel .achievement-open { margin-top: 10px; padding: 7px 10px; font-size: 10px; }
+  .about-slide-dots { bottom: 4px; }
+  .about-slide-dots button::after { width: 7px; height: 7px; }
+  .about-profile-footer { padding-top: 8px; font-size: 6px; }
+  body[data-page="about"] .scroll-cue { display: none; }
+}

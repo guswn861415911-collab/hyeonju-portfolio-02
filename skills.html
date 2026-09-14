@@ -1,0 +1,204 @@
+/* ========================================================= HYEONJU HWANG PORTFOLIO -
+JavaScript ========================================================= 초보자용 설명 HTML :
+화면의 내용 CSS : 화면 디자인 JS : 클릭 / 영상 / 모달 / 필터 같은 동작 React에서 하던
+동작을 일반 JavaScript로 하나씩 나눠 작성했습니다.
+========================================================= */
+document.addEventListener("DOMContentLoaded", function () { setupCustomCursor();
+setupScrollCue(); setupAboutModal(); setupProjectFilters(); setupProjectPreviewVideos();
+setupProjectVideoModal(); }); /* =========================================================
+1. 커스텀 커서 + 컬러 트레일 ---------------------------------------------------------
+V0의 SiteShell에서 하던 기능을 일반 JS로 옮겼습니다. 중요: 예전 변환본에서는 커서가 처음에
+(0, 0)에 있어서 화면 왼쪽 위에 노란 반원처럼 잘려 보였습니다. 이번 버전은 시작 위치를 화면
+중앙으로 잡기 때문에 왼쪽 위의 이상한 노란 모양이 생기지 않습니다.
+========================================================= */ function setupCustomCursor()
+{ const cursor = document.getElementById("customCursor"); const canvas =
+document.getElementById("cursorTrailCanvas"); if (!cursor || !canvas) { return; } /*
+휴대폰처럼 터치하는 기기에서는 커스텀 커서를 사용하지 않습니다. */ const isTouchDevice =
+window.matchMedia("(pointer: coarse)").matches; if (isTouchDevice) { return; } const
+context = canvas.getContext("2d"); if (!context) { return; } let pointerX =
+window.innerWidth / 2; let pointerY = window.innerHeight / 2; let previousX = pointerX;
+let previousY = pointerY; const points = []; const TRAIL_LIFETIME = 360; const
+MAX_TRAIL_LENGTH = 160; const SAMPLE_GAP = 10; /* 페이지를 열자마자 커서를 화면 가운데에
+둡니다. 이것이 좌측 상단 노란 반원 문제의 핵심 수정입니다. */ cursor.style.transform =
+"translate3d(" + pointerX + "px, " + pointerY + "px, 0) translate(-50%, -50%)"; function
+resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+canvas.style.width = window.innerWidth + "px"; canvas.style.height = window.innerHeight +
+"px"; } resizeCanvas(); window.addEventListener("resize", resizeCanvas); /*
+------------------------------------------------------- 마우스가 움직일 때
+------------------------------------------------------- */
+window.addEventListener("pointermove", function (event) { pointerX = event.clientX;
+pointerY = event.clientY; cursor.style.transform = "translate3d(" + pointerX + "px, " +
+pointerY + "px, 0) translate(-50%, -50%)"; const distance = Math.hypot( pointerX -
+previousX, pointerY - previousY ); const steps = Math.max( 1, Math.ceil(distance /
+SAMPLE_GAP) ); const now = performance.now(); /* 마우스가 빨리 움직여도 트레일이 뚝뚝
+끊기지 않도록 중간 좌표도 조금씩 만들어 줍니다. */ for (let step = 1; step <= steps; step
++= 1) { const progress = step / steps; points.unshift({ x: previousX + (pointerX -
+previousX) * progress, y: previousY + (pointerY - previousY) * progress, timestamp: now,
+}); } /* 트레일 길이가 무한정 길어지지 않게 일정 길이를 넘으면 뒤쪽 점을 지웁니다. */ let
+accumulatedLength = 0; for (let index = 1; index < points.length; index += 1) {
+accumulatedLength += Math.hypot( points[index - 1].x - points[index].x, points[index -
+1].y - points[index].y ); if (accumulatedLength > MAX_TRAIL_LENGTH) { points.length =
+index; break; } } previousX = pointerX; previousY = pointerY; }); /* 링크 / 버튼 위에서는
+커서 모양 변경 */ document.addEventListener("pointerover", function (event) { const
+element = event.target.closest( "a, button, [role='button']" ); cursor.classList.toggle(
+"is-hovering", Boolean(element) ); }); /*
+------------------------------------------------------- 컬러 트레일 애니메이션
+------------------------------------------------------- */ function animateTrail() { const
+now = performance.now(); const cutoff = now - TRAIL_LIFETIME; while ( points.length > 0 &&
+points[points.length - 1].timestamp < cutoff ) { points.pop(); } if ( points.length === 0
+|| points[0].x !== pointerX || points[0].y !== pointerY ) { points.unshift({ x: pointerX,
+y: pointerY, timestamp: now, }); } context.clearRect( 0, 0, canvas.width, canvas.height );
+const palette = [ "#f7e6a6", "#f7cdb6", "#efc7df", "#cbbcf0", "#add1f8", "#b6e6de", ]; for
+(let index = 0; index < points.length; index += 1) { const point = points[index]; const
+progress = index / Math.max(1, points.length - 1); const ageFade = Math.max( 0, 1 - (now -
+point.timestamp) / TRAIL_LIFETIME ); const trailFade = Math.pow( 1 - progress, 1.35 );
+const colorIndex = Math.min( palette.length - 1, Math.floor( progress * (palette.length -
+1) ) ); const radius = 6 + 22 * Math.pow(progress, 1.05); context.beginPath();
+context.globalAlpha = ageFade * trailFade * 0.18; context.fillStyle = palette[colorIndex];
+context.arc( point.x, point.y, radius, 0, Math.PI * 2 ); context.fill(); }
+context.globalAlpha = 1; requestAnimationFrame(animateTrail); } animateTrail(); } /*
+========================================================= 2. Scroll 안내 버튼
+========================================================= */ function setupScrollCue() {
+const scrollCue = document.getElementById("scrollCue"); if (!scrollCue) { return; }
+function updateScrollCue() { const doc = document.documentElement; const canScroll =
+doc.scrollHeight > window.innerHeight + 120; const nearTop = window.scrollY < 140; const
+notNearBottom = window.innerHeight + window.scrollY < doc.scrollHeight - 140; /* React
+원본과 같은 조건으로 페이지 상단에서만 Scroll 버튼을 보여줍니다. */ scrollCue.hidden = !(
+canScroll && nearTop && notNearBottom ); } scrollCue.addEventListener( "click", function
+() { window.scrollBy({ top: Math.round( window.innerHeight * 0.78 ), behavior: "smooth",
+}); } ); updateScrollCue(); window.addEventListener( "scroll", updateScrollCue, { passive:
+true } ); window.addEventListener( "resize", updateScrollCue ); } /*
+========================================================= 3. ABOUT 페이지 Shorts 모달
+--------------------------------------------------------- 이전 HTML 변환본의 About 모달도
+계속 작동하도록 유지합니다. ========================================================= */
+function setupAboutModal() { const modal = document.getElementById("shortsModal"); if
+(!modal) { return; } const openButtons = document.querySelectorAll(
+'[data-modal-open="shortsModal"]' ); const closeButton = modal.querySelector(
+"[data-modal-close]" ); function openModal() { modal.hidden = false;
+document.body.classList.add( "modal-open" ); } function closeModal() { modal.hidden =
+true; document.body.classList.remove( "modal-open" ); } openButtons.forEach( function
+(openButton) { openButton.addEventListener( "click", openModal ); } ); if (closeButton) {
+closeButton.addEventListener( "click", closeModal ); } modal.addEventListener( "click",
+function (event) { if (event.target === modal) { closeModal(); } } );
+document.addEventListener( "keydown", function (event) { if ( event.key === "Escape" &&
+!modal.hidden ) { closeModal(); } } ); } /*
+========================================================= 4. PROJECTS 필터
+--------------------------------------------------------- All work / Web design / Video
+content 등을 누르면 data-category가 맞는 카드만 남깁니다.
+========================================================= */ function
+setupProjectFilters() { const grid = document.getElementById("projectGrid"); if (!grid) {
+return; } const filterButtons = document.querySelectorAll( "[data-filter]" ); const cards
+= grid.querySelectorAll( ".folder-card[data-category]" ); filterButtons.forEach( function
+(button) { button.addEventListener( "click", function () { const filter =
+button.dataset.filter || "all"; /* PC 필터와 모바일 폴더 필터의 selected 상태를 함께
+맞춥니다. */ filterButtons.forEach( function (item) { const sameFilter =
+item.dataset.filter === filter; item.classList.toggle( "selected", sameFilter ); } ); /*
+카드를 하나씩 확인합니다. */ cards.forEach( function (card) { const categories = (
+card.dataset.category || "" ) .split(" ") .filter(Boolean); const shouldShow = filter ===
+"all" || categories.includes( filter ); card.classList.toggle( "is-filter-hidden",
+!shouldShow ); } ); } ); } ); } /*
+========================================================= 5. 프로젝트 카드 영상 미리보기
+--------------------------------------------------------- PC: 마우스를 올리면 재생
+마우스를 빼면 정지 모바일: muted 영상은 자동 재생을 시도합니다.
+========================================================= */ function
+setupProjectPreviewVideos() { const cards = document.querySelectorAll( ".folder-card" );
+if (cards.length === 0) { return; } /* 영상의 시작 프레임을 안전하게 지정하는 함수입니다.
+0초가 검은 화면인 영상도 있어서 기본값을 0.15초로 둡니다. */ function moveToPreviewFrame(
+video, seconds ) { const previewTime = Math.max( 0, Number(seconds) || 0.15 ); try { if (
+Number.isFinite(video.duration) && video.duration > 0 ) { video.currentTime = Math.min(
+previewTime, Math.max( 0, video.duration - 0.05 ) ); } else { video.currentTime =
+previewTime; } } catch (error) { /* 영상 로딩 전이면 무시합니다. */ } } cards.forEach(
+function (card) { const videos = card.querySelectorAll( "video" ); if (videos.length ===
+0) { return; } const previewTime = Number( card.dataset.previewTime ) || 0.15; /* 처음
+페이지가 열렸을 때도 빈 회색 박스가 아니라 영상의 한 프레임이 보이도록 준비합니다. */
+videos.forEach( function (video) { video.muted = true; video.loop = true;
+video.playsInline = true; video.preload = "auto"; function prepareFrame() {
+moveToPreviewFrame( video, previewTime ); video.pause(); } if (video.readyState >= 1) {
+prepareFrame(); } video.addEventListener( "loadedmetadata", prepareFrame );
+video.addEventListener( "loadeddata", prepareFrame ); } ); /* PC: 마우스를 올리면 영상
+재생 */ function playPreview() { if ( window.matchMedia( "(max-width: 767px)" ).matches )
+{ return; } videos.forEach( function (video) { video .play() .catch(function () {}); } );
+} /* PC: 마우스를 빼면 정지하고 썸네일 프레임으로 복귀 */ function stopPreview() { if (
+window.matchMedia( "(max-width: 767px)" ).matches ) { return; } videos.forEach( function
+(video) { video.pause(); moveToPreviewFrame( video, previewTime ); } ); }
+card.addEventListener( "mouseenter", playPreview ); card.addEventListener( "mouseleave",
+stopPreview ); card.addEventListener( "focusin", playPreview ); card.addEventListener(
+"focusout", stopPreview ); /* 모바일에는 hover가 없으므로 muted 상태로 자동 재생합니다. PC
+동작에는 영향을 주지 않습니다. */ if ( window.matchMedia( "(max-width: 767px)" ).matches )
+{ videos.forEach( function (video) { video .play() .catch(function () {}); } ); } } ); }
+/* ========================================================= 6. 프로젝트 LONG / SHORT 영상
+모달 ========================================================= */ function
+setupProjectVideoModal() { const modal = document.getElementById( "projectVideoModal" );
+if (!modal) { return; } const panel = document.getElementById( "projectVideoModalPanel" );
+const closeButton = document.getElementById( "projectModalClose" ); const landscapeView =
+document.getElementById( "landscapeModalView" ); const portraitView =
+document.getElementById( "portraitModalView" ); const landscapeVideo =
+document.getElementById( "landscapeModalVideo" ); const portraitVideo =
+document.getElementById( "portraitModalVideo" ); const openButtons =
+document.querySelectorAll( "[data-video-open]" ); function stopModalVideos() {
+[landscapeVideo, portraitVideo] .filter(Boolean) .forEach(function (video) {
+video.pause(); video.removeAttribute( "src" ); video.load(); }); } function closeModal() {
+modal.hidden = true; document.body.classList.remove( "modal-open" ); stopModalVideos(); }
+function openModal(button) { const number = button.dataset.projectNumber || "01"; const
+title = button.dataset.projectTitle || "Project"; const kicker =
+button.dataset.projectKicker || "VIDEO PROJECT"; const description = button.dataset
+.projectDescription || ""; const orientation = button.dataset .projectOrientation ||
+"landscape"; const videoSource = button.dataset.projectVideo || ""; const meta =
+button.dataset.projectMeta || ""; /* ----------------------------------------------- 왼쪽
+설명 텍스트 ----------------------------------------------- */ document.getElementById(
+"projectModalKicker" ).textContent = kicker; document.getElementById( "projectModalTitle"
+).textContent = title; document.getElementById( "projectModalDescription" ).textContent =
+description; document.getElementById( "projectModalNumber" ).textContent = "PROJECT " +
+number; const ratioChip = document.getElementById( "projectModalRatioChip" ); const
+typeChip = document.getElementById( "projectModalTypeChip" ); /*
+----------------------------------------------- SHORT FORM
+----------------------------------------------- */ if (orientation === "portrait") {
+panel.classList.remove( "is-landscape-video" ); landscapeView.hidden = true;
+portraitView.hidden = false; ratioChip.textContent = "9:16 Vertical"; typeChip.textContent
+= "Short-form"; portraitVideo.src = videoSource; portraitVideo.load();
+document.getElementById( "portraitModalCaption" ).textContent = title;
+document.getElementById( "portraitModalMeta" ).textContent = number + " / 04"; /*
+autoplay는 브라우저 정책상 실패할 수도 있습니다. controls가 있으므로 실패해도 사용자가
+직접 재생 가능합니다. */ portraitVideo .play() .catch(function () {}); } /*
+----------------------------------------------- LONG FORM
+----------------------------------------------- */ else { panel.classList.add(
+"is-landscape-video" ); landscapeView.hidden = false; portraitView.hidden = true;
+ratioChip.textContent = "16:9 Landscape"; typeChip.textContent = "Long-form";
+landscapeVideo.src = videoSource; landscapeVideo.load(); document.getElementById(
+"landscapeModalNumber" ).textContent = number; document.getElementById(
+"landscapeModalTitle" ).textContent = title; document.getElementById( "landscapeModalMeta"
+).textContent = meta; landscapeVideo .play() .catch(function () {}); } modal.hidden =
+false; document.body.classList.add( "modal-open" ); } openButtons.forEach( function
+(button) { button.addEventListener( "click", function () { openModal(button); } ); } ); if
+(closeButton) { closeButton.addEventListener( "click", closeModal ); } /* 모달의 흐린 바깥
+배경을 누르면 닫힙니다. */ modal.addEventListener( "click", function (event) { if
+(event.target === modal) { closeModal(); } } ); /* ESC 키를 눌러도 닫힙니다. */
+document.addEventListener( "keydown", function (event) { if ( event.key === "Escape" &&
+!modal.hidden ) { closeModal(); } } ); } /*
+========================================================= 7. PROJECT DETAIL
+--------------------------------------------------------- React의
+app/work/[slug]/page.tsx를 일반 HTML + URL 파라미터 방식으로 바꾼 부분입니다. 예:
+project.html?slug=mori ========================================================= */ const
+PROJECT_ITEMS = [ { slug: "mori", number: "01", title: "MORI", name: "MORI / Digital
+archive", type: "Web site design", color: "pink", }, { slug: "nova", number: "02", title:
+"NOVA", name: "NOVA / Brand story", type: "Corporate landing page", color: "charcoal", },
+{ slug: "reearth", number: "03", title: "PLAY", name: "RE:EARTH", type: "Contest
+submission film", color: "red", }, { slug: "object", number: "04", title: "OBJECT", name:
+"OBJECT / Editorial tool", type: "Product experience", color: "blush", }, { slug: "notes",
+number: "05", title: "notes", name: "notes / Goodnotes study", type: "Graphic design",
+color: "peach", }, { slug: "mori-film", number: "06", title: "MORI", name: "MORI / Short
+film", type: "Contest film", color: "lilac", }, ]; document.addEventListener(
+"DOMContentLoaded", setupProjectDetail ); function setupProjectDetail() { const visual =
+document.getElementById( "projectVisual" ); /* project.html이 아니면 projectVisual이
+없으므로 바로 끝냅니다. */ if (!visual) { return; } const params = new URLSearchParams(
+window.location.search ); const slug = params.get("slug"); /* 주소의 slug와 같은
+프로젝트를 찾습니다. 없으면 첫 번째 프로젝트를 보여 줍니다. */ const project =
+PROJECT_ITEMS.find( function (item) { return item.slug === slug; } ) || PROJECT_ITEMS[0];
+document.getElementById( "projectNumber" ).textContent = project.number;
+document.getElementById( "projectTitle" ).textContent = project.title;
+document.getElementById( "projectEyebrow" ).textContent = "PROJECT / " + project.number;
+document.getElementById( "projectName" ).textContent = project.name;
+document.getElementById( "projectDescription" ).innerHTML = project.type + ".<br />" + "A
+considered visual system built to make a clear, memorable impression across every
+touchpoint."; /* 기존 색상 클래스를 정리하고 현재 프로젝트 색상을 넣습니다. */
+visual.className = "detail-visual project-card " + project.color; }

@@ -1,0 +1,988 @@
+/* dippingbook-modal.css
+ * 디핑북 모달 전용 스타일입니다. 기본 설정 뒤에 모바일 설정이 나옵니다.
+ * 수정할 위치 안내: 코드-읽는-순서.md
+ */
+
+/* DippingBook only: fixed artwork header and independent content panels. */
+.db-modal {
+  border: 0;
+  padding: 0;
+  width: min(1426px, 94vw, 132dvh);
+  max-width: 94vw;
+  max-height: 94dvh;
+  background: #f6f7f9;
+  color: #0b1320;
+  border-radius: 26px;
+  overflow: auto;
+  box-shadow: 0 25px 90px #0004;
+}
+.db-modal::backdrop {
+  background: rgba(25, 36, 45, 0.55);
+  backdrop-filter: blur(9px);
+}
+.db-shell {
+  position: relative;
+  container-type: inline-size;
+  --db-number-size: 2.1cqw;
+  --db-title-size: 3.6cqw;
+  --db-lead-size: 1.6125cqw;
+  --db-label-size: 1.125cqw;
+  --db-body-size: 0.885cqw;
+}
+.db-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #0b1320;
+  font: 36px/1 Arial;
+  box-shadow: 0 2px 10px #0001;
+  cursor: pointer;
+}
+.db-hero {
+  position: relative;
+  min-height: 35.34cqw;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: center;
+  padding: 2.3cqw 3.3cqw;
+  background: #f4f7fb;
+}
+.db-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+.db-project-label {
+  display: inline-block;
+  padding: 0.3cqw 1.1cqw;
+  border-radius: 2cqw;
+  background: #e8ecf2;
+  color: #0b1320;
+  font-size: 0.95cqw;
+}
+.db-hero-copy h2 {
+  margin: 1cqw 0 0.8cqw;
+  font-size: 3.375cqw;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #0b1320;
+}
+.db-hero-copy h3 {
+  margin: 0 0 1.2cqw;
+  font-size: 1.6125cqw;
+  line-height: 1.35;
+  color: #0b1320;
+}
+.db-hero-copy > p {
+  margin: 0;
+  font-size: 1.125cqw;
+  line-height: 1.55;
+  color: #0b1320;
+}
+.db-tags {
+  display: flex;
+  gap: 0.5cqw;
+  flex-wrap: wrap;
+  margin: 1.5cqw 0 2cqw;
+}
+.db-tags span {
+  padding: 0.52cqw 0.8cqw;
+  border-radius: 2cqw;
+  background: #fffc38;
+  font-size: 0.8cqw;
+  font-weight: 700;
+  color: #0b1320;
+}
+.db-project-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 1.5cqw;
+}
+.db-project-meta > div + div {
+  border-left: 1px solid #d5dfeb;
+  padding-left: 1.5cqw;
+}
+.db-project-meta b {
+  font-size: 0.85cqw;
+  color: #0b1320;
+}
+.db-project-meta p {
+  margin: 0.4cqw 0 0;
+  font-size: 0.9cqw;
+  line-height: 1.3;
+  color: #7b86a6;
+}
+.db-tool-art {
+  margin-top: 0.6cqw;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6cqw;
+}
+.db-tool-art img {
+  display: block;
+  width: calc((100% - 1.8cqw) / 4);
+  max-width: 3cqw;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 0.5cqw;
+}
+.db-device-art {
+  width: 80%;
+  justify-self: center;
+  aspect-ratio: 826/425;
+  background: url("images/dippingbook-case/01.png") 88.73% 14.19%/185.956% auto no-repeat;
+}
+/* Exclude the adjacent JS tool icon embedded in the original artwork. */
+.db-device-art {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 92%, 3.3% 92%, 3.3% 81%, 0 81%);
+}
+.db-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1cqw;
+  padding: 0.65cqw 2.6%;
+  border-block: 1px solid #e5e9ef;
+  background: #f8faff;
+}
+.db-tabs {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 6px;
+}
+.db-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 32px;
+  background: transparent;
+  color: #7b86a6;
+  padding: 0.7cqw 1cqw;
+  font:
+    500 0.8cqw/1.2 "Instrument Sans",
+    sans-serif;
+  cursor: pointer;
+}
+.db-tabs button[aria-selected="true"] {
+  background: #fffc38;
+  color: #080808;
+  font-weight: 700;
+}
+.db-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.7cqw;
+  white-space: nowrap;
+}
+.db-count {
+  margin-inline: 0.6cqw;
+  font-weight: 700;
+  font-size: 0.8cqw;
+  min-width: 2cqw;
+}
+.db-pagination button {
+  width: 2.6cqw;
+  height: 2.6cqw;
+  border: 1px solid #ccd4e3;
+  border-radius: 50%;
+  background: #fff;
+  color: #0b1320;
+  font-size: 1.65cqw;
+  cursor: pointer;
+}
+.db-panel {
+  height: 26.7cqw;
+  background-size: 107.714% auto;
+  background-repeat: no-repeat;
+  background-position: center -42.1cqw;
+}
+.db-panel[hidden] {
+  display: none;
+}
+.db-panel.db-live-panel {
+  height: auto;
+  min-height: 26.7cqw;
+  display: grid;
+  grid-template-columns: 46% 1fr;
+  gap: 5.4%;
+  padding: 2.8cqw 4%;
+  background: #f4f7fb;
+}
+.db-panel.db-live-panel[hidden] {
+  display: none;
+}
+.db-panel-heading {
+  border-right: 1px solid #d5dfeb;
+  padding-right: 2cqw;
+}
+.db-panel-heading > b {
+  color: #f4eb00;
+  font-size: var(--db-number-size);
+  line-height: 1.1;
+}
+.db-panel-heading h2 {
+  margin: 0.5cqw 0 1.5cqw;
+  font:
+    bold var(--db-title-size)/1.05 Georgia,
+    serif;
+  letter-spacing: -0.04em;
+  color: #080b14;
+}
+.db-panel-heading > p {
+  margin: 0;
+  font-size: calc(var(--db-lead-size) * 0.8);
+  line-height: 1.45;
+  color: #0b1320;
+}
+.db-feature-list {
+  display: grid;
+  gap: 1.7cqw;
+  align-content: start;
+}
+.db-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4cqw;
+}
+.db-feature-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 5.6cqw;
+  height: 5.6cqw;
+  border-radius: 50%;
+  background: #fff79d;
+  color: #080b14;
+  font: 3.4cqw/1 Arial;
+}
+.db-feature h3 {
+  margin: 0.5cqw 0 0.3cqw;
+  font-size: var(--db-label-size);
+  line-height: 1.2;
+  color: #0b1320;
+}
+.db-feature-icon svg {
+  width: 52%;
+  height: 52%;
+}
+.db-feature p {
+  margin: 0;
+  font-size: var(--db-body-size);
+  line-height: 1.55;
+  color: #7b86a6;
+}
+.db-panel-3.db-live-panel {
+  grid-template-columns: 37% 1fr;
+  gap: 2.8%;
+  padding-inline: 2.8%;
+}
+.db-panel-3 .db-feature-list {
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5cqw 2cqw;
+}
+.db-problem-copy {
+  padding-top: 2cqw;
+}
+.db-problem-copy > p {
+  margin: 0;
+  font-size: var(--db-body-size);
+  line-height: 1.6;
+  color: #7b86a6;
+}
+.db-problem-copy blockquote {
+  position: relative;
+  margin: 3cqw 0 0 2cqw;
+  font-size: var(--db-lead-size);
+  line-height: 1.65;
+  color: #0b1320;
+}
+.db-problem-copy blockquote::before {
+  content: "“";
+  position: absolute;
+  left: -2.4cqw;
+  top: -1.2cqw;
+  font: bold 4cqw Georgia;
+  color: #f4eb00;
+}
+.db-problem-copy mark {
+  position: relative;
+  padding: 0.15cqw 0.45cqw;
+  border-radius: 0.6cqw;
+  background: #fff866;
+  color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.db-problem-copy mark::after {
+  content: "“";
+  position: absolute;
+  right: -2.5cqw;
+  bottom: -0.5cqw;
+  width: 2cqw;
+  height: 3cqw;
+  font: bold 4cqw/1 Georgia;
+  color: #f4eb00;
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+.db-panel-4.db-live-panel,
+.db-panel-5.db-live-panel {
+  grid-template-columns: 27% 1fr;
+  gap: 2%;
+  padding-inline: 3.3%;
+}
+.db-panel-4 .db-panel-heading,
+.db-panel-5 .db-panel-heading {
+  border: 0;
+  padding: 0;
+}
+.db-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8cqw;
+  align-items: stretch;
+}
+.db-info-card {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #edf0f5;
+  border-radius: 0.9cqw;
+  padding: 0.9cqw;
+}
+.db-info-card h3 {
+  margin: 0.6cqw 0 0.4cqw;
+  font-size: var(--db-label-size);
+  line-height: 1.35;
+  color: #0b1320;
+}
+.db-info-card p {
+  margin: 0;
+  font-size: var(--db-body-size);
+  line-height: 1.55;
+  color: #7b86a6;
+}
+.db-ui-shot {
+  width: 100%;
+  aspect-ratio: 214/202;
+  background-size: contain;
+  background-color: #fff;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-radius: 0.4cqw;
+}
+.db-ui-home {
+  background-image: url("images/dippingbook-case/ui-home.png");
+}
+.db-ui-book {
+  background-image: url("images/dippingbook-case/ui-book.png");
+}
+.db-ui-ai {
+  background-image: url("images/dippingbook-case/ui-ai.png");
+}
+.db-ui-community {
+  background-image: url("images/dippingbook-case/ui-community.png");
+}
+.db-swatches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1cqw;
+  margin-top: 1cqw;
+  text-align: center;
+  font-size: var(--db-body-size);
+}
+.db-swatches i {
+  display: block;
+  width: 4.4cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--swatch);
+  margin: 0 auto 0.5cqw;
+  border: 1px solid #00000005;
+}
+.db-swatches b,
+.db-swatches span {
+  display: block;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.db-swatches span {
+  color: #7b86a6;
+}
+.db-type-sample {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7cqw;
+  margin: 1.5cqw 0;
+  font-size: var(--db-body-size);
+  color: #0b1320;
+}
+.db-type-sample > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25cqw;
+}
+.db-type-sample > div + div {
+  border-left: 1px solid #ccd4e3;
+  padding-left: 0.7cqw;
+}
+.db-type-sample strong {
+  font:
+    5cqw/1 Georgia,
+    serif;
+}
+.db-icon-art {
+  width: 100%;
+  aspect-ratio: 210/200;
+  margin-top: 1.2cqw;
+  background: url("images/dippingbook-case/content-05.png") 74.208% 88.107%/731.429% auto
+    no-repeat;
+}
+.db-component-demo {
+  display: grid;
+  gap: 1cqw;
+  margin-top: 1cqw;
+  font-size: var(--db-body-size);
+  color: #0b1320;
+}
+.db-demo-login {
+  padding: 0.6cqw;
+  text-align: center;
+  background: #fffc38;
+  border-radius: 2cqw;
+  font-weight: 700;
+}
+.db-demo-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccd4e3;
+  padding: 0.6cqw;
+  border-radius: 2cqw;
+  font-size: 0.7cqw;
+  color: #7b86a6;
+}
+.db-demo-search span {
+  font-size: 1.4cqw;
+  color: #0b1320;
+}
+.db-demo-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2cqw;
+  background: #eef0f5;
+  color: #7b86a6;
+}
+.db-demo-tabs > * {
+  padding: 0.6cqw;
+}
+.db-demo-tabs b {
+  border-radius: 2cqw;
+  background: #fffc38;
+  color: #0b1320;
+}
+.db-demo-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.db-demo-pages > span {
+  display: grid;
+  place-items: center;
+  width: 2.6cqw;
+  height: 2.6cqw;
+  border: 1px solid #ccd4e3;
+  border-radius: 50%;
+  font-size: 1.5cqw;
+}
+.db-footer {
+  position: absolute;
+  right: 2.6%;
+  bottom: 1.3cqw;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  background: transparent;
+}
+.db-footer a {
+  background: #fffc38;
+  color: #080808;
+  padding: 0.85cqw 1.5cqw;
+  border-radius: 28px;
+  font-size: 1cqw;
+  font-weight: 700;
+  text-decoration: none;
+}
+.db-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.db-modal button:focus-visible,
+.db-modal a:focus-visible {
+  outline: 3px solid #304c67;
+  outline-offset: 3px;
+}
+@media (max-width: 900px) {
+  .db-tabs {
+    gap: 0.4cqw;
+  }
+  .db-close {
+    width: 26px;
+    height: 26px;
+    font-size: 22px;
+  }
+  .db-modal {
+    border-radius: 16px;
+  }
+}
+
+/* Match the existing cursor setting inside the native dialog top layer. */
+body.has-custom-cursor #dippingbookModal,
+body.has-custom-cursor #dippingbookModal::backdrop,
+body.has-custom-cursor #dippingbookModal * {
+  cursor: none;
+}
+
+/* Mobile case study: readable content instead of a scaled desktop canvas. */
+@media (max-width: 767px) {
+  #dippingbookModal {
+    width: calc(100vw - 16px);
+    max-width: none;
+    max-height: calc(100dvh - 16px);
+    margin: auto;
+    border-radius: 18px;
+    overscroll-behavior: contain;
+    scroll-padding-top: 116px;
+  }
+  #dippingbookModal .db-shell {
+    --db-number-size: 20px;
+    --db-title-size: 30px;
+    --db-lead-size: 16px;
+    --db-label-size: 13px;
+    --db-body-size: 12px;
+  }
+  #dippingbookModal .db-close {
+    position: sticky;
+    top: 8px;
+    margin: 8px 8px -48px auto;
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    z-index: 5;
+  }
+  #dippingbookModal .db-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px 18px 20px;
+    min-height: 0;
+  }
+  #dippingbookModal .db-hero-copy h2 {
+    margin: 16px 0 10px;
+    font-size: clamp(30px, 9vw, 42px);
+  }
+  #dippingbookModal .db-hero-copy h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+  #dippingbookModal .db-hero-copy > p {
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  #dippingbookModal .db-project-label {
+    font-size: 10px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    margin-right: 34px;
+  }
+  #dippingbookModal .db-tags {
+    gap: 6px;
+    margin: 16px 0;
+  }
+  #dippingbookModal .db-project-meta {
+    grid-template-columns: 1.1fr 1fr 1.1fr;
+    gap: 10px;
+    border-top: 1px solid #d5dfeb;
+    padding-top: 14px;
+  }
+  #dippingbookModal .db-project-meta > div + div {
+    padding-left: 10px;
+  }
+  #dippingbookModal .db-project-meta b {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  #dippingbookModal .db-project-meta p {
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 5px;
+  }
+  #dippingbookModal .db-tool-art {
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 7px;
+  }
+  #dippingbookModal .db-tool-art img {
+    width: 24px;
+    max-width: 24px;
+    border-radius: 4px;
+  }
+  #dippingbookModal .db-device-art {
+    width: 100%;
+    max-width: 440px;
+  }
+  #dippingbookModal .db-footer {
+    position: static;
+    width: 100%;
+    padding: 0;
+  }
+  #dippingbookModal .db-footer > a {
+    width: 100%;
+    min-height: 44px !important;
+    justify-content: center;
+  }
+  #dippingbookModal .db-nav {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: grid;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #f8faff;
+  }
+  #dippingbookModal .db-tabs {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 2px 0 5px;
+    scrollbar-width: thin;
+  }
+  #dippingbookModal .db-tabs button {
+    flex: 0 0 auto;
+    min-height: 40px;
+    font-size: 12px;
+    gap: 6px;
+    padding: 10px 12px;
+  }
+  #dippingbookModal .db-tabs button span {
+    font-size: 10px;
+  }
+  #dippingbookModal .db-pagination {
+    justify-content: flex-end;
+    gap: 10px;
+    padding-right: 42px;
+  }
+  #dippingbookModal .db-count {
+    font-size: 12px;
+    margin-right: auto;
+    padding-left: 4px;
+  }
+  #dippingbookModal .db-pagination button {
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+  }
+  #dippingbookModal .db-panel.db-live-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    min-height: 0;
+    padding: 22px 18px 28px;
+  }
+  #dippingbookModal .db-panel-heading {
+    border: 0;
+    border-bottom: 1px solid #d5dfeb;
+    padding: 0 0 16px;
+  }
+  #dippingbookModal .db-panel-heading h2 {
+    margin: 5px 0 12px;
+  }
+  #dippingbookModal .db-panel-heading > p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  #dippingbookModal .db-problem-copy {
+    padding: 0;
+  }
+  #dippingbookModal .db-problem-copy blockquote {
+    margin: 22px 0 8px;
+    padding-left: 12px;
+    border-left: 3px solid #fffc38;
+    font-size: 15px;
+  }
+  #dippingbookModal .db-problem-copy blockquote::before,
+  #dippingbookModal .db-problem-copy mark::after {
+    display: none;
+  }
+  #dippingbookModal .db-feature-list,
+  #dippingbookModal .db-panel-3 .db-feature-list {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    gap: 18px;
+  }
+  #dippingbookModal .db-feature {
+    gap: 12px;
+  }
+  #dippingbookModal .db-feature-icon {
+    flex-basis: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+  #dippingbookModal .db-feature h3 {
+    margin: 3px 0 6px;
+    line-height: 1.4;
+  }
+  #dippingbookModal .db-feature p,
+  #dippingbookModal .db-info-card p {
+    line-height: 1.65;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  #dippingbookModal .db-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  #dippingbookModal .db-info-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  #dippingbookModal .db-info-card h3 {
+    margin: 10px 0 6px;
+  }
+  #dippingbookModal .db-swatches {
+    gap: 10px 5px;
+    margin-top: 12px;
+  }
+  #dippingbookModal .db-swatches i {
+    width: 30px;
+    margin-bottom: 5px;
+  }
+  #dippingbookModal .db-swatches b,
+  #dippingbookModal .db-swatches span {
+    font-size: 9px;
+  }
+  #dippingbookModal .db-type-sample {
+    gap: 8px;
+    margin: 14px 0;
+    font-size: 10px;
+  }
+  #dippingbookModal .db-type-sample strong {
+    font-size: 30px;
+  }
+  #dippingbookModal .db-component-demo {
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 10px;
+  }
+  #dippingbookModal .db-demo-login,
+  #dippingbookModal .db-demo-search,
+  #dippingbookModal .db-demo-tabs > * {
+    padding: 7px 5px;
+    border-radius: 14px;
+  }
+  #dippingbookModal .db-demo-search {
+    font-size: 9px;
+  }
+  #dippingbookModal .db-demo-search span {
+    font-size: 13px;
+  }
+  #dippingbookModal .db-demo-pages > span {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+}
+/* Mobile hero order: introduction, device mockup, project metadata, CTA. */
+@media (max-width: 767px) {
+  #dippingbookModal .db-hero-copy {
+    display: contents;
+  }
+  #dippingbookModal .db-hero {
+    gap: 0;
+  }
+  #dippingbookModal .db-project-label {
+    grid-row: 1;
+    justify-self: start;
+  }
+  #dippingbookModal .db-hero-copy h2 {
+    grid-row: 2;
+  }
+  #dippingbookModal .db-hero-copy h3 {
+    grid-row: 3;
+  }
+  #dippingbookModal .db-hero-copy > p {
+    grid-row: 4;
+  }
+  #dippingbookModal .db-tags {
+    grid-row: 5;
+  }
+  #dippingbookModal .db-device-art {
+    grid-row: 6;
+    margin: 4px 0 20px;
+  }
+  #dippingbookModal .db-project-meta {
+    grid-row: 7;
+    margin-bottom: 20px;
+  }
+  #dippingbookModal .db-footer {
+    grid-row: 8;
+  }
+}
+
+/* Mobile scroll hint and swipeable tab rail; desktop navigation stays intact. */
+.db-scroll-guide,
+.db-rail-arrow {
+  display: none;
+}
+.db-tab-rail {
+  display: contents;
+}
+@media (max-width: 767px) {
+  #dippingbookModal .db-scroll-guide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0 20px;
+    color: #27435a;
+    font-family: "Pretendard", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    opacity: 0.65;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  #dippingbookModal .db-scroll-guide > span:first-child {
+    font-size: 18px;
+    line-height: 1;
+    animation: db-scroll-nudge 1.2s ease-in-out infinite;
+  }
+  #dippingbookModal .db-scroll-guide.is-dismissed {
+    opacity: 0;
+  }
+  #dippingbookModal .db-scroll-guide.is-dismissed > span:first-child {
+    animation: none;
+  }
+  #dippingbookModal .db-tab-rail {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+  #dippingbookModal .db-rail-arrow {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid #e1e6ed;
+    border-radius: 14px;
+    background: #fff;
+    color: #27435a;
+    font-size: 11px;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  #dippingbookModal .db-rail-arrow:active {
+    background: #fffc38;
+    transform: scale(0.95);
+  }
+  #dippingbookModal .db-tabs {
+    min-width: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-block: 3px;
+    gap: 6px;
+    scroll-snap-type: x proximity;
+  }
+  #dippingbookModal .db-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  #dippingbookModal .db-tabs button {
+    flex: 0 0 44%;
+    justify-content: center;
+    min-width: max-content;
+    scroll-snap-align: start;
+    font-family: "Pretendard", sans-serif;
+    padding-inline: 9px;
+  }
+  #dippingbookModal .db-pagination {
+    justify-content: center;
+    padding: 0;
+  }
+  #dippingbookModal .db-pagination .db-count {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    color: #71849b;
+  }
+  #dippingbookModal .db-pagination button {
+    display: none;
+  }
+}
+@keyframes db-scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #dippingbookModal .db-scroll-guide > span:first-child {
+    animation: none;
+  }
+  #dippingbookModal .db-scroll-guide,
+  #dippingbookModal .db-rail-arrow {
+    transition: none;
+  }
+}
+
+/* 모달 하나가 소개부터 마지막 패널까지 스크롤을 담당합니다. */
+@media (max-width: 767px) {
+  #dippingbookModal {
+    max-height: calc(var(--db-viewport-height, 100dvh) - 16px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  #dippingbookModal .db-shell {
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  #dippingbookModal .db-scroll-guide { display: none; }
+}
+
+/* Design System의 서체 견본에 실제 프로젝트 폰트를 적용합니다. */
+#dippingbookModal .db-typography-card {
+  font-family: "Noto Sans KR", sans-serif;
+}

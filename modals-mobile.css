@@ -1,0 +1,515 @@
+/* modals-mobile.css
+ * 디핑북을 제외한 모바일 모달 스타일입니다. 뒤쪽에는 프로젝트별 보정이 있습니다.
+ * 수정할 위치 안내: 코드-읽는-순서.md
+ */
+/* Mobile-only reading order and device sizing. DippingBook is excluded. */
+@media (max-width: 767px) {
+  body .mobile-project-modal {
+    width: calc(100vw - 20px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: calc(100dvh - 20px) !important;
+    padding: 48px 18px 24px !important;
+    border-radius: 22px !important;
+    overflow: auto !important;
+    overscroll-behavior: contain;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    zoom: 1 !important;
+    transform: none !important;
+  }
+  body dialog.mobile-project-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    margin: auto !important;
+  }
+  body :is(#projectVideoModal, #detailPageModal, #shortsModal) {
+    padding: 10px !important;
+  }
+  body .mobile-project-modal .planner-layout {
+    display: block !important;
+    min-height: 0 !important;
+  }
+  body .mobile-project-modal .mobile-project-copy {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+  }
+  body .mobile-project-modal .mobile-project-copy > h2 {
+    font-size: clamp(22px, 6vw, 29px) !important;
+    line-height: 1.25 !important;
+    margin: 10px 0 20px !important;
+    letter-spacing: -0.035em !important;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  body .mobile-project-modal .mobile-project-copy > :is(.eyebrow, .shorts-kicker) {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.12em;
+  }
+  body .mobile-project-modal :is(.planner-description, .shorts-description) {
+    font-size: 13px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 20px !important;
+  }
+  body .mobile-project-modal :is(.planner-quote, .shorts-quote) {
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+  }
+  body
+    .mobile-project-modal
+    :is(
+      .planner-device,
+      .project-modal-view,
+      .project-laptop-wrap,
+      .shorts-phone-wrap
+    ):not([hidden]) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 26px !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    align-self: center;
+  }
+  body .mobile-project-modal [hidden] {
+    display: none !important;
+  }
+  body .mobile-project-modal .ipad-pro {
+    width: min(100%, 390px) !important;
+    max-width: 100% !important;
+    margin-inline: auto;
+  }
+  body .mobile-project-modal .ipad-chassis {
+    height: auto !important;
+    aspect-ratio: auto !important;
+    padding: 8px !important;
+    border-radius: 24px !important;
+  }
+  body .mobile-project-modal[data-goodnotes-modal] .ipad-screen {
+    height: auto !important;
+    aspect-ratio: var(--planner-page-ratio, 3 / 4) !important;
+  }
+  body .mobile-project-modal #landscapeModalView .ipad-screen {
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+  body .mobile-project-modal .ipad-screen :is(video, iframe) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  body .mobile-project-modal .shorts-phone {
+    width: min(70vw, 270px) !important;
+    max-width: 100% !important;
+    margin-inline: auto;
+  }
+  body .mobile-project-modal .shorts-video-stage {
+    height: auto !important;
+    aspect-ratio: 9 / 16;
+  }
+  body .mobile-project-modal :is(.project-laptop-player, .project-laptop-shell) {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+  }
+  body .mobile-project-modal .project-laptop-screen {
+    height: auto !important;
+    aspect-ratio: 16 / 10 !important;
+  }
+  body .mobile-project-modal .project-laptop-base {
+    width: calc(100% + 12px) !important;
+    transform: translateX(-6px) !important;
+  }
+  body .mobile-project-modal .planner-device {
+    gap: 14px !important;
+  }
+  body .mobile-project-modal .planner-gallery-controls {
+    max-width: 100% !important;
+  }
+  body .mobile-project-modal .planner-color-options {
+    flex-wrap: wrap;
+  }
+  body .mobile-project-modal .planner-color-options button {
+    min-height: 36px !important;
+    font-size: 11px !important;
+  }
+  body .mobile-project-modal .planner-gallery-controls select {
+    font-size: 16px !important;
+    min-height: 40px;
+  }
+  body .mobile-project-modal .planner-device .planner-navigation {
+    max-width: 100% !important;
+    width: 100% !important;
+    gap: 4px !important;
+  }
+  body .mobile-project-modal .planner-navigation button {
+    min-height: 42px !important;
+    padding: 9px 10px !important;
+    font-size: 12px !important;
+  }
+  body .mobile-project-modal .planner-blog-link {
+    position: static !important;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    min-height: 44px !important;
+  }
+  body .mobile-project-modal .planner-performance dl {
+    gap: 12px !important;
+  }
+  body .mobile-project-modal .planner-performance dd {
+    font-size: 22px !important;
+  }
+  body
+    .mobile-project-modal
+    :is(.planner-close, .shorts-modal-close, .detail-page-modal-close) {
+    top: 10px !important;
+    right: 10px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+/* Mobile devices: landscape iPad and portrait commerce iPhone. */
+@media (max-width: 767px) {
+  body #projectVideoModalPanel.mobile-project-modal #landscapeModalView .ipad-screen {
+    aspect-ratio: 4 / 3 !important;
+    background: #090b0f;
+    position: relative;
+  }
+  body
+    #projectVideoModalPanel.mobile-project-modal
+    #landscapeModalView
+    .ipad-screen
+    :is(video, iframe) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    border: 0;
+  }
+  body #projectVideoModalPanel.mobile-project-modal #landscapeModalView .ipad-chassis {
+    padding: 11px !important;
+    border-radius: 22px !important;
+    box-shadow:
+      0 0 0 2px #59616b,
+      0 18px 30px #18233333;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-wrap {
+    width: min(100%, 290px) !important;
+    margin-inline: auto !important;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-lid {
+    position: relative;
+    padding: 8px !important;
+    background: #111419;
+    border: 2px solid #505966;
+    border-radius: 38px !important;
+    box-shadow: 0 18px 32px #18233333;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-screen {
+    aspect-ratio: 9 / 19.5 !important;
+    border-radius: 28px !important;
+    overflow: hidden;
+    background: #fff;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-camera {
+    display: none;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-base {
+    display: none;
+  }
+  body #detailPageModal .mobile-project-modal .project-laptop-lid::after {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    left: 35%;
+    width: 30%;
+    height: 4px;
+    border-radius: 8px;
+    background: #222;
+    pointer-events: none;
+    z-index: 8;
+  }
+  body #detailPageModal .mobile-project-modal .detail-browser-bar {
+    display: none;
+  }
+  body #detailPageModal .mobile-project-modal .detail-browser::before {
+    content: "9:41                         ▮▮  ◔  ▰";
+    display: block;
+    flex: 0 0 34px;
+    padding: 10px 18px 5px;
+    font:
+      700 11px/1.5 Arial,
+      sans-serif;
+    color: #111;
+    white-space: pre;
+    background: #fff;
+  }
+  body #detailPageModal .mobile-project-modal .detail-page-scroll-area {
+    scrollbar-width: none;
+  }
+  body
+    #detailPageModal
+    .mobile-project-modal
+    .detail-page-scroll-area::-webkit-scrollbar {
+    display: none;
+  }
+  body
+    #detailPageModal
+    .mobile-project-modal
+    :is(
+      .coupang-mini-topbar,
+      .coupang-quick-menu,
+      .coupang-breadcrumb,
+      .coupang-category-box,
+      .detail-coupang-logo,
+      .coupang-header-icon,
+      .coupang-search-select,
+      .coupang-thumb-column
+    ) {
+    display: none;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-header {
+    display: block;
+    padding: 7px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-search {
+    width: 100%;
+    border: 1px solid #151b24;
+    border-radius: 30px;
+    min-height: 30px;
+    padding: 6px 10px;
+    display: flex;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-search-placeholder {
+    font-size: 11px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-image-box {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border: 0;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-info {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 12px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-title-row {
+    display: block;
+  }
+  body #detailPageModal .mobile-project-modal #detailProductTitle {
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-round-icons {
+    display: none;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-product-price {
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  body #detailPageModal .mobile-project-modal #detailProductPrice {
+    font-size: 23px;
+  }
+  body
+    #detailPageModal
+    .mobile-project-modal
+    :is(
+      .coupang-info-line,
+      .coupang-delivery-fee,
+      .coupang-product-bullets,
+      .coupang-point-line
+    ) {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-buy-row {
+    display: flex;
+    gap: 6px;
+    margin-block: 14px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-qty-box {
+    display: none;
+  }
+  body
+    #detailPageModal
+    .mobile-project-modal
+    :is(.coupang-cart-button, .coupang-buy-button) {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 3px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-detail-tabs {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-detail-tabs button {
+    flex: 0 0 auto;
+    padding: 10px;
+    font-size: 10px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-long-detail {
+    width: 100%;
+    min-width: 0;
+    padding: 0 0 20px;
+  }
+  body #detailPageModal .mobile-project-modal .coupang-long-detail-label {
+    padding: 12px;
+    font-size: 11px;
+  }
+}
+
+/* Mobile mockups: flat presentation and a more compact landscape tablet. */
+@media (max-width: 767px) {
+  body
+    .mobile-project-modal
+    :is(
+      .ipad-pro,
+      .ipad-chassis,
+      .ipad-screen,
+      .shorts-phone,
+      .shorts-phone-frame,
+      .shorts-video-stage,
+      .project-laptop-wrap,
+      .project-laptop-player,
+      .project-laptop-shell,
+      .project-laptop-lid,
+      .project-laptop-screen
+    ) {
+    box-shadow: none !important;
+    filter: none !important;
+  }
+  body
+    #projectVideoModalPanel.mobile-project-modal.is-hunmin
+    #landscapeModalView
+    .ipad-screen {
+    aspect-ratio: 3 / 2 !important;
+  }
+  body
+    #projectVideoModalPanel.mobile-project-modal.is-hunmin
+    #landscapeModalView
+    .ipad-chassis {
+    padding: 9px !important;
+    border: 1px solid #505966;
+    border-radius: 20px !important;
+  }
+}
+
+/* GoodNotes 09–12: native mobile dialogs must flow from the top,
+   rather than center a desktop grid taller than the viewport. */
+@media (max-width: 767px) {
+  body[data-page="work"]
+    :is(#plannerModal, #diaryPlannerModal, #studyNotesModal, #lifePlannerModal)[open] {
+    display: block !important;
+    align-items: normal !important;
+    width: calc(100% - 20px) !important;
+    max-height: calc(100dvh - 20px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 50px 16px 24px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-layout,
+  body[data-page="work"] [data-goodnotes-modal] .planner-copy {
+    display: block !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-device {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-gallery-controls {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-colors {
+    width: 100%;
+    margin: 0 0 6px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-color-options button {
+    flex: 0 1 auto;
+    padding: 7px 9px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-device .ipad-pro {
+    width: min(100%, var(--planner-mobile-width, 290px)) !important;
+    flex: 0 0 auto;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .ipad-screen {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] [data-planner-image] {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-device .planner-navigation {
+    grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr) !important;
+    padding: 5px !important;
+    gap: 3px !important;
+    border-radius: 16px;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-navigation button {
+    gap: 5px !important;
+    padding: 8px 5px !important;
+    font-size: 11px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-navigation p {
+    gap: 4px !important;
+    font-size: 11px !important;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-page-current {
+    font-size: 16px;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-tags {
+    flex-wrap: wrap;
+  }
+  body[data-page="work"] [data-goodnotes-modal] .planner-blog-link {
+    position: static !important;
+    margin: 20px 0 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+}

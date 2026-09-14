@@ -1,0 +1,525 @@
+/* about-profile.css
+ * About 모바일 프로필과 슬라이드의 기본 스타일입니다.
+ * 수정할 위치 안내: 코드-읽는-순서.md
+ */
+@media (max-width: 767px) {
+  /* Shared profile and six-slide layout, at every viewport size. */
+  body[data-page="about"] .about-page {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-block: 24px 32px;
+    gap: 0;
+  }
+  body[data-page="about"] .about-mobile-only {
+    display: none !important;
+  }
+  body[data-page="about"] .about-page > .about-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
+    margin-bottom: 30px;
+  }
+  body[data-page="about"] .about-copy {
+    min-width: 0;
+    max-width: none;
+  }
+  body[data-page="about"] .about-copy h1 {
+    font-size: clamp(64px, 9vw, 124px);
+    line-height: 1;
+  }
+  body[data-page="about"] .about-lede {
+    margin-top: 12px;
+    font-size: clamp(28px, 4.2vw, 52px);
+    line-height: 1.08;
+  }
+  body[data-page="about"] .about-lede em {
+    font-style: italic;
+  }
+  body[data-page="about"] .about-storyline {
+    border: 0;
+    padding: 0;
+    margin: 22px 0;
+    font-weight: 500;
+    font-size: clamp(14px, 1.8vw, 21px);
+  }
+  .about-stats {
+    padding: 26px;
+    border-radius: 18px;
+    background: rgba(227, 226, 217, 0.22);
+    color: #234566;
+  }
+  .about-stats > p {
+    margin: 0 0 24px;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: #758aa1;
+    font-weight: 700;
+  }
+  .about-stat-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-stat-pair > div + div {
+    border-left: 1px solid #d9e0e7;
+    padding-left: 28px;
+  }
+  .about-stat-pair strong {
+    display: block;
+    font-size: 48px;
+    line-height: 1.1;
+  }
+  .about-stats span {
+    display: block;
+    color: #758aa1;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+  .about-stat-design {
+    border-top: 1px solid #d9e0e7;
+    margin-top: 22px;
+    padding-top: 18px;
+  }
+  .about-stat-design strong {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  body[data-page="about"] .about-profile {
+    display: block;
+    padding-top: 30px;
+  }
+  body[data-page="about"] .about-profile-shell {
+    width: 100%;
+  }
+  body[data-page="about"] .profile-topline {
+    display: none;
+  }
+  body[data-page="about"] .portrait {
+    height: auto;
+    aspect-ratio: 3 / 4;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #f3f6f5;
+  }
+  body[data-page="about"] .portrait-image {
+    object-position: center bottom !important;
+    transform: none;
+  }
+  body[data-page="about"] .portrait-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 8px 0;
+    border: 0;
+    margin: 0;
+  }
+  body[data-page="about"] .portrait-caption span {
+    text-align: left;
+    font-size: 11px;
+  }
+  body[data-page="about"] .about-page > .about-contact-list {
+    width: 100%;
+    border-inline: 0;
+    background: transparent;
+    margin: 0 0 32px;
+  }
+  body[data-page="about"] .about-contact-row {
+    grid-template-columns: 29% minmax(0, 1fr);
+    padding: 20px 12px;
+    gap: 16px;
+  }
+  body[data-page="about"] .about-contact-label {
+    gap: 24px;
+    font-weight: 500;
+  }
+  body[data-page="about"] .about-contact-label svg {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+    color: #234566;
+  }
+  body[data-page="about"] .about-contact-value {
+    justify-content: flex-start;
+    font-size: clamp(14px, 2vw, 22px);
+  }
+  body[data-page="about"] .about-contact-value-stack {
+    align-items: flex-start;
+    padding-right: 32px;
+  }
+  body[data-page="about"] .about-contact-value-stack small {
+    text-align: left;
+  }
+  body[data-page="about"] .about-link-arrow {
+    margin-left: auto;
+    background: none;
+    color: #758aa1;
+  }
+  body[data-page="about"] .about-contact-value-stack .about-link-arrow {
+    position: absolute;
+    right: 0;
+    top: 8px;
+  }
+  .about-carousel {
+    position: relative;
+    border: 1px solid #d9e0e7;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.24);
+    padding-bottom: 58px;
+  }
+  body[data-page="about"] .about-carousel .about-info-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  body[data-page="about"] .about-carousel .about-info-card {
+    grid-area: 1 / 1;
+    border: 0;
+    border-radius: 20px;
+    padding: 32px 100px 24px 220px;
+    min-height: 380px;
+    background: transparent;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(12px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      visibility 0.3s;
+  }
+  body[data-page="about"] .about-carousel .about-info-card.is-current {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+  .about-slide-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #8b9db0;
+    margin: 0 0 30px -160px;
+    font-size: 15px;
+  }
+  .about-slide-meta b {
+    color: #285b90;
+  }
+  .about-slide-icon {
+    position: absolute;
+    top: 92px;
+    left: 75px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #dceaf5;
+    color: #285b90;
+  }
+  .about-slide-icon svg {
+    width: 42px;
+    height: 42px;
+  }
+  body[data-page="about"] .about-carousel h3 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 3.5vw, 42px);
+    letter-spacing: -0.035em;
+  }
+  .about-slide-subtitle {
+    margin: 0 0 28px;
+    color: #537ba2;
+    font-size: 17px;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+  body[data-page="about"] .about-carousel .about-info-list {
+    gap: 18px;
+  }
+  body[data-page="about"] .about-carousel .about-info-list-detail li + li {
+    border-top: 1px solid #d9e0e7;
+    padding-top: 18px;
+  }
+  body[data-page="about"] .about-carousel .achievement-title {
+    padding-right: 0;
+  }
+  body[data-page="about"] .about-carousel .award-medal {
+    display: none;
+  }
+  body[data-page="about"] .about-carousel .achievement-open {
+    position: static;
+    display: flex;
+    width: fit-content;
+    margin-top: 24px;
+  }
+  .about-carousel-controls > button {
+    position: absolute;
+    top: 50%;
+    width: 52px;
+    height: 52px;
+    border: 1px solid #d9e0e7;
+    border-radius: 50%;
+    background: #fff;
+    color: #234566;
+    box-shadow: 0 5px 15px #23456612;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition:
+      transform 0.2s,
+      background 0.2s;
+  }
+  .about-slide-prev {
+    left: 14px;
+  }
+  .about-slide-next {
+    right: 14px;
+  }
+  .about-carousel-controls > button:hover {
+    transform: translateY(-2px);
+    background: #f6f8fa;
+  }
+  .about-carousel-controls svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+  }
+  .about-slide-dots {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+  }
+  .about-slide-dots button {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .about-slide-dots button::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d6dfe6;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  .about-slide-dots button[aria-current="true"]::after {
+    background: #285b90;
+    transform: scale(1.15);
+  }
+  .about-carousel button:focus-visible,
+  .about-carousel:focus-visible {
+    outline: 2px solid #285b90;
+    outline-offset: 3px;
+  }
+  .about-carousel-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .about-profile-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 28px;
+    color: #758aa1;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  @media (max-width: 767px) {
+    body[data-page="about"] .about-page {
+      padding: 20px 0;
+    }
+    body[data-page="about"] .about-page > .about-hero {
+      display: grid !important;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    body[data-page="about"] .about-copy .eyebrow {
+      font-size: 8px;
+      letter-spacing: 0.13em;
+      margin-bottom: 14px;
+    }
+    body[data-page="about"] .about-copy h1 {
+      font-size: clamp(45px, 12vw, 82px);
+    }
+    body[data-page="about"] .about-lede {
+      font-size: clamp(19px, 5vw, 34px);
+      line-height: 1.12;
+      margin-top: 8px;
+    }
+    body[data-page="about"] .about-storyline {
+      font-size: clamp(10px, 2.7vw, 17px);
+      line-height: 1.65;
+      margin: 14px 0;
+      word-break: keep-all;
+    }
+    .about-stats {
+      padding: 14px 12px;
+      border-radius: 12px;
+    }
+    .about-stats > p {
+      font-size: 9px;
+      margin-bottom: 14px;
+    }
+    .about-stat-pair strong {
+      font-size: 30px;
+    }
+    .about-stat-pair > div + div {
+      padding-left: 13px;
+    }
+    .about-stats span {
+      font-size: 11px;
+    }
+    .about-stat-design {
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+    .about-stat-design strong {
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+    body[data-page="about"] .about-profile {
+      padding-top: 20px;
+    }
+    body[data-page="about"] .portrait {
+      aspect-ratio: 0.67;
+    }
+    body[data-page="about"] .portrait-caption {
+      padding: 7px 2px 0;
+      gap: 3px;
+    }
+    body[data-page="about"] .portrait-caption strong {
+      font-size: 9px;
+    }
+    body[data-page="about"] .portrait-caption span {
+      font-size: 7px;
+      letter-spacing: 0.02em;
+    }
+    body[data-page="about"] .about-contact-row {
+      padding: 13px 4px;
+      gap: 8px;
+      grid-template-columns: 30% minmax(0, 1fr);
+    }
+    body[data-page="about"] .about-contact-label {
+      font-size: 8px;
+      gap: 10px;
+      letter-spacing: 0.1em;
+    }
+    body[data-page="about"] .about-contact-label svg {
+      width: 18px;
+      height: 18px;
+      flex-basis: 18px;
+    }
+    body[data-page="about"] .about-contact-value {
+      font-size: clamp(10px, 2.85vw, 18px);
+      gap: 3px;
+      overflow-wrap: anywhere;
+    }
+    body[data-page="about"] .about-contact-value-stack small {
+      font-size: 9px;
+    }
+    body[data-page="about"] .about-link-arrow {
+      width: 20px;
+      height: 20px;
+      flex-basis: 20px;
+    }
+    body[data-page="about"] .about-page > .about-contact-list {
+      margin-bottom: 20px;
+    }
+    .about-carousel {
+      border-radius: 14px;
+      padding-bottom: 54px;
+    }
+    body[data-page="about"] .about-carousel .about-info-card {
+      padding: 22px 32px 12px;
+      min-height: 410px;
+    }
+    .about-slide-meta {
+      margin: 0 0 26px;
+      font-size: 11px;
+    }
+    .about-slide-icon {
+      top: 62px;
+      left: 30px;
+      width: 42px;
+      height: 42px;
+    }
+    .about-slide-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+    body[data-page="about"] .about-carousel h3 {
+      padding-left: 52px;
+      font-size: clamp(22px, 5.8vw, 34px);
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+    }
+    .about-slide-subtitle {
+      font-size: 12px;
+      margin: 12px 0 20px;
+    }
+    body[data-page="about"] .about-carousel .about-info-list li,
+    body[data-page="about"] .about-carousel .about-info-list-detail span {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    body[data-page="about"] .about-carousel .about-info-list-detail strong {
+      font-size: 13px;
+    }
+    body[data-page="about"] .about-carousel .achievement-title {
+      font-size: 14px;
+    }
+    body[data-page="about"] .about-carousel .achievement-chip,
+    body[data-page="about"] .about-carousel .achievement-open {
+      font-size: 11px;
+    }
+    .about-carousel-controls > button {
+      width: 34px;
+      height: 34px;
+    }
+    .about-slide-prev {
+      left: -8px;
+    }
+    .about-slide-next {
+      right: -8px;
+    }
+    .about-carousel-controls svg {
+      width: 19px;
+      height: 19px;
+    }
+    .about-profile-footer {
+      font-size: 7px;
+      gap: 12px;
+      line-height: 1.6;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body[data-page="about"] .about-carousel * {
+      transition: none !important;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .about-stats,
+  .about-slide-meta,
+  .about-slide-icon,
+  .about-slide-subtitle,
+  .about-carousel-controls,
+  .about-carousel-status,
+  .about-profile-footer {
+    display: none;
+  }
+}

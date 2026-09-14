@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Me — Hyeonju Hwang</title>
+
+    <!-- Projects 페이지와 같은 폰트 사용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 전체 디자인 CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="me.css" />
+    <link rel="stylesheet" href="me-mobile.css" />
+    <link rel="stylesheet" href="tab-headings.css" />
+  <link rel="stylesheet" href="portfolio-motion.css" /></head>
+
+  <body data-page="contact">
+    <!-- =====================================================
+         커스텀 커서
+         ===================================================== -->
+    <canvas
+      id="cursorTrailCanvas"
+      class="cursor-trail-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <div id="customCursor" class="custom-cursor" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <!-- =====================================================
+         사이트 전체 프레임
+         ===================================================== -->
+    <div class="site-frame">
+      <header class="browser-bar">
+        <nav class="browser-tabs" aria-label="Main navigation">
+          <a class="browser-tab" href="index.html">Home</a>
+          <a class="browser-tab" href="about.html">About</a>
+          <a class="browser-tab" href="work.html">Projects</a>
+          <a class="browser-tab active" href="contact.html" aria-current="page">Me</a>
+        </nav>
+
+        <span class="browser-url">INDEX · 04 / 04</span>
+      </header>
+
+      <div class="site-content">
+        <!-- ===================================================
+             CONTACT 본문
+             =================================================== -->
+        <main class="contact-page" aria-label="Skills and Contact">
+          <!-- Skills: 날짜 순서로 읽을 수 있는 Contact 전용 타임라인 -->
+          <section class="contact-skills" aria-labelledby="contact-skills-title">
+            <p class="eyebrow">ME · MY TOOLKIT</p>
+            <h2 class="contact-section-title" id="contact-skills-title">Skills</h2>
+            <p class="contact-skills-intro">
+              지금까지 익혀온 도구와 프로그램, 그리고 실제 작업에 활용하고 있는
+              스킬들을 정리했습니다.
+            </p>
+
+            <ol class="contact-timeline" aria-label="스킬 학습 및 활용 이력">
+              <li class="contact-timeline-item contact-tone-butter">
+                <time class="contact-skill-date" datetime="2014-09">2014. 09</time>
+                <article class="contact-skill-card">
+                  <span class="contact-skill-icon reference-icon reference-skill-1" aria-hidden="true"></span>
+                  <div class="contact-skill-copy">
+                    <h3>Adobe Photoshop</h3>
+                    <p>디자인 기초와 편집 작업의 시작.</p>
+                  </div>
+                  <span class="contact-skill-tag">DESIGN</span>
+                </article>
+              </li>
+              <li class="contact-timeline-item contact-tone-ice">
+                <time class="contact-skill-date" datetime="2016-04">2016. 04</time>
+                <article class="contact-skill-card">
+                  <span class="contact-skill-icon reference-icon reference-skill-2" aria-hidden="true"></span>
+                  <div class="contact-skill-copy">
+                    <h3>Adobe Illustrator</h3>
+                    <p>벡터 그래픽과 편집 디자인 작업 확장.</p>
+                  </div>
+                  <span class="contact-skill-tag">DESIGN</span>
+                </article>
+              </li>
+              <li class="contact-timeline-item contact-tone-lilac">
+                <time class="contact-skill-date" datetime="2016-06">2016. 06</time>
+                <article class="contact-skill-card">
+                  <span class="contact-skill-icon reference-icon reference-skill-3" aria-hidden="true"></span>
+                  <div class="contact-skill-copy">
+                    <h3>AutoCAD</h3>
+                    <p>기초 설계와 도면 이해를 익힘.</p>
+                  </div>
+                  <span class="contact-skill-tag">CAD</span>
+                </article>
+              </li>
+              <li class="contact-timeline-item contact-tone-peach">
+                <time class="contact-skill-date" datetime="2025-08">2025. 08</time>
+                <article class="contact-skill-card">
+                  <span class="contact-skill-icon reference-icon reference-skill-4" aria-hidden="true"></span>
+                  <div class="contact-skill-copy">
+                    <h3>CapCut</h3>
+                    <p>영상 컷 편집과 간단한 숏폼 제작.</p>
+                  </div>
+                  <span class="contact-skill-tag">VIDEO</span>
+                </article>
+              </li>
+              <li class="contact-timeline-item contact-tone-ice">
+                <time class="contact-skill-date" datetime="2026-04">2026. 04</time>
+                <article class="contact-skill-card">
+                  <span class="contact-skill-icon reference-icon reference-skill-5" aria-hidden="true"></span>
+                  <div class="contact-skill-copy">
+                    <h3>HTML · CSS · JavaScript</h3>
+                    <p>웹 퍼블리싱과 기본 인터랙션 구현.</p>
+                  </div>
+                  <span class="contact-skill-tag">WEB</span>
+                </article>
+              </li>
+              <li class="contact-timeline-item contact-tone-lilac">
+                <time class="contact-skill-date" datetime="2026-05">2026. 05</time>
+                <article class="contact-skill-card contact-skill-card-creative">
+                  <h3 class="contact-creative-title">
+                    <img class="contact-creative-icon" src="images/contact-icons/06_Gemini.png" alt="" width="55" height="55" />
+                    AI / Creative Tools
+                  </h3>
+                  <div class="contact-tool-icons" aria-hidden="true">
+                    <span class="reference-icon reference-tool-1"></span>
+                    <span class="reference-icon reference-tool-2"></span>
+                    <span class="reference-icon reference-tool-3"></span>
+                    <span class="reference-icon reference-tool-4"></span>
+                    <span class="reference-icon reference-tool-5"></span>
+                    <span class="reference-icon reference-tool-6"></span>
+                    <span class="reference-icon reference-tool-7"></span>
+                    <span class="reference-icon reference-tool-8"></span>
+                    <span class="reference-icon reference-tool-9"></span>
+                    <span class="reference-icon reference-tool-10"></span>
+                    <span class="reference-icon reference-tool-11"></span>
+                    <span class="reference-icon reference-tool-12"></span>
+                    <span class="reference-icon reference-tool-13"></span>
+                    <span class="reference-icon reference-tool-14"></span>
+                  </div>
+                  <span class="contact-skill-tag">AI / CREATIVE</span>
+                  <div class="contact-skill-copy">
+                    <h3>Gemini · ChatGPT · 구글 시트 문서 관리 시스템 · NotebookLM · Gamma · Canva · Figma · Premiere Pro · After Effects</h3>
+                    <p>AI 이미지·영상 제작, 문서 관리, 디자인·영상 작업 확장.</p>
+                  </div>
+                </article>
+              </li>
+            </ol>
+
+            <div class="contact-keywords">
+              <p class="contact-keywords-label" id="contact-keywords-label">KEYWORDS</p>
+              <ul aria-labelledby="contact-keywords-label">
+                <li>상세페이지</li>
+                <li>영상편집</li>
+                <li>웹퍼블리싱</li>
+                <li>AI 콘텐츠</li>
+                <li>영상 제작</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="contact-copy" aria-labelledby="contact-title">
+            <p class="eyebrow">CONTACT</p>
+            <h1 id="contact-title">Contact</h1>
+
+            <p class="about-storyline">
+              협업 문의와 프로젝트 제안은
+              <br />
+              아래 연락처 및 링크를 통해 편하게 연락 주세요.
+            </p>
+
+            <!-- =================================================
+                 연락처 목록
+
+                 각 줄 전체가 클릭 가능합니다.
+                 새 링크를 추가하고 싶다면 아래 <a> 한 덩어리를
+                 복사해서 내용만 변경하면 됩니다.
+                 ================================================= -->
+            <div class="contact-links">
+              <a href="tel:01028371219">
+                <span>Phone</span>
+                <strong>010-2837-1219</strong>
+                <b aria-hidden="true">↗</b>
+              </a>
+
+              <a href="#" role="button" data-copy-email="guswn8614@naver.com" aria-label="이메일 주소 복사">
+                <span>Email</span>
+                <strong>guswn8614@naver.com</strong>
+                <b aria-hidden="true">↗</b>
+              </a>
+
+              <a
+                href="https://www.instagram.com/hyeon_dyu/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Instagram</span>
+                <strong>@hyeon_dyu</strong>
+                <b aria-hidden="true">↗</b>
+              </a>
+
+              <a
+                href="https://blog.naver.com/hyeon_dyu"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Blog</span>
+                <strong>blog.naver.com/hyeon_dyu</strong>
+                <b aria-hidden="true">↗</b>
+              </a>
+
+              <a
+                href="https://www.youtube.com/@Study_ebeb/shorts"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>YouTube</span>
+                <strong>@Study_ebeb</strong>
+                <b aria-hidden="true">↗</b>
+              </a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         긴 화면일 때만 나타나는 Scroll 버튼
+         script.js가 자동으로 표시/숨김 처리합니다.
+         ===================================================== -->
+    <button
+      class="scroll-cue"
+      id="scrollCue"
+      type="button"
+      aria-label="Scroll down"
+      hidden
+    >
+      <span>Scroll</span>
+
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 6V18M12 18L7 13M12 18L17 13"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="me-mobile.js"></script>
+  <script src="portfolio-motion.js" defer></script></body>
+</html>

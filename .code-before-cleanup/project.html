@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project — Hyeonju Hwang</title>
+
+    <!--
+    V0에서는 next/font가 글꼴을 처리했지만,
+    일반 HTML에서는 CSS의 폴백 폰트를 사용합니다.
+  -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="work">
+    <!-- V0 SiteShell의 커스텀 커서 -->
+    <canvas
+      id="cursorTrailCanvas"
+      class="cursor-trail-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <div id="customCursor" class="custom-cursor" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <!-- 사이트 전체 프레임 -->
+    <div class="site-frame">
+      <header class="browser-bar">
+        <nav class="browser-tabs" aria-label="Main navigation">
+          <a class="browser-tab" href="index.html">Home</a>
+          <a class="browser-tab" href="about.html">About</a>
+          <a class="browser-tab active" href="work.html">Projects</a>
+          <a class="browser-tab" href="contact.html">Me</a>
+        </nav>
+
+        <span class="browser-url">INDEX · 03 / 04</span>
+      </header>
+
+      <div class="site-content">
+        <!-- =====================================================
+           PROJECT DETAIL
+           project.html?slug=mori 같은 주소로 프로젝트를 구분합니다.
+           ===================================================== -->
+        <main class="project-detail">
+          <a class="back-link" href="work.html"> ← Back to projects </a>
+
+          <div class="detail-visual project-card pink" id="projectVisual">
+            <span class="card-number" id="projectNumber"> 01 </span>
+
+            <strong id="projectTitle"> MORI </strong>
+          </div>
+
+          <div class="detail-copy">
+            <div>
+              <p class="eyebrow" id="projectEyebrow">PROJECT / 01</p>
+
+              <h1 id="projectName">MORI / Digital archive</h1>
+            </div>
+
+            <p id="projectDescription">
+              Web site design.
+              <br />
+              A considered visual system built to make a clear, memorable
+              impression across every touchpoint.
+            </p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- 긴 페이지에서만 JavaScript가 자동으로 보여주는 Scroll 버튼 -->
+    <button
+      class="scroll-cue"
+      id="scrollCue"
+      type="button"
+      aria-label="Scroll down"
+      hidden
+    >
+      <span>Scroll</span>
+
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 6V18M12 18L7 13M12 18L17 13"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

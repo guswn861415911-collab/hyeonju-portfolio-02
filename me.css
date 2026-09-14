@@ -1,0 +1,479 @@
+/* me.css
+ * Me 페이지의 PC 기본 스타일과 기존 반응형 설정입니다.
+ * 수정할 위치 안내: 코드-읽는-순서.md
+ */
+/* Reference design. Loaded only by Me. */
+body[data-page="contact"] {
+  --foreground: #07395e;
+  --muted: #8099af;
+}
+body[data-page="contact"] .site-frame {
+  margin: 9px 13px 16px;
+  min-height: calc(100vh - 25px);
+}
+body[data-page="contact"] .site-content {
+  padding: 37px 66px 34px 44px;
+  min-height: 0;
+}
+.contact-page {
+  display: grid;
+  grid-template-columns: minmax(0, 657fr) minmax(0, 482fr);
+  gap: 0;
+  max-width: 1660px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.contact-skills {
+  min-width: 0;
+  padding-right: clamp(45px, 5vw, 96px);
+  padding-bottom: 34px;
+}
+.contact-copy {
+  min-width: 0;
+  max-width: none;
+  border-left: 1px solid #cdd6dc;
+  padding-left: clamp(50px, 6vw, 115px);
+}
+.contact-skills > .eyebrow,
+.contact-section-title,
+.contact-skills-intro {
+  margin-left: 27px;
+}
+.contact-page .eyebrow {
+  margin-top: 4px;
+  margin-bottom: 23px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+}
+.contact-section-title,
+.contact-copy h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+.contact-skills-intro {
+  margin-top: 12px;
+  margin-bottom: 29px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 24px;
+  word-break: keep-all;
+}
+.contact-timeline {
+  --date-width: 88px;
+  position: relative;
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  border-top: 1px solid #d4dde2;
+}
+.contact-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--date-width) minmax(0, 1fr);
+  gap: 55px;
+  align-items: start;
+}
+.contact-timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 111px;
+  top: 43px;
+  width: 1px;
+  height: 100%;
+  background: #6689a2;
+}
+.contact-skill-date {
+  position: relative;
+  margin-top: 26px;
+  padding: 7px 4px;
+  border: 1px solid #d3dce3;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 18px;
+  text-align: center;
+  white-space: pre;
+}
+.contact-skill-date::after {
+  content: "";
+  position: absolute;
+  right: -31px;
+  top: 9px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--foreground);
+}
+.contact-skill-card {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr) 88px;
+  gap: 18px;
+  align-items: center;
+  min-width: 0;
+  min-height: 99px;
+  padding: 17px 0;
+  border-bottom: 1px solid #d4dde2;
+}
+.contact-skill-icon {
+  display: block;
+  width: 55px;
+  height: 58px;
+  transform: scale(0.85);
+  transform-origin: left center;
+}
+.contact-skill-copy {
+  min-width: 0;
+}
+.contact-skill-copy h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 25px;
+  letter-spacing: -0.3px;
+}
+.contact-skill-copy p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 24px;
+  word-break: keep-all;
+}
+.contact-skill-tag {
+  justify-self: end;
+  min-width: 88px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  text-align: center;
+  background: #dfe5e9;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.contact-tone-lilac .contact-skill-tag {
+  background: #e6dcfa;
+}
+.contact-tone-peach .contact-skill-tag {
+  background: #f8e1dd;
+}
+.contact-timeline-item:nth-child(5) .contact-skill-tag {
+  background: #d4e8f6;
+}
+.contact-skill-card-creative {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 0;
+  padding: 20px 0 19px;
+  border-bottom: 0;
+}
+.contact-creative-title {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 32px;
+}
+.contact-creative-icon {
+  display: block;
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.contact-skill-card-creative .contact-skill-tag {
+  grid-column: 2;
+  grid-row: 1;
+}
+.contact-tool-icons {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+.contact-tool-icons .reference-icon {
+  display: block;
+  width: 53px;
+  height: 52px;
+  transform: scale(0.8);
+  transform-origin: top left;
+}
+.contact-skill-card-creative .contact-skill-copy {
+  grid-column: 1 / -1;
+}
+.contact-skill-card-creative .contact-skill-copy h3 {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.contact-skill-card-creative .contact-skill-copy p {
+  font-size: 13px;
+  line-height: 24px;
+}
+.reference-icon {
+  background-image: url("images/contact-icons/me-reference.png");
+  background-repeat: no-repeat;
+  background-size: 1277px 1232px;
+}
+.contact-keywords {
+  border-top: 1px solid #cdd6dc;
+  margin-top: 0;
+  padding-top: 18px;
+}
+.contact-keywords-label {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1.2px;
+}
+.contact-keywords ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contact-keywords li {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  flex: 1;
+  padding: 9px 8px;
+  border: 1px solid #9fb4c6;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.contact-copy .about-storyline {
+  margin: 19px 0 0;
+  padding-left: 17px;
+  border-left: 2px solid #7894ab;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 28px;
+  word-break: keep-all;
+}
+.contact-links {
+  margin-top: 26px;
+}
+.contact-links a {
+  grid-template-columns: minmax(0, 1fr) 24px;
+  grid-template-rows: auto auto;
+  gap: 4px 12px;
+  min-height: 81px;
+  padding: 16px 0;
+}
+.contact-links span {
+  grid-column: 1;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+.contact-links strong {
+  grid-column: 1;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 25px;
+}
+.contact-links b {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  font-size: 27px;
+  font-weight: 400;
+}
+.contact-links a:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+@media (max-width: 1100px) {
+  body[data-page="contact"] .site-content {
+    padding: 35px 30px;
+  }
+  .contact-page {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+  .contact-skills {
+    padding-right: 25px;
+  }
+  .contact-copy {
+    padding-left: 25px;
+  }
+  .contact-timeline-item {
+    gap: 32px;
+  }
+  .contact-timeline-item:not(:last-child)::before {
+    left: 102px;
+  }
+  .contact-skill-date::after {
+    right: -22px;
+  }
+  .contact-skill-card {
+    grid-template-columns: 55px minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+  .contact-skill-tag {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .contact-skill-card-creative {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .contact-skill-card-creative .contact-skill-tag {
+    justify-self: end;
+  }
+  .contact-creative-title {
+    gap: 12px;
+    font-size: 16px;
+  }
+  .contact-tool-icons {
+    grid-template-columns: repeat(4, 53px);
+    justify-content: space-between;
+    gap: 12px 4px;
+  }
+}
+@media (max-width: 850px) {
+  .contact-page {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 620px;
+  }
+  .contact-skills {
+    padding-right: 0;
+  }
+  .contact-copy {
+    border-left: 0;
+    border-top: 1px solid #cdd6dc;
+    padding: 32px 0 0;
+  }
+}
+@media (max-width: 480px) {
+  body[data-page="contact"] .site-frame {
+    margin: 6px;
+  }
+  body[data-page="contact"] .site-content {
+    padding: 28px 16px;
+  }
+  .contact-skills > .eyebrow,
+  .contact-section-title,
+  .contact-skills-intro {
+    margin-left: 0;
+  }
+  .contact-section-title,
+  .contact-copy h1 {
+    font-size: 44px;
+  }
+  .contact-timeline {
+    --date-width: 67px;
+  }
+  .contact-timeline-item {
+    gap: 24px;
+  }
+  .contact-timeline-item:not(:last-child)::before {
+    left: 78px;
+  }
+  .contact-skill-date {
+    font-size: 11px;
+  }
+  .contact-skill-date::after {
+    right: -18px;
+    width: 11px;
+    height: 11px;
+  }
+  .contact-skill-copy h3 {
+    font-size: 14px;
+  }
+  .contact-skill-copy p {
+    font-size: 12px;
+  }
+  .contact-skill-card-creative {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contact-skill-card-creative .contact-skill-tag {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+  .contact-tool-icons {
+    grid-template-columns: repeat(3, 53px);
+  }
+  .contact-keywords li {
+    flex: 0 1 auto;
+    padding: 8px 14px;
+  }
+  .contact-links strong {
+    font-size: 15px;
+  }
+}
+
+.reference-skill-1 {
+  background-position: -201px -299px;
+}
+.reference-skill-2 {
+  background-position: -201px -396px;
+}
+.reference-skill-3 {
+  background-position: -201px -496px;
+}
+.reference-skill-4 {
+  background-position: -200px -594px;
+}
+.reference-skill-5 {
+  background-position: -202px -693px;
+}
+.reference-tool-1 {
+  background-position: -206px -842px;
+}
+.reference-tool-2 {
+  background-position: -273px -842px;
+}
+.reference-tool-3 {
+  background-position: -338px -842px;
+}
+.reference-tool-4 {
+  background-position: -406px -842px;
+}
+.reference-tool-5 {
+  background-position: -476px -842px;
+}
+.reference-tool-6 {
+  background-position: -544px -842px;
+}
+.reference-tool-7 {
+  background-position: -612px -842px;
+}
+.reference-tool-8 {
+  background-position: -206px -906px;
+}
+.reference-tool-9 {
+  background-position: -273px -906px;
+}
+.reference-tool-10 {
+  background-position: -338px -906px;
+}
+.reference-tool-11 {
+  background-position: -406px -906px;
+}
+.reference-tool-12 {
+  background-position: -476px -906px;
+}
+.reference-tool-13 {
+  background-position: -544px -906px;
+}
+.reference-tool-14 {
+  background-position: -612px -906px;
+}

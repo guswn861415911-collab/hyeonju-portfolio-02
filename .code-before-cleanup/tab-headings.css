@@ -1,0 +1,58 @@
+/* Shared title and top-spacing adjustments are mobile-only. */
+@media (max-width: 767px) {
+/* Tab heading typography follows Home; modal and card headings are excluded. */
+/* Home's desktop offset is 3.35rem content padding + 2rem copy padding. */
+body:is([data-page="about"], [data-page="work"], [data-page="contact"]) .site-content {
+  padding-top: 5.35rem;
+}
+body[data-page] :is(.about-page, .work-page, .contact-page) {
+  padding-top: 0;
+  margin-top: 0;
+}
+body[data-page] :is(.about-copy > h1, .work-heading-copy > h1, .contact-skills > .contact-section-title, .contact-copy > h1) {
+  font-family: var(--font-instrument-sans), Arial, sans-serif;
+  font-size: clamp(3.8rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: .84;
+  letter-spacing: -.075em;
+  color: var(--foreground);
+  margin-top: 0;
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+body[data-page] :is(.about-copy, .work-heading-copy, .contact-skills, .contact-copy) > .eyebrow {
+  margin-top: 0;
+  margin-bottom: 1.1rem;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 750;
+  line-height: normal;
+  letter-spacing: .12em;
+}
+@media (max-width: 767px) {
+  body:is([data-page="about"], [data-page="work"], [data-page="contact"]) .site-content {
+    padding-top: 26px;
+  }
+  body[data-page] :is(.about-copy > h1, .work-heading-copy > h1, .contact-skills > .contact-section-title, .contact-copy > h1) {
+    font-size: clamp(44px, 7dvh, 64px);
+    line-height: .95;
+    letter-spacing: -.065em;
+    margin-bottom: 8px;
+  }
+  body[data-page] :is(.about-copy, .work-heading-copy, .contact-skills, .contact-copy) > .eyebrow {
+    font-size: clamp(7px, 2vw, 10px);
+    line-height: 1.4;
+    letter-spacing: .14em;
+    margin-bottom: 8px;
+  }
+}
+@media (max-width: 767px) and (max-height: 600px) {
+  body:is([data-page="about"], [data-page="work"], [data-page="contact"]) .site-content {
+    padding-top: 18px;
+  }
+  body[data-page] :is(.about-copy > h1, .work-heading-copy > h1, .contact-skills > .contact-section-title, .contact-copy > h1) {
+    font-size: 38px;
+    margin-bottom: 6px;
+  }
+}
+
+}

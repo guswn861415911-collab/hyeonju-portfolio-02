@@ -1,0 +1,242 @@
+/* portfolio-motion.css
+ * 호버, 터치, 그림자 등 공통 모션 스타일입니다. 색상이나 레이아웃 변경은 각 페이지 CSS에서 합니다.
+ * 수정할 위치 안내: 코드-읽는-순서.md
+ */
+:root {
+  --motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.browser-tabs a {
+  transition:
+    scale 0.2s var(--motion-ease),
+    background-color 0.25s ease;
+}
+.browser-tabs a:active {
+  scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+  .folder-card {
+    transition:
+      translate 0.35s var(--motion-ease),
+      transform 0.35s var(--motion-ease);
+  }
+  .folder-card:hover {
+    translate: 0 -8px;
+    transform: none;
+  }
+  .folder-card-surface {
+    transition: box-shadow 0.35s ease;
+  }
+  .folder-card:hover .folder-card-surface {
+    box-shadow: 0 14px 28px #23456618;
+  }
+  .folder-card-preview {
+    transition:
+      translate 0.35s var(--motion-ease),
+      scale 0.35s var(--motion-ease);
+  }
+  .folder-card:hover .folder-card-preview {
+    translate: 0 -5px;
+  }
+  .is-video-modal-trigger:hover .folder-card-preview {
+    scale: 1.02;
+  }
+  .folder-card .project-arrow {
+    opacity: 0.55;
+    transition:
+      opacity 0.25s ease,
+      translate 0.25s ease;
+  }
+  .folder-card:hover .project-arrow {
+    opacity: 1;
+    translate: 3px 0;
+  }
+  .is-video-modal-trigger .folder-card-preview::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, #ffffff12 50%, transparent 70%);
+    translate: -110% 0;
+    z-index: 4;
+  }
+  .is-video-modal-trigger:hover .folder-card-preview::after {
+    animation: quiet-reflection 0.8s ease-out;
+  }
+  :is(
+    .me-programs img,
+    .me-program-symbol,
+    .contact-skill-icon,
+    .contact-tool-icons > span
+  ) {
+    transition:
+      scale 0.25s ease,
+      filter 0.25s ease;
+  }
+  :is(
+    .me-programs img,
+    .me-program-symbol,
+    .contact-skill-icon,
+    .contact-tool-icons > span
+  ):hover {
+    scale: 1.08;
+    filter: drop-shadow(0 0 7px #b8cfe866);
+  }
+  :is(.contact-links a, .about-contact-row, .home-redesign-contact-item) {
+    transition: background-color 0.25s ease;
+  }
+  :is(.contact-links a, .about-contact-row, .home-redesign-contact-item):hover {
+    background-color: #ffffff66;
+  }
+  :is(.contact-links b, .about-link-arrow, .home-contact-arrow) {
+    transition: translate 0.25s ease;
+  }
+  :is(.contact-links a, .about-contact-row, .home-redesign-contact-item):hover
+    :is(b, .about-link-arrow, .home-contact-arrow) {
+    translate: 5px 0;
+  }
+}
+@media (hover: none) {
+  :is(.folder-card, .mobile-category-folder, button, .contact-links a) {
+    transition: scale 0.18s ease;
+  }
+  :is(.folder-card, .mobile-category-folder, button, .contact-links a):active {
+    scale: 0.97;
+  }
+}
+.motion-toast {
+  position: fixed;
+  z-index: 1000001;
+  bottom: 28px;
+  left: 50%;
+  translate: -50% 0;
+  padding: 12px 20px;
+  border: 1px solid #d9e0e7;
+  border-radius: 14px;
+  background: #f7f7f1;
+  color: #234566;
+  box-shadow: 0 8px 24px #23456615;
+  font-size: 13px;
+  pointer-events: none;
+}
+@keyframes quiet-reflection {
+  to {
+    translate: 110% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.folder-card, .folder-card-preview, .browser-tabs a, button, .contact-links a) {
+    transition: none !important;
+  }
+  .folder-card:hover {
+    translate: none;
+  }
+  .is-video-modal-trigger:hover .folder-card-preview::after {
+    animation: none;
+  }
+}
+.db-nav {
+  background-image: linear-gradient(#fffc38, #fffc38);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: var(--db-reading-progress, 0%) 2px;
+  transition: background-size 0.3s ease;
+}
+
+/* Signature folder reveal: all movement stays inside the folder surface. */
+.folder-open-hint {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .folder-card {
+    transition:
+      translate 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .folder-tab-piece {
+    transition: translate 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .folder-card:hover .folder-tab-piece {
+    translate: 0 -3px;
+  }
+  .folder-card-surface {
+    transition: box-shadow 250ms ease-out;
+  }
+  .folder-card-preview {
+    transition:
+      translate 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      scale 250ms ease-out;
+  }
+  .folder-card:hover .folder-card-preview {
+    translate: 0 -10px;
+    scale: 1;
+  }
+  .folder-open-hint {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    bottom: 5px;
+    right: 12px;
+    color: #234566;
+    font-size: 10px;
+    font-weight: 650;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0;
+    translate: 0 5px;
+    transition:
+      opacity 250ms ease-out,
+      translate 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .folder-card:hover .folder-open-hint {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .folder-card:hover .folder-video-open-hint {
+    opacity: 0;
+  }
+}
+
+/* 높이를 차지하지 않는 안내: 기존 모달 레이아웃과 스크롤 영역을 유지합니다. */
+.modal-scroll-hint {
+  position: sticky;
+  bottom: 12px;
+  height: 0;
+  min-height: 0;
+  width: 100%;
+  grid-column: 1 / -1;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.modal-scroll-hint.is-visible { opacity: 1; }
+.modal-scroll-hint-label {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  padding: 8px 14px;
+  border: 1px solid rgba(150, 167, 183, .22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(8px);
+  color: #60778d;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: 0 3px 12px rgba(35, 69, 102, .06);
+}
+.modal-scroll-hint-arrow { display: inline-block; font-size: 15px; }
+.modal-scroll-hint.is-visible .modal-scroll-hint-arrow { animation: modal-scroll-nudge 1.5s ease-in-out infinite; }
+@keyframes modal-scroll-nudge {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-scroll-hint { transition: none; }
+  .modal-scroll-hint.is-visible .modal-scroll-hint-arrow { animation: none; }
+}
