@@ -121,15 +121,15 @@ body.has-custom-cursor .browser-tab {
 
 .custom-cursor {
   position: fixed;
-  left: 50vw;
-  top: 50vh;
+  left: 0;
+  top: 0;
   z-index: 999999 !important;
   width: 3.35rem;
   height: 3.35rem;
   pointer-events: none !important;
   opacity: 0;
-  transform: translate(-50%, -50%);
-  will-change: left, top;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  will-change: transform;
 }
 
 body.has-custom-cursor .custom-cursor {
@@ -194,7 +194,6 @@ body.has-custom-cursor .custom-cursor {
   height: 100vh;
   pointer-events: none !important;
   opacity: 0;
-  filter: saturate(1.18) contrast(1.06);
 }
 
 body.has-custom-cursor .cursor-trail-canvas {

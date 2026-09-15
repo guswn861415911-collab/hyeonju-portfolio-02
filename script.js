@@ -83,11 +83,34 @@ function setupCustomCursor() {
   let previousX = pointerX;
   let previousY = pointerY;
   let hasMoved = false;
+  let cursorNeedsUpdate = true;
 
-  const points = [];
+  // 가비지 컬렉션(GC) 방지를 위한 고정 크기 링 버퍼 (Zero-Allocation Pool)
+  const MAX_POINTS = 80;
+  const pointPool = Array.from({ length: MAX_POINTS }, function () {
+    return { x: 0, y: 0, timestamp: 0, dist: 0 };
+  });
+  let pointHead = 0;
+  let pointCount = 0;
+
   const TRAIL_LIFETIME = 420;
   const MAX_TRAIL_LENGTH = 220;
   const SAMPLE_GAP = 10;
+  // CSS 필터 제거 후에도 선명함을 유지하도록 보정된 화사한 파스텔 팔레트
+  const palette = ["#ffe885", "#ffbe98", "#f4b0dc", "#c1aef6", "#99c6fc", "#9eeae0"];
+
+  function addPoint(x, y, timestamp, dist) {
+    const tail = (pointHead + pointCount) % MAX_POINTS;
+    pointPool[tail].x = x;
+    pointPool[tail].y = y;
+    pointPool[tail].timestamp = timestamp;
+    pointPool[tail].dist = dist;
+    if (pointCount < MAX_POINTS) {
+      pointCount += 1;
+    } else {
+      pointHead = (pointHead + 1) % MAX_POINTS;
+    }
+  }
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -96,12 +119,86 @@ function setupCustomCursor() {
 
   let events = null;
   let frame = null;
+
+  function updateCursorTransform() {
+    cursor.style.transform =
+      "translate3d(" + pointerX + "px, " + pointerY + "px, 0) translate(-50%, -50%)";
+  }
+
+  function renderTrail(now) {
+    // 1. 수명 만료된 오래된 점 제거 (O(1) 링 버퍼 이동)
+    const cutoff = now - TRAIL_LIFETIME;
+    while (pointCount > 0 && pointPool[pointHead].timestamp < cutoff) {
+      pointHead = (pointHead + 1) % MAX_POINTS;
+      pointCount -= 1;
+    }
+
+    // 2. 최대 길이(MAX_TRAIL_LENGTH) 초과 점 역순 가지치기
+    let accumulatedLength = 0;
+    let validCount = 0;
+    for (let i = 0; i < pointCount; i += 1) {
+      const idx = (pointHead + pointCount - 1 - i + MAX_POINTS) % MAX_POINTS;
+      accumulatedLength += pointPool[idx].dist;
+      if (accumulatedLength > MAX_TRAIL_LENGTH) {
+        break;
+      }
+      validCount += 1;
+    }
+    if (validCount < pointCount) {
+      pointHead = (pointHead + (pointCount - validCount)) % MAX_POINTS;
+      pointCount = validCount;
+    }
+
+    // 3. 커서 위치 GPU 동기화
+    if (cursorNeedsUpdate) {
+      updateCursorTransform();
+      cursorNeedsUpdate = false;
+    }
+
+    // 4. 유휴 상태 확인: 점이 없고 움직임이 없으면 캔버스 정리 후 rAF 중단(Sleep)
+    if (pointCount === 0) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      frame = null;
+      return;
+    }
+
+    // 5. 캔버스 렌더링
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    const len = pointCount;
+    for (let i = 0; i < len; i += 1) {
+      // 최신 점(i=0)부터 오래된 점(i=len-1) 순으로 렌더링
+      const idx = (pointHead + len - 1 - i + MAX_POINTS) % MAX_POINTS;
+      const point = pointPool[idx];
+      const progress = i / Math.max(1, len - 1);
+      const ageFade = Math.max(0, 1 - (now - point.timestamp) / TRAIL_LIFETIME);
+      const p = 1 - progress;
+      const trailFade = p * p; // 거듭제곱 연산 최적화
+      const colorIndex = Math.min(
+        palette.length - 1,
+        Math.floor(progress * (palette.length - 1)),
+      );
+      const radius = 6 + 22 * progress; // Math.pow 제거로 초고속 계산
+
+      context.beginPath();
+      context.globalAlpha = ageFade * trailFade * 0.38;
+      context.fillStyle = palette[colorIndex];
+      context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    context.globalAlpha = 1;
+    frame = requestAnimationFrame(renderTrail);
+  }
+
   function start() {
     if (events) return;
     events = new AbortController();
     cursor.style.display = "";
     canvas.style.display = "";
     resizeCanvas();
+    updateCursorTransform();
+
     window.addEventListener("resize", resizeCanvas, { signal: events.signal });
 
     window.addEventListener(
@@ -114,39 +211,32 @@ function setupCustomCursor() {
 
         pointerX = event.clientX;
         pointerY = event.clientY;
-
-        cursor.style.left = pointerX + "px";
-        cursor.style.top = pointerY + "px";
+        cursorNeedsUpdate = true;
 
         const distance = Math.hypot(pointerX - previousX, pointerY - previousY);
-        const steps = Math.max(1, Math.ceil(distance / SAMPLE_GAP));
+        const steps = Math.max(1, Math.min(8, Math.ceil(distance / SAMPLE_GAP)));
         const now = performance.now();
+        const stepDist = distance / steps;
 
         for (let step = 1; step <= steps; step += 1) {
           const progress = step / steps;
-          points.unshift({
-            x: previousX + (pointerX - previousX) * progress,
-            y: previousY + (pointerY - previousY) * progress,
-            timestamp: now,
-          });
-        }
-
-        let accumulatedLength = 0;
-        for (let index = 1; index < points.length; index += 1) {
-          accumulatedLength += Math.hypot(
-            points[index - 1].x - points[index].x,
-            points[index - 1].y - points[index].y,
+          addPoint(
+            previousX + (pointerX - previousX) * progress,
+            previousY + (pointerY - previousY) * progress,
+            now,
+            stepDist,
           );
-          if (accumulatedLength > MAX_TRAIL_LENGTH) {
-            points.length = index;
-            break;
-          }
         }
 
         previousX = pointerX;
         previousY = pointerY;
+
+        // 슬립 상태였던 rAF 루프 재가동
+        if (frame === null) {
+          frame = requestAnimationFrame(renderTrail);
+        }
       },
-      { signal: events.signal },
+      { signal: events.signal, passive: true },
     );
 
     document.addEventListener(
@@ -157,47 +247,12 @@ function setupCustomCursor() {
         );
         cursor.classList.toggle("is-hovering", Boolean(element));
       },
-      { signal: events.signal },
+      { signal: events.signal, passive: true },
     );
-    animateTrail();
-  }
 
-  function animateTrail() {
-    const now = performance.now();
-    const cutoff = now - TRAIL_LIFETIME;
-
-    while (points.length > 0 && points[points.length - 1].timestamp < cutoff) {
-      points.pop();
+    if (frame === null) {
+      frame = requestAnimationFrame(renderTrail);
     }
-
-    if (points.length === 0 || points[0].x !== pointerX || points[0].y !== pointerY) {
-      points.unshift({ x: pointerX, y: pointerY, timestamp: now });
-    }
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    const palette = ["#f7e6a6", "#f7cdb6", "#efc7df", "#cbbcf0", "#add1f8", "#b6e6de"];
-
-    for (let index = 0; index < points.length; index += 1) {
-      const point = points[index];
-      const progress = index / Math.max(1, points.length - 1);
-      const ageFade = Math.max(0, 1 - (now - point.timestamp) / TRAIL_LIFETIME);
-      const trailFade = Math.pow(1 - progress, 1.35);
-      const colorIndex = Math.min(
-        palette.length - 1,
-        Math.floor(progress * (palette.length - 1)),
-      );
-      const radius = 6 + 22 * Math.pow(progress, 1.05);
-
-      context.beginPath();
-      context.globalAlpha = ageFade * trailFade * 0.36;
-      context.fillStyle = palette[colorIndex];
-      context.arc(point.x, point.y, radius, 0, Math.PI * 2);
-      context.fill();
-    }
-
-    context.globalAlpha = 1;
-    frame = requestAnimationFrame(animateTrail);
   }
 
   function stop() {
@@ -205,8 +260,10 @@ function setupCustomCursor() {
     events = null;
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
-    points.length = 0;
+    pointHead = 0;
+    pointCount = 0;
     hasMoved = false;
+    cursorNeedsUpdate = false;
     previousX = pointerX;
     previousY = pointerY;
     context.clearRect(0, 0, canvas.width, canvas.height);

@@ -10,53 +10,151 @@ setupProjectVideoModal(); }); /* ===============================================
 V0의 SiteShell에서 하던 기능을 일반 JS로 옮겼습니다. 중요: 예전 변환본에서는 커서가 처음에
 (0, 0)에 있어서 화면 왼쪽 위에 노란 반원처럼 잘려 보였습니다. 이번 버전은 시작 위치를 화면
 중앙으로 잡기 때문에 왼쪽 위의 이상한 노란 모양이 생기지 않습니다.
-========================================================= */ function setupCustomCursor()
-{ const cursor = document.getElementById("customCursor"); const canvas =
-document.getElementById("cursorTrailCanvas"); if (!cursor || !canvas) { return; } /*
-휴대폰처럼 터치하는 기기에서는 커스텀 커서를 사용하지 않습니다. */ const isTouchDevice =
-window.matchMedia("(pointer: coarse)").matches; if (isTouchDevice) { return; } const
-context = canvas.getContext("2d"); if (!context) { return; } let pointerX =
-window.innerWidth / 2; let pointerY = window.innerHeight / 2; let previousX = pointerX;
-let previousY = pointerY; const points = []; const TRAIL_LIFETIME = 360; const
-MAX_TRAIL_LENGTH = 160; const SAMPLE_GAP = 10; /* 페이지를 열자마자 커서를 화면 가운데에
-둡니다. 이것이 좌측 상단 노란 반원 문제의 핵심 수정입니다. */ cursor.style.transform =
-"translate3d(" + pointerX + "px, " + pointerY + "px, 0) translate(-50%, -50%)"; function
-resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-canvas.style.width = window.innerWidth + "px"; canvas.style.height = window.innerHeight +
-"px"; } resizeCanvas(); window.addEventListener("resize", resizeCanvas); /*
-------------------------------------------------------- 마우스가 움직일 때
-------------------------------------------------------- */
-window.addEventListener("pointermove", function (event) { pointerX = event.clientX;
-pointerY = event.clientY; cursor.style.transform = "translate3d(" + pointerX + "px, " +
-pointerY + "px, 0) translate(-50%, -50%)"; const distance = Math.hypot( pointerX -
-previousX, pointerY - previousY ); const steps = Math.max( 1, Math.ceil(distance /
-SAMPLE_GAP) ); const now = performance.now(); /* 마우스가 빨리 움직여도 트레일이 뚝뚝
-끊기지 않도록 중간 좌표도 조금씩 만들어 줍니다. */ for (let step = 1; step <= steps; step
-+= 1) { const progress = step / steps; points.unshift({ x: previousX + (pointerX -
-previousX) * progress, y: previousY + (pointerY - previousY) * progress, timestamp: now,
-}); } /* 트레일 길이가 무한정 길어지지 않게 일정 길이를 넘으면 뒤쪽 점을 지웁니다. */ let
-accumulatedLength = 0; for (let index = 1; index < points.length; index += 1) {
-accumulatedLength += Math.hypot( points[index - 1].x - points[index].x, points[index -
-1].y - points[index].y ); if (accumulatedLength > MAX_TRAIL_LENGTH) { points.length =
-index; break; } } previousX = pointerX; previousY = pointerY; }); /* 링크 / 버튼 위에서는
-커서 모양 변경 */ document.addEventListener("pointerover", function (event) { const
-element = event.target.closest( "a, button, [role='button']" ); cursor.classList.toggle(
-"is-hovering", Boolean(element) ); }); /*
-------------------------------------------------------- 컬러 트레일 애니메이션
-------------------------------------------------------- */ function animateTrail() { const
-now = performance.now(); const cutoff = now - TRAIL_LIFETIME; while ( points.length > 0 &&
-points[points.length - 1].timestamp < cutoff ) { points.pop(); } if ( points.length === 0
-|| points[0].x !== pointerX || points[0].y !== pointerY ) { points.unshift({ x: pointerX,
-y: pointerY, timestamp: now, }); } context.clearRect( 0, 0, canvas.width, canvas.height );
-const palette = [ "#f7e6a6", "#f7cdb6", "#efc7df", "#cbbcf0", "#add1f8", "#b6e6de", ]; for
-(let index = 0; index < points.length; index += 1) { const point = points[index]; const
-progress = index / Math.max(1, points.length - 1); const ageFade = Math.max( 0, 1 - (now -
-point.timestamp) / TRAIL_LIFETIME ); const trailFade = Math.pow( 1 - progress, 1.35 );
-const colorIndex = Math.min( palette.length - 1, Math.floor( progress * (palette.length -
-1) ) ); const radius = 6 + 22 * Math.pow(progress, 1.05); context.beginPath();
-context.globalAlpha = ageFade * trailFade * 0.18; context.fillStyle = palette[colorIndex];
-context.arc( point.x, point.y, radius, 0, Math.PI * 2 ); context.fill(); }
-context.globalAlpha = 1; requestAnimationFrame(animateTrail); } animateTrail(); } /*
+========================================================= */ function setupCustomCursor() {
+  const cursor = document.getElementById("customCursor");
+  const canvas = document.getElementById("cursorTrailCanvas");
+  if (!cursor || !canvas) { return; }
+  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+  if (isTouchDevice) { return; }
+  const context = canvas.getContext("2d");
+  if (!context) { return; }
+
+  let pointerX = window.innerWidth / 2;
+  let pointerY = window.innerHeight / 2;
+  let previousX = pointerX;
+  let previousY = pointerY;
+  let cursorNeedsUpdate = true;
+
+  const MAX_POINTS = 80;
+  const pointPool = Array.from({ length: MAX_POINTS }, function () {
+    return { x: 0, y: 0, timestamp: 0, dist: 0 };
+  });
+  let pointHead = 0;
+  let pointCount = 0;
+
+  const TRAIL_LIFETIME = 360;
+  const MAX_TRAIL_LENGTH = 160;
+  const SAMPLE_GAP = 10;
+  const palette = ["#ffe885", "#ffbe98", "#f4b0dc", "#c1aef6", "#99c6fc", "#9eeae0"];
+
+  function addPoint(x, y, timestamp, dist) {
+    const tail = (pointHead + pointCount) % MAX_POINTS;
+    pointPool[tail].x = x;
+    pointPool[tail].y = y;
+    pointPool[tail].timestamp = timestamp;
+    pointPool[tail].dist = dist;
+    if (pointCount < MAX_POINTS) {
+      pointCount += 1;
+    } else {
+      pointHead = (pointHead + 1) % MAX_POINTS;
+    }
+  }
+
+  function updateCursorTransform() {
+    cursor.style.transform = "translate3d(" + pointerX + "px, " + pointerY + "px, 0) translate(-50%, -50%)";
+  }
+  updateCursorTransform();
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  let frame = null;
+
+  function renderTrail(now) {
+    const cutoff = now - TRAIL_LIFETIME;
+    while (pointCount > 0 && pointPool[pointHead].timestamp < cutoff) {
+      pointHead = (pointHead + 1) % MAX_POINTS;
+      pointCount -= 1;
+    }
+
+    let accumulatedLength = 0;
+    let validCount = 0;
+    for (let i = 0; i < pointCount; i += 1) {
+      const idx = (pointHead + pointCount - 1 - i + MAX_POINTS) % MAX_POINTS;
+      accumulatedLength += pointPool[idx].dist;
+      if (accumulatedLength > MAX_TRAIL_LENGTH) { break; }
+      validCount += 1;
+    }
+    if (validCount < pointCount) {
+      pointHead = (pointHead + (pointCount - validCount)) % MAX_POINTS;
+      pointCount = validCount;
+    }
+
+    if (cursorNeedsUpdate) {
+      updateCursorTransform();
+      cursorNeedsUpdate = false;
+    }
+
+    if (pointCount === 0) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      frame = null;
+      return;
+    }
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const len = pointCount;
+    for (let index = 0; index < len; index += 1) {
+      const idx = (pointHead + len - 1 - index + MAX_POINTS) % MAX_POINTS;
+      const point = pointPool[idx];
+      const progress = index / Math.max(1, len - 1);
+      const ageFade = Math.max(0, 1 - (now - point.timestamp) / TRAIL_LIFETIME);
+      const p = 1 - progress;
+      const trailFade = p * p;
+      const colorIndex = Math.min(palette.length - 1, Math.floor(progress * (palette.length - 1)));
+      const radius = 6 + 22 * progress;
+
+      context.beginPath();
+      context.globalAlpha = ageFade * trailFade * 0.22;
+      context.fillStyle = palette[colorIndex];
+      context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+      context.fill();
+    }
+    context.globalAlpha = 1;
+    frame = requestAnimationFrame(renderTrail);
+  }
+
+  window.addEventListener("pointermove", function (event) {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    cursorNeedsUpdate = true;
+
+    const distance = Math.hypot(pointerX - previousX, pointerY - previousY);
+    const steps = Math.max(1, Math.min(8, Math.ceil(distance / SAMPLE_GAP)));
+    const now = performance.now();
+    const stepDist = distance / steps;
+
+    for (let step = 1; step <= steps; step += 1) {
+      const progress = step / steps;
+      addPoint(
+        previousX + (pointerX - previousX) * progress,
+        previousY + (pointerY - previousY) * progress,
+        now,
+        stepDist
+      );
+    }
+    previousX = pointerX;
+    previousY = pointerY;
+
+    if (frame === null) {
+      frame = requestAnimationFrame(renderTrail);
+    }
+  }, { passive: true });
+
+  document.addEventListener("pointerover", function (event) {
+    const element = event.target.closest("a, button, [role='button']");
+    cursor.classList.toggle("is-hovering", Boolean(element));
+  }, { passive: true });
+
+  if (frame === null) {
+    frame = requestAnimationFrame(renderTrail);
+  }
+} /*
 ========================================================= 2. Scroll 안내 버튼
 ========================================================= */ function setupScrollCue() {
 const scrollCue = document.getElementById("scrollCue"); if (!scrollCue) { return; }
