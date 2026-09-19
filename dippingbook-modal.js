@@ -3,9 +3,13 @@
  * 수정할 위치 안내: 코드-읽는-순서.md
  */
 
-(() => {
-  const modal = document.getElementById("dippingbookModal");
-  const opener = document.querySelector("[data-dippingbook-open]");
+// Shared case-study interactions keep both project modals consistent.
+[
+  ["dippingbookModal", "[data-dippingbook-open]"],
+  ["legoModal", "[data-lego-open]"],
+].forEach(([modalId, openerSelector]) => {
+  const modal = document.getElementById(modalId);
+  const opener = document.querySelector(openerSelector);
   if (!modal || !opener) return;
   const tabs = [...modal.querySelectorAll("[data-db-tab]")];
   const panels = [...modal.querySelectorAll('[role="tabpanel"]')];
@@ -178,4 +182,4 @@
     event.preventDefault();
     select(directions[event.key], true);
   });
-})();
+});

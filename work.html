@@ -20,6 +20,7 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="dippingbook-modal.css" />
+    <link rel="stylesheet" href="lego-modal.css" />
     <link rel="stylesheet" href="tab-headings.css" />
     <link rel="stylesheet" href="projects-mobile.css" />
     <link rel="stylesheet" href="modals-mobile.css" />
@@ -303,7 +304,36 @@
             </a>
 
             <!-- =================================================
-                 02. 훈민정음 롱폼
+                 LEGO WORLD — DippingBook 다음 두 번째 카드
+                 ================================================= -->
+            <button type="button" class="folder-card folder-peach lego-card"
+              data-category="web" data-lego-open aria-haspopup="dialog"
+              aria-controls="legoModal" aria-label="LEGO World 프로젝트 상세 보기">
+              <div class="folder-visual">
+                <div class="folder-tab-piece"></div>
+                <div class="folder-card-surface">
+                  <div class="folder-card-head"></div>
+                  <div class="folder-card-preview is-landscape">
+                    <video class="folder-card-video folder-card-video-landscape"
+                      src="videos/lego-world-preview.mp4" muted loop playsinline preload="metadata"
+                      aria-label="LEGO World 웹사이트 프리뷰"></video>
+                  </div>
+                </div>
+              </div>
+              <div class="folder-card-meta">
+                <div class="folder-card-meta-copy">
+                  <p>LEGO World</p>
+                  <span>LEGO-inspired interactive web project</span>
+                </div>
+                <div class="folder-card-meta-side">
+                  <small>WEB · HTML · CSS · JAVASCRIPT</small>
+                  <span class="project-arrow">↗</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- =================================================
+                 훈민정음 롱폼 (기존 프로젝트 식별 번호 유지)
                  ================================================= -->
             <button
               type="button"
@@ -2594,7 +2624,7 @@
         <button type="button" class="db-close" aria-label="모달 닫기">×</button>
         <div class="db-hero">
           <div class="db-hero-copy">
-            <span class="db-project-label">LONG-FORM PROJECT</span>
+            <span class="db-project-label">INTERACTIVE WEB PROJECT</span>
             <h2>DippingBook</h2>
             <h3>AI로 먼저 맛보는 독서 프리뷰 플랫폼</h3>
             <p
@@ -2607,7 +2637,7 @@
             >
             <div class="db-project-meta"
               ><div
-                ><b>ROLE</b><p>UX/UI Design<br />Web Publishing<br />Team Project</p></div
+                ><b>MY ROLE</b><p class="db-role-value"><strong>UI/UX Design<br />Web Design</strong><span class="db-team-label">TEAM PROJECT</span></p></div
               ><div><b>PERIOD</b><p>2026, 07 – 08.</p></div
               ><div
                 ><b>TOOLS</b
@@ -3019,6 +3049,77 @@
                 ></article
               >
             </div>
+          </section>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="legoModal" class="db-modal lego-modal" aria-labelledby="legoTitle">
+      <div class="db-shell">
+        <button type="button" class="db-close" aria-label="LEGO 모달 닫기">×</button>
+        <div class="db-hero">
+          <div class="db-hero-copy">
+            <span class="db-project-label">INTERACTIVE WEB PROJECT</span>
+            <h2 id="legoTitle">LEGO World</h2>
+            <h3>작은 블록에서 시작되는 무한한 상상</h3>
+            <p>레고를 주제로 한 인터랙티브 웹 프로젝트.<br />선명한 컬러와 블록 형태의 인터페이스로<br />만들고 탐험하는 즐거움을 웹에 담았습니다.</p>
+            <div class="db-tags"><span>Brand Experience</span><span>Colorful UI</span><span>Web Interaction</span></div>
+            <div class="db-project-meta">
+              <div><b>MY ROLE</b><p class="db-role-value"><strong>Web Design<br />UI Design</strong><span class="db-team-label">TEAM PROJECT</span></p></div>
+              <div><b>PERIOD</b><p>2026. 08 - 09.</p></div>
+              <div><b>TOOLS</b>
+                <div class="db-tool-art">
+                  <img src="images/dippingbook-case/tools/18_Figma_Alt.png" alt="Figma" />
+                  <img src="images/dippingbook-case/tools/06_Gemini.png" alt="Gemini" />
+                  <img src="images/dippingbook-case/tools/07_ChatGPT.png" alt="ChatGPT" />
+                  <img src="images/dippingbook-case/tools/05_HTML_CSS_JS.png" alt="HTML, CSS, JavaScript" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <figure class="db-device-art lego-device" aria-label="LEGO World 노트북 목업">
+            <div class="lego-laptop-screen">
+              <div class="lego-browser" aria-hidden="true">
+                <div class="lego-browser-tabs">
+                  <span class="lego-browser-tab"><i class="lego-chrome-icon"></i><span>LEGO World</span><span>×</span></span>
+                  <span class="lego-browser-plus">+</span>
+                  <span class="lego-browser-window">−　▫　×</span>
+                </div>
+                <div class="lego-browser-toolbar">
+                  <span class="lego-browser-controls">←　→　⟳</span>
+                  <span class="lego-browser-address"><span>≡</span><span>lego-project-rho.vercel.app</span><span>☆</span></span>
+                  <span class="lego-browser-profile"></span><span>⋮</span>
+                </div>
+              </div>
+              <img src="images/lego-world-cover.png" alt="크롬 브라우저 안의 LEGO World 메인 화면" width="1920" height="911" loading="lazy" />
+            </div>
+            <div class="lego-laptop-base" aria-hidden="true"></div>
+          </figure>
+          <footer class="db-footer"><a href="https://lego-project-rho.vercel.app/" target="_blank" rel="noopener noreferrer">사이트 방문하기 <span class="modal-pill-icon" aria-hidden="true">→</span><span class="db-sr"> (새 탭)</span></a></footer>
+        </div>
+        <nav class="db-nav" aria-label="LEGO 프로젝트 상세 섹션">
+          <div class="db-tabs" role="tablist" aria-label="LEGO World 소개">
+            <button type="button" role="tab" id="lego-tab-0" aria-controls="lego-panel-0" aria-selected="true" tabindex="0" data-db-tab="0"><span>01</span>Overview</button>
+            <button type="button" role="tab" id="lego-tab-1" aria-controls="lego-panel-1" aria-selected="false" tabindex="-1" data-db-tab="1"><span>02</span>Key Features</button>
+            <button type="button" role="tab" id="lego-tab-2" aria-controls="lego-panel-2" aria-selected="false" tabindex="-1" data-db-tab="2"><span>03</span>Design System</button>
+          </div>
+          <div class="db-pagination"><span class="db-count" aria-live="polite">1 / 3</span><button type="button" class="db-prev" aria-label="이전 섹션">←</button><button type="button" class="db-next" aria-label="다음 섹션">→</button></div>
+        </nav>
+        <div class="db-panels">
+          <section role="tabpanel" id="lego-panel-0" aria-labelledby="lego-tab-0" class="db-panel db-live-panel">
+            <div class="db-panel-heading"><b>01</b><h2>Overview</h2><p>레고의 상상력과 조립하는 즐거움을<br />하나의 웹 경험으로.</p></div>
+            <div class="db-problem-copy"><p>블록의 형태, 선명한 색상, 레고로 만든 세계를 바탕으로<br />브랜드의 즐거운 분위기를 담은 웹 프로젝트입니다.<br />WORLD, LANDMARKS, GALLERY, ABOUT을 따라<br />다양한 레고의 장면을 탐색합니다.</p><blockquote>작은 블록 하나에서<br /><mark>새로운 세계가 시작됩니다.</mark></blockquote></div>
+          </section>
+          <section role="tabpanel" id="lego-panel-1" aria-labelledby="lego-tab-1" class="db-panel db-live-panel" hidden>
+            <div class="db-panel-heading"><b>02</b><h2>Key Features</h2><p>익숙한 블록의 언어로<br />더 즐겁게 탐색하는 인터페이스.</p></div>
+            <div class="db-feature-list">
+              <div class="db-feature"><span class="db-feature-icon lego-red" aria-hidden="true">01</span><div><h3>Brick-inspired navigation</h3><p>레고 블록 형태의 메뉴와 또렷한 윤곽선으로<br />브랜드를 떠올릴 수 있는 인터페이스를 구성했습니다.</p></div></div>
+              <div class="db-feature"><span class="db-feature-icon lego-blue" aria-hidden="true">02</span><div><h3>A world to explore</h3><p>랜드마크와 갤러리 등 서로 다른 콘텐츠를 연결해<br />레고의 세계를 둘러보는 흐름을 만들었습니다.</p></div></div>
+              <div class="db-feature"><span class="db-feature-icon lego-green" aria-hidden="true">03</span><div><h3>Playful visual experience</h3><p>풍부한 이미지와 컬러 포인트로<br />만들고 상상하는 즐거움을 표현했습니다.</p></div></div>
+            </div>
+          </section>
+          <section role="tabpanel" id="lego-panel-2" aria-labelledby="lego-tab-2" class="db-panel db-live-panel" hidden>
+            <div class="db-panel-heading"><b>03</b><h2>Design System</h2><p>선명한 컬러, 단단한 형태.<br />레고다운 인상을 만드는 디자인.</p></div>
+            <div class="lego-design-system"><h3>Color palette</h3><div class="lego-swatches"><div><i style="--swatch:#ed1c24"></i><b>Red</b><span>#ED1C24</span></div><div><i style="--swatch:#ffde00"></i><b>Yellow</b><span>#FFDE00</span></div><div><i style="--swatch:#0055bf"></i><b>Blue</b><span>#0055BF</span></div><div><i style="--swatch:#008c45"></i><b>Green</b><span>#008C45</span></div></div><h3>Shape &amp; mood</h3><p>블록의 돌기와 둥근 모서리, 또렷한 외곽선.<br />구조적인 형태에 경쾌한 색을 더해 시각적인 재미를 담았습니다.</p></div>
           </section>
         </div>
       </div>
