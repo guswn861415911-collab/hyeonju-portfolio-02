@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="modals-mobile.css" />
     <link rel="stylesheet" href="portfolio-motion.css"
   />  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="award-updates.css" />
+  <link rel="stylesheet" href="award-modal.css" />
+    <script src="award-modal.js" defer></script>
   </head>
 
   <body data-page="about">
@@ -636,23 +639,7 @@
             <!-- ===================================================
                  04 WORKS
                  =================================================== -->
-            <article class="about-mobile-card mobile-card-works">
-              <header class="about-mobile-card-head">
-                <span class="about-mobile-card-number">04</span>
-                <h3>Works</h3>
-                <small>주요 작업 분야</small>
-              </header>
 
-              <div class="about-mobile-card-body">
-                <ul class="about-mobile-bullet-list">
-                  <li>Web design / 상세페이지 / SNS card design</li>
-
-                  <li>숏폼(9:16) · 롱폼(16:9) 영상 콘텐츠 작업</li>
-
-                  <li>Goodnotes template design &amp; blog publishing</li>
-                </ul>
-              </div>
-            </article>
 
             <!-- ===================================================
                  05 TOOLS
@@ -680,7 +667,109 @@
             <!-- ===================================================
                  06 ACHIEVEMENTS
                  =================================================== -->
-            <article class="about-mobile-card mobile-card-achievements">
+            <article class="about-mobile-card mobile-card-achievements award-gold">
+              <header class="about-mobile-card-head">
+                <span class="about-mobile-card-number">06</span>
+                <h3>Achievements</h3>
+                <small>수상경력</small>
+              </header>
+
+              <div class="about-mobile-card-body about-mobile-achievement-body">
+                <div>
+                  <p class="about-mobile-achievement-title">
+                    2026 한글 AI아트 창작 공모전
+                    <br />
+                    최우수상 수상
+                  </p>
+
+                  <div class="about-mobile-achievement-actions">
+                    <span class="about-mobile-award-chip">
+                      최우수상 · Top Excellence Award
+                    </span>
+
+                    <!--
+                      이 버튼을 누르면
+                      아래의 shortsModal이 열립니다.
+
+                      동작은 script.js의
+                      setupAboutModal()이 담당합니다.
+                    -->
+                    <button
+                      type="button"
+                      class="about-mobile-shorts-button"
+                      data-award-case="hangeul"
+                    >
+                      수상작 Shorts 보기
+                      <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 메달 아이콘 -->
+                <div class="about-mobile-medal" aria-hidden="true">
+                  <svg viewBox="0 0 120 120">
+                    <defs>
+                      <linearGradient id="hangeul-mobileRibbonLeft" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#d26467" />
+                        <stop offset="100%" stop-color="#b14e55" />
+                      </linearGradient>
+
+                      <linearGradient id="hangeul-mobileRibbonRight" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#8fb7dc" />
+                        <stop offset="100%" stop-color="#6d98c3" />
+                      </linearGradient>
+
+                      <linearGradient id="hangeul-mobileMedalMain" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffd45c" />
+                        <stop offset="55%" stop-color="#f2bd2b" />
+                        <stop offset="100%" stop-color="#dd9f12" />
+                      </linearGradient>
+
+                      <linearGradient id="hangeul-mobileMedalInner" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffe894" />
+                        <stop offset="100%" stop-color="#f6c63f" />
+                      </linearGradient>
+                    </defs>
+
+                    <path d="M28 12h22l10 34H38L28 12Z" fill="url(#hangeul-mobileRibbonLeft)" />
+
+                    <path d="M70 12h22L82 46H60l10-34Z" fill="url(#hangeul-mobileRibbonRight)" />
+
+                    <rect
+                      x="49"
+                      y="35"
+                      width="22"
+                      height="16"
+                      rx="5"
+                      fill="#f4f6fb"
+                      opacity="0.95"
+                    />
+
+                    <circle cx="60" cy="74" r="30" fill="url(#hangeul-mobileMedalMain)" />
+
+                    <circle cx="60" cy="74" r="22" fill="url(#hangeul-mobileMedalInner)" />
+<defs><radialGradient id="medal-gloss-about-1" cx="28%" cy="20%" r="85%"><stop offset="0" stop-color="#fffdf7" stop-opacity=".9"/><stop offset=".32" stop-color="#fff7e8" stop-opacity=".25"/><stop offset=".56" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#714015" stop-opacity=".12"/></radialGradient></defs>
+<circle cx="60" cy="74" r="28" fill="url(#medal-gloss-about-1)" />
+<path d="M37 69a24 24 0 0 1 28-18" fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" opacity=".8" />
+
+                    <circle
+                      cx="60"
+                      cy="74"
+                      r="29"
+                      fill="none"
+                      stroke="#d39a1b"
+                      stroke-width="2.5"
+                    />
+
+                    <path
+                      d="M60 60.8l4.1 8.2 9 .9-6.5 6.1 1.6 8.7-8.2-4.3-8.2 4.3 1.6-8.7-6.5-6.1 9-.9 4.1-8.2Z"
+                      fill="#fff7d5"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </article>
+<article class="about-mobile-card mobile-card-achievements award-bronze">
               <header class="about-mobile-card-head">
                 <span class="about-mobile-card-number">06</span>
                 <h3>Achievements</h3>
@@ -710,7 +799,7 @@
                     <button
                       type="button"
                       class="about-mobile-shorts-button"
-                      data-modal-open="shortsModal"
+                      data-award-case="cosmetics"
                     >
                       수상작 Shorts 보기
                       <span aria-hidden="true">↗</span>
@@ -761,6 +850,9 @@
                     <circle cx="60" cy="74" r="30" fill="url(#mobileMedalMain)" />
 
                     <circle cx="60" cy="74" r="22" fill="url(#mobileMedalInner)" />
+<defs><radialGradient id="medal-gloss-about-2" cx="28%" cy="20%" r="85%"><stop offset="0" stop-color="#fffdf7" stop-opacity=".9"/><stop offset=".32" stop-color="#fff7e8" stop-opacity=".25"/><stop offset=".56" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#714015" stop-opacity=".12"/></radialGradient></defs>
+<circle cx="60" cy="74" r="28" fill="url(#medal-gloss-about-2)" />
+<path d="M37 69a24 24 0 0 1 28-18" fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" opacity=".8" />
 
                     <circle
                       cx="60"
@@ -863,17 +955,7 @@
             </article>
 
             <!-- WORKS -->
-            <article class="about-info-card">
-              <h3>Works</h3>
 
-              <ul class="about-info-list">
-                <li>Web design / 상세페이지 / SNS card design</li>
-
-                <li>숏폼(9:16) · 롱폼(16:9) 영상 콘텐츠 작업</li>
-
-                <li>Goodnotes template design &amp; blog publishing</li>
-              </ul>
-            </article>
 
             <!-- TOOLS -->
             <article class="about-info-card">
@@ -891,7 +973,113 @@
             </article>
 
             <!-- ACHIEVEMENTS -->
-            <article class="about-info-card about-info-card-award">
+            <article class="about-info-card about-info-card-award award-gold">
+              <!-- 메달 아이콘 -->
+              <div class="award-medal" aria-hidden="true">
+                <svg viewBox="0 0 120 120" class="award-medal-svg">
+                  <defs>
+                    <linearGradient id="hangeul-ribbonLeft" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#d26467" />
+
+                      <stop offset="100%" stop-color="#b14e55" />
+                    </linearGradient>
+
+                    <linearGradient id="hangeul-ribbonRight" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#8fb7dc" />
+
+                      <stop offset="100%" stop-color="#6d98c3" />
+                    </linearGradient>
+
+                    <linearGradient id="hangeul-medalMain" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#ffd45c" />
+
+                      <stop offset="55%" stop-color="#f2bd2b" />
+
+                      <stop offset="100%" stop-color="#dd9f12" />
+                    </linearGradient>
+
+                    <linearGradient id="hangeul-medalInner" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#ffe894" />
+
+                      <stop offset="100%" stop-color="#f6c63f" />
+                    </linearGradient>
+                  </defs>
+
+                  <path d="M28 12h22l10 34H38L28 12Z" fill="url(#hangeul-ribbonLeft)" />
+
+                  <path d="M70 12h22L82 46H60l10-34Z" fill="url(#hangeul-ribbonRight)" />
+
+                  <rect
+                    x="49"
+                    y="35"
+                    width="22"
+                    height="16"
+                    rx="5"
+                    fill="#f4f6fb"
+                    opacity="0.95"
+                  />
+
+                  <circle cx="60" cy="74" r="30" fill="url(#hangeul-medalMain)" />
+
+                  <circle cx="60" cy="74" r="22" fill="url(#hangeul-medalInner)" />
+<defs><radialGradient id="medal-gloss-about-3" cx="28%" cy="20%" r="85%"><stop offset="0" stop-color="#fffdf7" stop-opacity=".9"/><stop offset=".32" stop-color="#fff7e8" stop-opacity=".25"/><stop offset=".56" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#714015" stop-opacity=".12"/></radialGradient></defs>
+<circle cx="60" cy="74" r="28" fill="url(#medal-gloss-about-3)" />
+<path d="M37 69a24 24 0 0 1 28-18" fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" opacity=".8" />
+
+                  <circle
+                    cx="60"
+                    cy="74"
+                    r="29"
+                    fill="none"
+                    stroke="#d39a1b"
+                    stroke-width="2.5"
+                  />
+
+                  <path
+                    d="M60 60.8l4.1 8.2 9 .9-6.5 6.1 1.6 8.7-8.2-4.3-8.2 4.3 1.6-8.7-6.5-6.1 9-.9 4.1-8.2Z"
+                    fill="#fff7d5"
+                  />
+                </svg>
+              </div>
+
+              <h3>Achievements</h3>
+
+              <p class="achievement-title">
+                2026 한글 AI아트 창작 공모전
+                <br />
+                 최우수상 수상작
+              </p>
+
+              <div class="achievement-chip">최우수상 · Top Excellence Award</div>
+
+              <!--
+                클릭하면 아래 shortsModal이 열립니다.
+                script.js의 setupAboutModal()과 연결됩니다.
+              -->
+              <button
+                type="button"
+                class="achievement-open"
+                data-award-case="hangeul"
+              >
+                수상작 Shorts 보기
+
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="about-inline-icon"
+                  fill="none"
+                >
+                  <path
+                    d="M7 17L17 7M9 7H17V15"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </article>
+<article class="about-info-card about-info-card-award award-bronze">
               <!-- 메달 아이콘 -->
               <div class="award-medal" aria-hidden="true">
                 <svg viewBox="0 0 120 120" class="award-medal-svg">
@@ -940,6 +1128,9 @@
                   <circle cx="60" cy="74" r="30" fill="url(#medalMain)" />
 
                   <circle cx="60" cy="74" r="22" fill="url(#medalInner)" />
+<defs><radialGradient id="medal-gloss-about-4" cx="28%" cy="20%" r="85%"><stop offset="0" stop-color="#fffdf7" stop-opacity=".9"/><stop offset=".32" stop-color="#fff7e8" stop-opacity=".25"/><stop offset=".56" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#714015" stop-opacity=".12"/></radialGradient></defs>
+<circle cx="60" cy="74" r="28" fill="url(#medal-gloss-about-4)" />
+<path d="M37 69a24 24 0 0 1 28-18" fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" opacity=".8" />
 
                   <circle
                     cx="60"
@@ -974,7 +1165,7 @@
               <button
                 type="button"
                 class="achievement-open"
-                data-modal-open="shortsModal"
+                data-award-case="cosmetics"
               >
                 수상작 Shorts 보기
 

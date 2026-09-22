@@ -438,10 +438,29 @@ function setupAboutModal() {
   function openModal(e) {
     if (e) e.preventDefault();
 
+    const isHangeul = e?.currentTarget?.dataset.award === "hangeul";
+    const youtubeId = isHangeul ? "yqp4EKRR_ek" : "vJjWN50Z5XM";
+    modal.classList.toggle("award-gold", isHangeul);
+    modal.classList.toggle("award-bronze", !isHangeul);
+    const title = modal.querySelector("#awardModalTitle");
+    title.replaceChildren();
+    [isHangeul ? "2026 한글 AI아트 창작 공모전" : "2026 화장품 안전성 평가 제도", isHangeul ? "최우수상 수상작" : "숏폼 공모전 장려상 수상작"].forEach(text => {
+      const line = document.createElement("span"); line.textContent = text; title.append(line);
+    });
+    modal.querySelector(".shorts-description").textContent = isHangeul
+      ? "한글의 아름다움과 역사적 의미를 AI 기술로 재해석한 숏폼 영상입니다. 2인 팀 프로젝트로 제작했으며, 한글 AI아트 창작 공모전에서 최우수상을 수상했습니다."
+      : "화장품 안전성 평가 제도를 쉽고 친근하게 전달하는 AI 숏폼 영상입니다. 2인 팀 프로젝트로 제작했으며, 2026 화장품 안전성 평가 제도 숏폼 공모전에서 장려상을 수상했습니다.";
+    const chips = modal.querySelectorAll(".shorts-info-chip");
+    chips[0].textContent = "AI Short-form · Team Project";
+    chips[1].textContent = isHangeul ? "최우수상 · Top Excellence Award" : "장려상 · Encouragement Award";
+    chips[2].textContent = "2인 팀 프로젝트";
+    modal.querySelector(".shorts-direct-link").href = "https://www.youtube.com/shorts/" + youtubeId;
+    if (videoIframe) videoIframe.title = title.textContent;
+
     // 모달을 열 때 영상 주소를 다시 넣어서
     // 처음부터 자동 재생
     if (videoIframe) {
-      videoIframe.src = videoUrl;
+      videoIframe.src = "https://www.youtube-nocookie.com/embed/" + youtubeId + "?autoplay=1&playsinline=1&controls=1&rel=0";
     }
 
     modal.hidden = false;
@@ -666,14 +685,14 @@ function setupProjectVideoModal() {
         "2026 화장품 안전성 평가 제도를 쉽고 친근하게 전달하기 위해 제작한 AI 숏폼 영상입니다.\n\n공모전 주제를 누구나 쉽게 이해할 수 있도록\nAI를 활용한 이미지 제작부터 영상 편집,\n배경음악, 나레이션까지 직접 제작했습니다.\n\n짧은 시간 안에 핵심 메시지를 효과적으로 전달하는\n스토리텔링과 캐릭터 중심의 연출을 구성했습니다.\n\n본 작품은 2인 팀 프로젝트로 제작되었으며,\n'2026 화장품 안전성 평가 제도 숏폼 공모전'에서\n장려상을 수상한 작품입니다.",
       quote:
         "“AI 기술을 활용해 정보를 쉽고 재미있게 전달하는\n숏폼 콘텐츠를 제작했습니다.”",
-      status: "Award Winner",
+      status: "장려상 · Encouragement Award",
     },
     "04": {
-      title: "2026 한글 AI아트 창작 공모전",
+      title: "2026 한글 AI아트 창작 공모전\n최우수상 수상작",
       description:
-        "한글의 아름다움과 역사적 의미를\nAI 기술을 활용하여 재해석한 숏폼 프로젝트입니다.\n\nAI 이미지 생성부터 영상 제작,\n배경음악, 나레이션까지 직접 제작하여\n하나의 완성도 높은 콘텐츠로 제작했습니다.\n\n본 작품은 2인 팀 프로젝트로 진행되었으며,\n한글 AI 공모전에 출품한 작품입니다.",
+        "한글의 아름다움과 역사적 의미를\nAI 기술을 활용하여 재해석한 숏폼 프로젝트입니다.\n\nAI 이미지 생성부터 영상 제작,\n배경음악, 나레이션까지 직접 제작하여\n하나의 완성도 높은 콘텐츠로 제작했습니다.\n\n본 작품은 2인 팀 프로젝트로 진행되었으며,\n한글 AI아트 창작 공모전에서 최우수상을 수상한 작품입니다.",
       quote: "“AI로 전통을 새롭게 표현하며\n한글의 가치를 영상으로 담아냈습니다.”",
-      status: "Contest Entry",
+      status: "최우수상 · Top Excellence Award",
     },
   };
   function stopModalVideos() {
@@ -704,7 +723,9 @@ function setupProjectVideoModal() {
     const isStory = isHunmin || Boolean(story);
     panel.classList.toggle("is-hunmin", isHunmin);
     panel.classList.toggle("is-project-story", isStory);
-    panel.classList.toggle("is-cosmetics", number === "03");
+    panel.classList.toggle("is-cosmetics", Boolean(story));
+    panel.classList.toggle("award-gold", number === "04");
+    panel.classList.toggle("award-bronze", number === "03");
     [
       "hunminQuote",
       "hunminNote",

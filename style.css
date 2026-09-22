@@ -5747,3 +5747,10 @@ body :is(#projectVideoModal, #shortsModal, #detailPageModal, #plannerModal, #dia
   color: #52697F !important;
   box-shadow: none !important;
 }
+
+/* Modal pull quotes are retained only for the Hunminjeongeum long-form project.
+   display:none also removes their borders and margins without affecting copy/roles. */
+body:is([data-page="about"], [data-page="work"]) :is(dialog, [role="dialog"]) blockquote:not(#hunminQuote),
+body:is([data-page="about"], [data-page="work"]) #projectVideoModalPanel:not(.is-hunmin) #hunminQuote {
+  display: none !important;
+}
