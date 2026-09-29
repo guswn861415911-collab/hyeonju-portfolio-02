@@ -541,7 +541,10 @@ function setupProjectFilters() {
     const backBtn = explorerHeader.querySelector(".mobile-explorer-back");
     if (backBtn) {
       backBtn.addEventListener("click", function () {
-        closeMobileExplorer();
+        const url = new URL(location.href);
+        url.searchParams.delete("category");
+        history.pushState(null, "", url);
+        syncFilterFromUrl();
       });
     }
   }
@@ -580,17 +583,18 @@ function setupProjectFilters() {
     }
   }
 
-  filterButtons.forEach(function (button) {
-    button.addEventListener("click", function (e) {
-      e.stopPropagation();
-      const filter = button.dataset.filter || "all";
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  const validFilters = new Set([...filterButtons].map(button => button.dataset.filter));
+  const mobileProjects = window.matchMedia("(max-width: 767px)");
+
+  function applyFilter(filter, showFolder) {
+      const button = [...filterButtons].find(item => item.dataset.filter === filter);
       const labelText = button.querySelector("strong")
         ? button.querySelector("strong").textContent.trim()
         : button.textContent.trim();
 
       filterButtons.forEach(function (item) {
         item.classList.toggle("selected", item.dataset.filter === filter);
+        item.setAttribute("aria-pressed", String(item.dataset.filter === filter));
       });
 
       cards.forEach(function (card) {
@@ -599,22 +603,32 @@ function setupProjectFilters() {
         card.classList.toggle("is-filter-hidden", !shouldShow);
       });
 
-      if (isMobile) {
+      if (mobileProjects.matches && showFolder) {
         openMobileExplorer(filter, labelText);
+      } else closeMobileExplorer();
+  }
+
+  function syncFilterFromUrl() {
+    const category = new URL(location.href).searchParams.get("category");
+    const valid = validFilters.has(category);
+    applyFilter(valid ? category : "all", valid);
+  }
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const filter = button.dataset.filter;
+      const url = new URL(location.href);
+      if (url.searchParams.get("category") !== filter) {
+        url.searchParams.set("category", filter);
+        history.pushState(null, "", url);
       }
+      applyFilter(filter, true);
     });
   });
-  const mobileProjects = window.matchMedia("(max-width: 767px)");
-  if (mobileProjects.matches) closeMobileExplorer();
-  mobileProjects.addEventListener("change", function () {
-    closeMobileExplorer();
-    if (!mobileProjects.matches) {
-      cards.forEach((card) => card.classList.remove("is-filter-hidden"));
-      filterButtons.forEach((button) =>
-        button.classList.toggle("selected", button.dataset.filter === "all"),
-      );
-    }
-  });
+  window.addEventListener("popstate", syncFilterFromUrl);
+  mobileProjects.addEventListener("change", syncFilterFromUrl);
+  syncFilterFromUrl();
 }
 
 // PC에서 카드 위에 마우스를 올리면 영상을 재생합니다.
