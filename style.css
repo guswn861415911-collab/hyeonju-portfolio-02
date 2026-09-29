@@ -624,6 +624,23 @@ body[data-page="home"] .site-frame {
   margin-bottom: 2rem;
 }
 
+/* Keep the Projects introduction aligned with the category buttons. */
+body[data-page="work"] .work-intro-layout { margin-bottom:2.6rem; }
+@media (min-width:1100px) {
+  body[data-page="work"] .work-intro-layout { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:2rem; align-items:end; }
+  body[data-page="work"] .work-intro-layout .work-heading { grid-column:1 / -1; }
+  body[data-page="work"] .work-intro-layout .filters { margin-bottom:0; }
+  body[data-page="work"] .work-intro-layout .work-description { margin:0; }
+}
+@media (max-width:1099px) {
+  body[data-page="work"] .work-intro-layout { display:flex; flex-direction:column; }
+  body[data-page="work"] .work-intro-layout .work-heading { order:0; margin-bottom:0; }
+  body[data-page="work"] .work-intro-layout .work-description { order:1; margin:1rem 0 1.5rem; }
+  body[data-page="work"] .work-intro-layout .desktop-filter-wrap { order:2; }
+  body[data-page="work"] .work-intro-layout .filters { margin-bottom:0; }
+  body[data-page="work"] .work-page.mobile-explorer-folder-open .work-intro-layout { display:none; }
+}
+
 .work-description {
   max-width: 18rem;
   margin: 1.25rem 0 0;

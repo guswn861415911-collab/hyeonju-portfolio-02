@@ -227,6 +227,13 @@
     new MutationObserver(() => {
       const open = visible();
       if (open && !wasOpen) {
+        if (shell.dataset.projectSwitch === 'true') {
+          delete shell.dataset.projectSwitch;
+          panel.getAnimations().forEach(animation => animation.cancel());
+          animate(panel, [{ opacity:0.65 }, { opacity:1 }], 160);
+          wasOpen = open;
+          return;
+        }
         const r = panel.getBoundingClientRect();
         const from =
           source && performance.now() - source.time < 1000 ? source.rect : null;
@@ -280,6 +287,14 @@
     }).observe(shell, { attributes: true, attributeFilter: ["open", "hidden", "style"] });
     const exit = async (action) => {
       if (closing) return;
+      if (shell.dataset.projectSwitch === 'true') {
+        delete shell.dataset.projectSwitch;
+        panel.getAnimations().forEach(animation => animation.cancel());
+        // Let the original click finish before replaying the close handler.
+        await Promise.resolve();
+        action();
+        return;
+      }
       closing = true;
       await animate(
         panel,

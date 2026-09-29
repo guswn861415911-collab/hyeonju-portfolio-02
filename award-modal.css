@@ -46,6 +46,7 @@ body.has-custom-cursor #awardCaseModal, body.has-custom-cursor #awardCaseModal::
   #awardCaseModal .ac-phone { border-radius:40px; }
 }
 @media (max-width:767px) {
+  #awardCaseModal .ac-copy > .ac-phone-wrap { margin:24px 0 30px; }
   #awardCaseModal { width:calc(100vw - 16px); max-width:none; max-height:calc(100dvh - 16px); padding:24px 20px; border-radius:24px; }
   #awardCaseModal .ac-layout { grid-template-columns:minmax(0,1fr); gap:30px; }
   #awardCaseModal .ac-close { position:sticky; display:block; top:0; margin:-12px -8px -30px auto; width:36px; height:36px; font-size:26px; }

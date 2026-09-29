@@ -135,10 +135,14 @@
           transform 0.25s ease;
       }
 
-      body[data-page="home"] .home-redesign-contact-item:hover .home-contact-inner {
-        background: rgba(255, 255, 255, 0.48);
-        box-shadow: 0 8px 22px rgba(39, 67, 90, 0.055);
-        transform: translateY(-1px);
+      body[data-page="home"] .home-redesign-contact-item:is(:hover, :focus-visible) {
+        background: transparent;
+      }
+
+      body[data-page="home"] .home-redesign-contact-item:is(:hover, :focus-visible) .home-contact-inner {
+        background: rgba(240, 229, 151, 0.18);
+        box-shadow: inset 0 -2px 0 rgba(197, 172, 74, 0.45);
+        transform: none;
       }
 
       body[data-page="home"] .home-redesign-contact-icon {
@@ -204,7 +208,7 @@
         height: 28px;
         display: grid;
         place-items: center;
-        border-radius: 50%;
+        border-radius: 0;
         background: transparent;
         color: rgba(39, 67, 90, 0.4);
         font-size: 0.76rem;
@@ -215,10 +219,17 @@
           transform 0.25s ease;
       }
 
-      body[data-page="home"] .home-redesign-contact-item:hover .home-contact-arrow {
-        background: rgba(240, 229, 151, 0.72);
+      body[data-page="home"] .home-redesign-contact-item:is(:hover, :focus-visible) .home-contact-arrow {
+        background: transparent;
         color: #27435a;
-        transform: translate(1px, -1px);
+        translate: none;
+        transform: translate(3px, -3px);
+      }
+
+      @media (hover: none), (prefers-reduced-motion: reduce) {
+        body[data-page="home"] .home-redesign-contact-item:is(:hover, :focus-visible) .home-contact-arrow {
+          transform: none;
+        }
       }
 
       body[data-page="home"] .home-redesign-action-row {

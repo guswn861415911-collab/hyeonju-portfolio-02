@@ -41,6 +41,7 @@
   deck.before(carousel);
   carousel.append(deck);
   cards.forEach((card, i) => {
+    const contentIndex = [0, 1, 2, 4, 5, 5][i];
     card.id = `about-slide-${i + 1}`;
     card.setAttribute("role", "group");
     card.setAttribute("aria-roledescription", "slide");
@@ -50,16 +51,16 @@
     );
     const top = document.createElement("div");
     top.className = "about-slide-meta";
-    top.innerHTML = `<span><b>${String(i + 1).padStart(2, "0")}</b> / ${String(cards.length).padStart(2, "0")}</span><span>${labels[i] || "성과"}</span>`;
+    top.innerHTML = `<span><b>${String(i + 1).padStart(2, "0")}</b> / ${String(cards.length).padStart(2, "0")}</span><span>${labels[contentIndex] || "성과"}</span>`;
     card.prepend(top);
     const icon = document.createElement("span");
     icon.className = "about-slide-icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${paths[i] || paths[5]}</svg>`;
+    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${paths[contentIndex] || paths[5]}</svg>`;
     top.after(icon);
     const subtitle = document.createElement("p");
     subtitle.className = "about-slide-subtitle";
-    subtitle.textContent = subtitles[i] || subtitles[5];
+    subtitle.textContent = subtitles[contentIndex] || subtitles[5];
     card.querySelector("h3").after(subtitle);
   });
   const controls = document.createElement("div");
@@ -135,18 +136,20 @@
   );
   show(0, false);
   const mobileAbout = window.matchMedia("(max-width: 767px)");
-  // Keep the existing profile placement; information cards use a grid at every size.
+  // Mobile uses the original carousel; desktop and tablet retain the card grid.
   function syncAboutLayout() {
     if (mobileAbout.matches) {
       hero.after(contacts);
-      carousel.before(deck);
-      carousel.hidden = true;
+      carousel.prepend(deck);
+      carousel.hidden = false;
+      cards.forEach(card => card.setAttribute("aria-roledescription", "slide"));
+      show(active, false);
     } else {
       hero.querySelector(".about-copy").append(contacts);
       carousel.before(deck);
       carousel.hidden = true;
     }
-    cards.forEach((card) => {
+    if (!mobileAbout.matches) cards.forEach((card) => {
       card.inert = false;
       card.removeAttribute("aria-hidden");
       card.removeAttribute("aria-roledescription");

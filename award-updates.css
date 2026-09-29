@@ -1,12 +1,17 @@
 /* Shared award tiers across About, project cards and their dialogs. */
+@media (max-width:767px) {
+  body[data-page="about"] .about-carousel .about-info-card-award .achievement-title { margin-top:24px; margin-bottom:18px; line-height:1.65; }
+  body[data-page="about"] .about-carousel .about-info-card-award .achievement-chip { margin:0; }
+  body[data-page="about"] .about-carousel .about-info-card-award .achievement-open { margin-top:22px; margin-bottom:12px; }
+}
 /* About information cards only: equal columns and content-driven row heights. */
 body[data-page="about"] .about-page > .about-info-grid { align-items:stretch; }
 body[data-page="about"] .about-info-grid > .about-info-card { min-width:0; overflow-wrap:anywhere; }
-body[data-page="about"] .about-info-grid :is(.about-slide-meta,.about-slide-icon,.about-slide-subtitle) { display:none; }
+body[data-page="about"] .about-page > .about-info-grid :is(.about-slide-meta,.about-slide-icon,.about-slide-subtitle) { display:none; }
 @media (max-width:767px) {
   body[data-page="about"] .about-page > .about-info-grid { display:grid !important; grid-template-columns:minmax(0,1fr); gap:16px; margin-top:24px; }
-  body[data-page="about"] .about-info-grid > .about-info-card { grid-area:auto; min-height:0; padding:22px 20px; opacity:1; visibility:visible; transform:none; }
-  body[data-page="about"] .about-info-grid > .about-info-card-award { display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
+  body[data-page="about"] .about-page > .about-info-grid > .about-info-card { grid-area:auto; min-height:0; padding:22px 20px; opacity:1; visibility:visible; transform:none; }
+  body[data-page="about"] .about-page > .about-info-grid > .about-info-card-award { display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
   body[data-page="about"] .about-info-card-award h3 { margin:0; }
   body[data-page="about"] .about-info-card-award .achievement-title { padding-right:60px; }
   body[data-page="about"] .about-info-card-award .achievement-chip { margin:0; max-width:100%; }
