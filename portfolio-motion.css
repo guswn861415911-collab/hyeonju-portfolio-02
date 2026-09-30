@@ -210,6 +210,13 @@
   transition: opacity .3s ease;
 }
 .modal-scroll-hint.is-visible { opacity: 1; }
+/* Mobile retains the original modal content without the added navigation/cue. */
+@media (max-width:767px) {
+  body:is([data-page="work"], [data-page="about"]) .project-neighbors,
+  body:is([data-page="work"], [data-page="about"]) .modal-scroll-hint {
+    display:none !important;
+  }
+}
 .modal-scroll-hint-label {
   position: absolute;
   bottom: 0;
