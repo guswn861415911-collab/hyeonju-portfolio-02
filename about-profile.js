@@ -41,6 +41,7 @@
   deck.before(carousel);
   carousel.append(deck);
   cards.forEach((card, i) => {
+    const contentIndex = [0, 1, 2, 4, 5, 5][i];
     card.id = `about-slide-${i + 1}`;
     card.setAttribute("role", "group");
     card.setAttribute("aria-roledescription", "slide");
@@ -50,16 +51,16 @@
     );
     const top = document.createElement("div");
     top.className = "about-slide-meta";
-    top.innerHTML = `<span><b>${String(i + 1).padStart(2, "0")}</b> / 06</span><span>${labels[i]}</span>`;
+    top.innerHTML = `<span><b>${String(i + 1).padStart(2, "0")}</b> / ${String(cards.length).padStart(2, "0")}</span><span>${labels[contentIndex] || "성과"}</span>`;
     card.prepend(top);
     const icon = document.createElement("span");
     icon.className = "about-slide-icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${paths[i]}</svg>`;
+    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${paths[contentIndex] || paths[5]}</svg>`;
     top.after(icon);
     const subtitle = document.createElement("p");
     subtitle.className = "about-slide-subtitle";
-    subtitle.textContent = subtitles[i];
+    subtitle.textContent = subtitles[contentIndex] || subtitles[5];
     card.querySelector("h3").after(subtitle);
   });
   const controls = document.createElement("div");
@@ -82,6 +83,7 @@
     return button;
   });
   function show(index, announce = true) {
+    if (carousel.hidden) return;
     const direction = index < active ? -1 : 1;
     active = (index + cards.length) % cards.length;
     cards.forEach((card, i) => {
@@ -91,7 +93,7 @@
       dots[i].setAttribute("aria-current", String(i === active));
     });
     if (announce)
-      status.textContent = `${active + 1} / 6, ${cards[active].querySelector("h3").textContent}`;
+      status.textContent = `${active + 1} / ${cards.length}, ${cards[active].querySelector("h3").textContent}`;
     if (announce && !matchMedia("(prefers-reduced-motion: reduce)").matches)
       cards[active].animate(
         [
@@ -134,23 +136,24 @@
   );
   show(0, false);
   const mobileAbout = window.matchMedia("(max-width: 767px)");
-  // 화면 너비에 따라 About을 PC 카드 또는 모바일 슬라이드로 배치합니다.
+  // Mobile uses the original carousel; desktop and tablet retain the card grid.
   function syncAboutLayout() {
     if (mobileAbout.matches) {
       hero.after(contacts);
       carousel.prepend(deck);
       carousel.hidden = false;
+      cards.forEach(card => card.setAttribute("aria-roledescription", "slide"));
       show(active, false);
     } else {
       hero.querySelector(".about-copy").append(contacts);
       carousel.before(deck);
       carousel.hidden = true;
-      cards.forEach((card) => {
-        card.inert = false;
-        card.removeAttribute("aria-hidden");
-        card.removeAttribute("aria-roledescription");
-      });
     }
+    if (!mobileAbout.matches) cards.forEach((card) => {
+      card.inert = false;
+      card.removeAttribute("aria-hidden");
+      card.removeAttribute("aria-roledescription");
+    });
     scheduleFit();
   }
   // 실제 너비로 배치하고, 높이가 부족하면 자연스럽게 스크롤합니다.

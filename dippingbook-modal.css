@@ -117,6 +117,26 @@
   line-height: 1.3;
   color: #7b86a6;
 }
+.db-role-value strong {
+  color: #27435a;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.db-team-label {
+  display: table;
+  margin-top: 0.55cqw;
+  padding: 0.28cqw 0.45cqw;
+  border-radius: 4px;
+  background: #e8ecf2;
+  color: #52647b;
+  font-size: 0.65cqw;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .db-team-label { margin-top: 7px; padding: 4px 5px; font-size: 8px; }
+}
 .db-tool-art {
   margin-top: 0.6cqw;
   width: 100%;
@@ -556,15 +576,15 @@
 }
 
 /* Match the existing cursor setting inside the native dialog top layer. */
-body.has-custom-cursor #dippingbookModal,
-body.has-custom-cursor #dippingbookModal::backdrop,
-body.has-custom-cursor #dippingbookModal * {
+body.has-custom-cursor :is(#dippingbookModal, #legoModal),
+body.has-custom-cursor :is(#dippingbookModal, #legoModal)::backdrop,
+body.has-custom-cursor :is(#dippingbookModal, #legoModal) * {
   cursor: none;
 }
 
 /* Mobile case study: readable content instead of a scaled desktop canvas. */
 @media (max-width: 767px) {
-  #dippingbookModal {
+  :is(#dippingbookModal, #legoModal) {
     width: calc(100vw - 16px);
     max-width: none;
     max-height: calc(100dvh - 16px);
@@ -573,14 +593,14 @@ body.has-custom-cursor #dippingbookModal * {
     overscroll-behavior: contain;
     scroll-padding-top: 116px;
   }
-  #dippingbookModal .db-shell {
+  :is(#dippingbookModal, #legoModal) .db-shell {
     --db-number-size: 20px;
     --db-title-size: 30px;
     --db-lead-size: 16px;
     --db-label-size: 13px;
     --db-body-size: 12px;
   }
-  #dippingbookModal .db-close {
+  :is(#dippingbookModal, #legoModal) .db-close {
     position: sticky;
     top: 8px;
     margin: 8px 8px -48px auto;
@@ -590,80 +610,80 @@ body.has-custom-cursor #dippingbookModal * {
     font-size: 28px;
     z-index: 5;
   }
-  #dippingbookModal .db-hero {
+  :is(#dippingbookModal, #legoModal) .db-hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
     padding: 24px 18px 20px;
     min-height: 0;
   }
-  #dippingbookModal .db-hero-copy h2 {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy h2 {
     margin: 16px 0 10px;
     font-size: clamp(30px, 9vw, 42px);
   }
-  #dippingbookModal .db-hero-copy h3 {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy h3 {
     margin: 0 0 10px;
     font-size: 15px;
     line-height: 1.5;
     word-break: keep-all;
   }
-  #dippingbookModal .db-hero-copy > p {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy > p {
     font-size: 13px;
     line-height: 1.7;
     word-break: keep-all;
   }
-  #dippingbookModal .db-project-label {
+  :is(#dippingbookModal, #legoModal) .db-project-label {
     font-size: 10px;
     padding: 7px 12px;
     border-radius: 20px;
     margin-right: 34px;
   }
-  #dippingbookModal .db-tags {
+  :is(#dippingbookModal, #legoModal) .db-tags {
     gap: 6px;
     margin: 16px 0;
   }
-  #dippingbookModal .db-project-meta {
+  :is(#dippingbookModal, #legoModal) .db-project-meta {
     grid-template-columns: 1.1fr 1fr 1.1fr;
     gap: 10px;
     border-top: 1px solid #d5dfeb;
     padding-top: 14px;
   }
-  #dippingbookModal .db-project-meta > div + div {
+  :is(#dippingbookModal, #legoModal) .db-project-meta > div + div {
     padding-left: 10px;
   }
-  #dippingbookModal .db-project-meta b {
+  :is(#dippingbookModal, #legoModal) .db-project-meta b {
     font-size: 10px;
     letter-spacing: 0.06em;
   }
-  #dippingbookModal .db-project-meta p {
+  :is(#dippingbookModal, #legoModal) .db-project-meta p {
     font-size: 11px;
     line-height: 1.6;
     margin-top: 5px;
   }
-  #dippingbookModal .db-tool-art {
+  :is(#dippingbookModal, #legoModal) .db-tool-art {
     flex-wrap: wrap;
     gap: 5px;
     margin-top: 7px;
   }
-  #dippingbookModal .db-tool-art img {
+  :is(#dippingbookModal, #legoModal) .db-tool-art img {
     width: 24px;
     max-width: 24px;
     border-radius: 4px;
   }
-  #dippingbookModal .db-device-art {
+  :is(#dippingbookModal, #legoModal) .db-device-art {
     width: 100%;
     max-width: 440px;
   }
-  #dippingbookModal .db-footer {
+  :is(#dippingbookModal, #legoModal) .db-footer {
     position: static;
     width: 100%;
     padding: 0;
   }
-  #dippingbookModal .db-footer > a {
+  :is(#dippingbookModal, #legoModal) .db-footer > a {
     width: 100%;
     min-height: 44px !important;
     justify-content: center;
   }
-  #dippingbookModal .db-nav {
+  :is(#dippingbookModal, #legoModal) .db-nav {
     position: sticky;
     top: 0;
     z-index: 3;
@@ -672,143 +692,143 @@ body.has-custom-cursor #dippingbookModal * {
     padding: 12px 14px;
     background: #f8faff;
   }
-  #dippingbookModal .db-tabs {
+  :is(#dippingbookModal, #legoModal) .db-tabs {
     overflow-x: auto;
     justify-content: flex-start;
     gap: 6px;
     padding: 2px 0 5px;
     scrollbar-width: thin;
   }
-  #dippingbookModal .db-tabs button {
+  :is(#dippingbookModal, #legoModal) .db-tabs button {
     flex: 0 0 auto;
     min-height: 40px;
     font-size: 12px;
     gap: 6px;
     padding: 10px 12px;
   }
-  #dippingbookModal .db-tabs button span {
+  :is(#dippingbookModal, #legoModal) .db-tabs button span {
     font-size: 10px;
   }
-  #dippingbookModal .db-pagination {
+  :is(#dippingbookModal, #legoModal) .db-pagination {
     justify-content: flex-end;
     gap: 10px;
     padding-right: 42px;
   }
-  #dippingbookModal .db-count {
+  :is(#dippingbookModal, #legoModal) .db-count {
     font-size: 12px;
     margin-right: auto;
     padding-left: 4px;
   }
-  #dippingbookModal .db-pagination button {
+  :is(#dippingbookModal, #legoModal) .db-pagination button {
     width: 40px;
     height: 40px;
     font-size: 19px;
   }
-  #dippingbookModal .db-panel.db-live-panel {
+  :is(#dippingbookModal, #legoModal) .db-panel.db-live-panel {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
     min-height: 0;
     padding: 22px 18px 28px;
   }
-  #dippingbookModal .db-panel-heading {
+  :is(#dippingbookModal, #legoModal) .db-panel-heading {
     border: 0;
     border-bottom: 1px solid #d5dfeb;
     padding: 0 0 16px;
   }
-  #dippingbookModal .db-panel-heading h2 {
+  :is(#dippingbookModal, #legoModal) .db-panel-heading h2 {
     margin: 5px 0 12px;
   }
-  #dippingbookModal .db-panel-heading > p {
+  :is(#dippingbookModal, #legoModal) .db-panel-heading > p {
     font-size: 13px;
     line-height: 1.6;
   }
-  #dippingbookModal .db-problem-copy {
+  :is(#dippingbookModal, #legoModal) .db-problem-copy {
     padding: 0;
   }
-  #dippingbookModal .db-problem-copy blockquote {
+  :is(#dippingbookModal, #legoModal) .db-problem-copy blockquote {
     margin: 22px 0 8px;
     padding-left: 12px;
     border-left: 3px solid #fffc38;
     font-size: 15px;
   }
-  #dippingbookModal .db-problem-copy blockquote::before,
-  #dippingbookModal .db-problem-copy mark::after {
+  :is(#dippingbookModal, #legoModal) .db-problem-copy blockquote::before,
+  :is(#dippingbookModal, #legoModal) .db-problem-copy mark::after {
     display: none;
   }
-  #dippingbookModal .db-feature-list,
-  #dippingbookModal .db-panel-3 .db-feature-list {
+  :is(#dippingbookModal, #legoModal) .db-feature-list,
+  :is(#dippingbookModal, #legoModal) .db-panel-3 .db-feature-list {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
     grid-auto-flow: row;
     gap: 18px;
   }
-  #dippingbookModal .db-feature {
+  :is(#dippingbookModal, #legoModal) .db-feature {
     gap: 12px;
   }
-  #dippingbookModal .db-feature-icon {
+  :is(#dippingbookModal, #legoModal) .db-feature-icon {
     flex-basis: 42px;
     height: 42px;
     font-size: 24px;
   }
-  #dippingbookModal .db-feature h3 {
+  :is(#dippingbookModal, #legoModal) .db-feature h3 {
     margin: 3px 0 6px;
     line-height: 1.4;
   }
-  #dippingbookModal .db-feature p,
-  #dippingbookModal .db-info-card p {
+  :is(#dippingbookModal, #legoModal) .db-feature p,
+  :is(#dippingbookModal, #legoModal) .db-info-card p {
     line-height: 1.65;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
-  #dippingbookModal .db-card-grid {
+  :is(#dippingbookModal, #legoModal) .db-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
-  #dippingbookModal .db-info-card {
+  :is(#dippingbookModal, #legoModal) .db-info-card {
     padding: 10px;
     border-radius: 12px;
   }
-  #dippingbookModal .db-info-card h3 {
+  :is(#dippingbookModal, #legoModal) .db-info-card h3 {
     margin: 10px 0 6px;
   }
-  #dippingbookModal .db-swatches {
+  :is(#dippingbookModal, #legoModal) .db-swatches {
     gap: 10px 5px;
     margin-top: 12px;
   }
-  #dippingbookModal .db-swatches i {
+  :is(#dippingbookModal, #legoModal) .db-swatches i {
     width: 30px;
     margin-bottom: 5px;
   }
-  #dippingbookModal .db-swatches b,
-  #dippingbookModal .db-swatches span {
+  :is(#dippingbookModal, #legoModal) .db-swatches b,
+  :is(#dippingbookModal, #legoModal) .db-swatches span {
     font-size: 9px;
   }
-  #dippingbookModal .db-type-sample {
+  :is(#dippingbookModal, #legoModal) .db-type-sample {
     gap: 8px;
     margin: 14px 0;
     font-size: 10px;
   }
-  #dippingbookModal .db-type-sample strong {
+  :is(#dippingbookModal, #legoModal) .db-type-sample strong {
     font-size: 30px;
   }
-  #dippingbookModal .db-component-demo {
+  :is(#dippingbookModal, #legoModal) .db-component-demo {
     gap: 10px;
     margin-top: 12px;
     font-size: 10px;
   }
-  #dippingbookModal .db-demo-login,
-  #dippingbookModal .db-demo-search,
-  #dippingbookModal .db-demo-tabs > * {
+  :is(#dippingbookModal, #legoModal) .db-demo-login,
+  :is(#dippingbookModal, #legoModal) .db-demo-search,
+  :is(#dippingbookModal, #legoModal) .db-demo-tabs > * {
     padding: 7px 5px;
     border-radius: 14px;
   }
-  #dippingbookModal .db-demo-search {
+  :is(#dippingbookModal, #legoModal) .db-demo-search {
     font-size: 9px;
   }
-  #dippingbookModal .db-demo-search span {
+  :is(#dippingbookModal, #legoModal) .db-demo-search span {
     font-size: 13px;
   }
-  #dippingbookModal .db-demo-pages > span {
+  :is(#dippingbookModal, #legoModal) .db-demo-pages > span {
     width: 24px;
     height: 24px;
     font-size: 14px;
@@ -816,37 +836,37 @@ body.has-custom-cursor #dippingbookModal * {
 }
 /* Mobile hero order: introduction, device mockup, project metadata, CTA. */
 @media (max-width: 767px) {
-  #dippingbookModal .db-hero-copy {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy {
     display: contents;
   }
-  #dippingbookModal .db-hero {
+  :is(#dippingbookModal, #legoModal) .db-hero {
     gap: 0;
   }
-  #dippingbookModal .db-project-label {
+  :is(#dippingbookModal, #legoModal) .db-project-label {
     grid-row: 1;
     justify-self: start;
   }
-  #dippingbookModal .db-hero-copy h2 {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy h2 {
     grid-row: 2;
   }
-  #dippingbookModal .db-hero-copy h3 {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy h3 {
     grid-row: 3;
   }
-  #dippingbookModal .db-hero-copy > p {
+  :is(#dippingbookModal, #legoModal) .db-hero-copy > p {
     grid-row: 4;
   }
-  #dippingbookModal .db-tags {
+  :is(#dippingbookModal, #legoModal) .db-tags {
     grid-row: 5;
   }
-  #dippingbookModal .db-device-art {
+  :is(#dippingbookModal, #legoModal) .db-device-art {
     grid-row: 6;
     margin: 4px 0 20px;
   }
-  #dippingbookModal .db-project-meta {
+  :is(#dippingbookModal, #legoModal) .db-project-meta {
     grid-row: 7;
     margin-bottom: 20px;
   }
-  #dippingbookModal .db-footer {
+  :is(#dippingbookModal, #legoModal) .db-footer {
     grid-row: 8;
   }
 }
@@ -860,7 +880,7 @@ body.has-custom-cursor #dippingbookModal * {
   display: contents;
 }
 @media (max-width: 767px) {
-  #dippingbookModal .db-scroll-guide {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -875,25 +895,25 @@ body.has-custom-cursor #dippingbookModal * {
     transition: opacity 0.35s ease;
     pointer-events: none;
   }
-  #dippingbookModal .db-scroll-guide > span:first-child {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide > span:first-child {
     font-size: 18px;
     line-height: 1;
     animation: db-scroll-nudge 1.2s ease-in-out infinite;
   }
-  #dippingbookModal .db-scroll-guide.is-dismissed {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide.is-dismissed {
     opacity: 0;
   }
-  #dippingbookModal .db-scroll-guide.is-dismissed > span:first-child {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide.is-dismissed > span:first-child {
     animation: none;
   }
-  #dippingbookModal .db-tab-rail {
+  :is(#dippingbookModal, #legoModal) .db-tab-rail {
     display: grid;
     grid-template-columns: 36px minmax(0, 1fr) 36px;
     align-items: center;
     gap: 5px;
     min-width: 0;
   }
-  #dippingbookModal .db-rail-arrow {
+  :is(#dippingbookModal, #legoModal) .db-rail-arrow {
     display: grid;
     place-items: center;
     width: 36px;
@@ -909,11 +929,11 @@ body.has-custom-cursor #dippingbookModal * {
       background 0.2s ease,
       transform 0.2s ease;
   }
-  #dippingbookModal .db-rail-arrow:active {
+  :is(#dippingbookModal, #legoModal) .db-rail-arrow:active {
     background: #fffc38;
     transform: scale(0.95);
   }
-  #dippingbookModal .db-tabs {
+  :is(#dippingbookModal, #legoModal) .db-tabs {
     min-width: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -921,10 +941,10 @@ body.has-custom-cursor #dippingbookModal * {
     gap: 6px;
     scroll-snap-type: x proximity;
   }
-  #dippingbookModal .db-tabs::-webkit-scrollbar {
+  :is(#dippingbookModal, #legoModal) .db-tabs::-webkit-scrollbar {
     display: none;
   }
-  #dippingbookModal .db-tabs button {
+  :is(#dippingbookModal, #legoModal) .db-tabs button {
     flex: 0 0 44%;
     justify-content: center;
     min-width: max-content;
@@ -932,17 +952,17 @@ body.has-custom-cursor #dippingbookModal * {
     font-family: "Pretendard", sans-serif;
     padding-inline: 9px;
   }
-  #dippingbookModal .db-pagination {
+  :is(#dippingbookModal, #legoModal) .db-pagination {
     justify-content: center;
     padding: 0;
   }
-  #dippingbookModal .db-pagination .db-count {
+  :is(#dippingbookModal, #legoModal) .db-pagination .db-count {
     margin: 0;
     padding: 0;
     font-size: 10px;
     color: #71849b;
   }
-  #dippingbookModal .db-pagination button {
+  :is(#dippingbookModal, #legoModal) .db-pagination button {
     display: none;
   }
 }
@@ -956,33 +976,33 @@ body.has-custom-cursor #dippingbookModal * {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  #dippingbookModal .db-scroll-guide > span:first-child {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide > span:first-child {
     animation: none;
   }
-  #dippingbookModal .db-scroll-guide,
-  #dippingbookModal .db-rail-arrow {
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide,
+  :is(#dippingbookModal, #legoModal) .db-rail-arrow {
     transition: none;
   }
 }
 
 /* 모달 하나가 소개부터 마지막 패널까지 스크롤을 담당합니다. */
 @media (max-width: 767px) {
-  #dippingbookModal {
+  :is(#dippingbookModal, #legoModal) {
     max-height: calc(var(--db-viewport-height, 100dvh) - 16px);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
-  #dippingbookModal .db-shell {
+  :is(#dippingbookModal, #legoModal) .db-shell {
     min-width: 0;
     height: auto;
     max-height: none;
     overflow: visible;
   }
-  #dippingbookModal .db-scroll-guide { display: none; }
+  :is(#dippingbookModal, #legoModal) .db-scroll-guide { display: none; }
 }
 
 /* Design System의 서체 견본에 실제 프로젝트 폰트를 적용합니다. */
-#dippingbookModal .db-typography-card {
+:is(#dippingbookModal, #legoModal) .db-typography-card {
   font-family: "Noto Sans KR", sans-serif;
 }

@@ -1,0 +1,71 @@
+/* Only projects with gallery data receive this layout. Typography is inherited. */
+#awardCaseModal.has-award-gallery { max-height:90dvh; }
+#awardCaseModal.has-award-gallery .ac-close { position:sticky; display:block; top:0; margin:-16px -16px -22px auto; }
+#awardCaseModal.has-award-gallery .ac-scroll-shell { position:relative; margin-bottom:14px; }
+/* Override the global modal scrollbar hiding rule for the artwork description. */
+#awardCaseModal.has-award-gallery .ac-description-scroll { max-height:180px; overflow:auto; overscroll-behavior:contain; padding-right:20px; scrollbar-width:thin !important; scrollbar-color:#718fbe #e3eaf5; }
+#awardCaseModal.has-award-gallery .ac-description-scroll::-webkit-scrollbar { display:block !important; width:8px !important; }
+#awardCaseModal.has-award-gallery .ac-description-scroll::-webkit-scrollbar-track { background:#e3eaf5; border-radius:999px; }
+#awardCaseModal.has-award-gallery .ac-description-scroll::-webkit-scrollbar-thumb { background:#718fbe; border-radius:999px; min-height:48px; }
+#awardCaseModal.has-award-gallery .ac-description-scroll::-webkit-scrollbar-button { display:none; width:0; height:0; }
+/* Use the precise rounded 8px design in Chromium and Safari. */
+@supports selector(::-webkit-scrollbar) {
+  #awardCaseModal.has-award-gallery .ac-description-scroll { scrollbar-width:auto !important; scrollbar-color:auto; }
+}
+#awardCaseModal.has-award-gallery .ac-scroll-shell::after { content:''; position:absolute; bottom:0; left:0; right:10px; height:30px; pointer-events:none; background:linear-gradient(transparent,#f6f8fa); opacity:0; transition:opacity .15s; }
+#awardCaseModal.has-award-gallery .ac-scroll-shell.has-more::after { opacity:1; }
+/* Fade a cover over the native scrollbar so dragging and wheel scrolling stay native. */
+#awardCaseModal.has-award-gallery .ac-scroll-shell::before { content:''; position:absolute; z-index:2; top:0; right:0; bottom:0; width:10px; background:#f6f8fa; pointer-events:none; opacity:1; transition:opacity .35s ease; }
+#awardCaseModal.has-award-gallery .ac-scroll-shell:hover::before,
+#awardCaseModal.has-award-gallery .ac-description-heading:hover + .ac-scroll-shell::before,
+#awardCaseModal.has-award-gallery .ac-scroll-shell:has(.ac-description-scroll:focus-visible)::before { opacity:0; }
+@media (hover:none) {
+  #awardCaseModal.has-award-gallery .ac-scroll-shell::before { display:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #awardCaseModal.has-award-gallery .ac-scroll-shell::before { transition:none; }
+}
+#awardCaseModal.has-award-gallery .ac-copy > .ac-role-tags { margin-bottom:12px; }
+#awardCaseModal.has-award-gallery .ac-description-scroll:focus-visible { outline:2px solid #96a9bd; outline-offset:4px; border-radius:5px; }
+#awardCaseModal .ac-records { border-top:1px solid #d5dfeb; margin-top:20px; padding-top:16px; }
+#awardCaseModal .ac-records-header { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:14px; }
+#awardCaseModal .ac-records-header h3 { color:#173e5f; font-size:20px; margin:0 0 4px; }
+#awardCaseModal .ac-records-header p { color:#7185a7; font-size:12px; line-height:1.5; margin:0; }
+#awardCaseModal .ac-records-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:calc((80% - 44px) * .78 + 44px); max-width:100%; gap:22px; }
+#awardCaseModal .ac-records figure { min-width:0; margin:0; }
+#awardCaseModal .ac-record-image { display:block; position:relative; padding:0; width:100%; height:170px; border:1px solid #d9e1e9; border-radius:12px; overflow:hidden; background:#eeefed; cursor:zoom-in; }
+#awardCaseModal .ac-record-image img { display:block; width:100%; height:100%; object-fit:contain; }
+#awardCaseModal .ac-expand { position:absolute; right:8px; top:8px; display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:#f9fbfce8; color:#315877; }
+#awardCaseModal .ac-expand svg { width:15px; height:15px; }
+#awardCaseModal .ac-records figcaption { margin-top:8px; color:#234566; font-size:13px; line-height:1.5; }
+@media(min-width:768px) {
+  #awardCaseModal.has-award-gallery .ac-layout { grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:5%; }
+  #awardCaseModal.has-award-gallery .ac-phone { width:280px; }
+}
+@media(max-width:767px) {
+  #awardCaseModal.has-award-gallery .ac-description-scroll { max-height:none; overflow:visible; padding-right:0; }
+  #awardCaseModal.has-award-gallery .ac-scroll-shell::after { display:none; }
+  #awardCaseModal.has-award-gallery .ac-scroll-shell::before { display:none; }
+  #awardCaseModal.has-award-gallery .ac-close { margin:-12px -8px -24px auto; }
+  #awardCaseModal .ac-records-grid { width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 10px; }
+  #awardCaseModal .ac-record-image { height:auto; aspect-ratio:1; border-radius:10px; }
+  #awardCaseModal .ac-record-image img { height:100%; object-fit:cover; }
+  #awardCaseModal .ac-records figcaption { margin-top:6px; font-size:12px; }
+  #awardCaseModal .ac-records-header { display:block; }
+  #awardCaseModal .ac-records-header > p { margin-top:8px; }
+}
+#awardImageViewer { padding:14px; border:1px solid #d9e1e9; border-radius:20px; width:640px; max-width:calc(100vw - 24px); height:570px; max-height:calc(100dvh - 32px); margin:auto; background:#f5f7fa; color:#234566; box-sizing:border-box; overflow:hidden; font-family:'Pretendard',sans-serif; cursor:auto; }
+#awardImageViewer[open] { display:flex; flex-direction:column; gap:12px; }
+#awardImageViewer::backdrop { background:#17283bd9; }
+#awardImageViewer .av-toolbar, #awardImageViewer footer { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-shrink:0; }
+#awardImageViewer .av-toolbar { justify-content:flex-end; }
+#awardImageViewer button { border:1px solid #d7e1eb; border-radius:999px; background:#fff; color:#234566; min-width:38px; min-height:38px; padding:6px 12px; font:inherit; cursor:pointer; }
+#awardImageViewer button:disabled { opacity:.4; }
+#awardImageViewer button:focus-visible, #awardImageViewer .av-stage:focus-visible { outline:3px solid #6d8cad; outline-offset:2px; }
+#awardImageViewer .av-stage { flex:1; min-height:0; overflow:hidden; background:#e9eced; border-radius:10px; }
+#awardImageViewer .av-canvas { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+#awardImageViewer img { display:block; width:100%; height:100%; object-fit:contain; }
+#awardImageViewer .av-caption { margin:0; text-align:center; font-size:14px; }
+#awardImageViewer .modal-scroll-hint { display:none !important; }
+#awardCaseModal.has-award-gallery .project-neighbors.is-compact { position:relative; bottom:auto; margin-top:16px; background:transparent; }
+@media(max-width:767px) { #awardImageViewer { padding:10px; } #awardImageViewer button { padding:5px 9px; } }

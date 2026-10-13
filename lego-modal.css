@@ -1,0 +1,61 @@
+/* Shared DippingBook layout with LEGO artwork and color accents. */
+#legoModal { overflow-x: hidden; background: #f6f7f9; }
+#legoModal .db-project-label { background: #fbe5e6; color: #ad1820; }
+#legoModal .db-team-label { background: #fff0a3; color: #674b00; border-left: 3px solid #d3262e; }
+#legoModal .db-tags span:nth-child(2) { background: #0055bf; color: #fff; }
+#legoModal .db-tags span:nth-child(3) { background: #008c45; color: #fff; }
+#legoModal #lego-tab-1[aria-selected="true"] { background: #0055bf; color: #fff; }
+#legoModal #lego-tab-2[aria-selected="true"] { background: #008c45; color: #fff; }
+#legoModal #lego-panel-1 .db-panel-heading > b { color: #0055bf; }
+#legoModal #lego-panel-2 .db-panel-heading > b { color: #008c45; }
+#legoModal .db-project-meta > div:nth-child(1) b { color: #b61b23; }
+#legoModal .db-project-meta > div:nth-child(2) b { color: #0055bf; }
+#legoModal .db-project-meta > div:nth-child(3) b { color: #087744; }
+#legoModal .db-tags span, #legoModal .db-footer a,
+#legoModal .db-tabs button[aria-selected="true"] { background: #ffde00; }
+#legoModal .db-panel-heading > b { color: #d3262e; }
+#legoModal .db-problem-copy mark { background: #fff08a; }
+#legoModal .db-problem-copy blockquote::before,
+#legoModal .db-problem-copy mark::after { color: #d3262e; }
+#legoModal .lego-device { width: 94%; aspect-ratio: auto; margin: 0; background: none; clip-path: none; }
+@media (min-width: 768px) {
+  #legoModal .lego-device { width: 88%; transform: translateY(-1cqw); }
+}
+.lego-laptop-screen { position: relative; width: 92%; margin: auto; padding: 1.1cqw .55cqw .6cqw; border: 2px solid #49515a; border-radius: 12px 12px 3px 3px; background: #20262d; box-shadow: 0 14px 25px #263b3426; }
+.lego-laptop-screen::before { content: ''; position: absolute; width: 3px; height: 3px; top: 4px; left: 50%; border-radius: 50%; background: #8e9992; }
+.lego-laptop-screen img { display: block; width: 100%; height: auto; border-radius: 2px; }
+.lego-browser { overflow: hidden; border-radius: 5px 5px 0 0; color: #49647f; font-family: Arial, sans-serif; font-size: clamp(5px, .68cqw, 10px); line-height: 1.2; }
+.lego-browser-tabs { display: flex; align-items: center; gap: .9em; padding: .45em .8em 0; background: #d6e3f3; }
+.lego-browser-tab { display: flex; align-items: center; gap: .65em; width: 34%; padding: .55em .7em; border-radius: .5em .5em 0 0; background: #fff; color: #314e6b; }
+.lego-browser-tab > span:nth-child(2) { flex: 1; }
+.lego-chrome-icon { flex: 0 0 auto; width: 1.15em; height: 1.15em; border-radius: 50%; background: radial-gradient(circle, #4285f4 0 28%, #fff 30% 38%, transparent 40%), conic-gradient(#ea4335 0 33%, #fbbc05 33% 66%, #34a853 66%); }
+.lego-browser-plus { font-size: 1.4em; }
+.lego-browser-window { margin-left: auto; white-space: nowrap; }
+.lego-browser-toolbar { display: flex; align-items: center; gap: .7em; padding: .45em .8em; background: #edf3fb; border-bottom: 1px solid #cedcec; }
+.lego-browser-controls { white-space: nowrap; font-size: 1.2em; }
+.lego-browser-address { display: flex; align-items: center; gap: .6em; flex: 1; min-width: 0; padding: .55em .9em; background: #fff; border: 1px solid #d4e0ef; border-radius: 3em; }
+.lego-browser-address > span:nth-child(2) { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.lego-browser-profile { width: 1.6em; height: 1.6em; flex-shrink: 0; border-radius: 50%; background: #afa7ff; }
+.lego-laptop-base { position: relative; height: .9cqw; min-height: 6px; border-radius: 1px 1px 50% 50%; background: linear-gradient(#e4e8eb, #929da7); box-shadow: 0 12px 18px #20292326; }
+.lego-laptop-base::before { content: ''; position: absolute; top: 0; left: 42%; width: 16%; height: 3px; border-radius: 0 0 4px 4px; background: #87949c; }
+#legoModal .db-feature-icon { font-size: 1.5cqw; font-weight: 700; }
+#legoModal .lego-red { background: #fbe5e6; color: #b61b23; }
+#legoModal .lego-blue { background: #e1ebfb; color: #0055bf; }
+#legoModal .lego-green { background: #dfefe7; color: #087744; }
+.lego-design-system h3 { margin: .8cqw 0 1cqw; font-size: var(--db-label-size); }
+.lego-design-system p { font-size: var(--db-body-size); line-height: 1.65; color: #7b86a6; }
+.lego-swatches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1cqw; margin: 1.5cqw 0 2cqw; }
+.lego-swatches i { display: block; height: 4cqw; background: var(--swatch); border-radius: .6cqw; margin-bottom: .7cqw; }
+.lego-swatches b, .lego-swatches span { display: block; font-size: var(--db-body-size); line-height: 1.6; }
+.lego-swatches span { color: #7b86a6; }
+@media (max-width: 767px) {
+  #legoModal .db-tags span { padding: 7px 10px; border-radius: 20px; font-size: 10px; }
+  #legoModal .db-footer > a { display: flex; align-items: center; gap: 12px; padding: 12px 18px; font-size: 13px; }
+  #legoModal .lego-device { width: 100%; margin: 4px 0 20px; }
+  .lego-laptop-screen { padding: 12px 5px 5px; }
+  #legoModal .db-feature-icon { font-size: 14px; }
+  .lego-design-system h3 { margin: 0 0 12px; }
+  .lego-swatches { gap: 10px; margin: 18px 0 26px; }
+  .lego-swatches i { height: 45px; border-radius: 7px; margin-bottom: 8px; }
+  .lego-swatches b, .lego-swatches span { font-size: 10px; }
+}

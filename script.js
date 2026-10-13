@@ -438,10 +438,29 @@ function setupAboutModal() {
   function openModal(e) {
     if (e) e.preventDefault();
 
+    const isHangeul = e?.currentTarget?.dataset.award === "hangeul";
+    const youtubeId = isHangeul ? "yqp4EKRR_ek" : "vJjWN50Z5XM";
+    modal.classList.toggle("award-gold", isHangeul);
+    modal.classList.toggle("award-bronze", !isHangeul);
+    const title = modal.querySelector("#awardModalTitle");
+    title.replaceChildren();
+    [isHangeul ? "2026 한글 AI아트 창작 공모전" : "2026 화장품 안전성 평가 제도", isHangeul ? "최우수상 수상작" : "숏폼 공모전 장려상 수상작"].forEach(text => {
+      const line = document.createElement("span"); line.textContent = text; title.append(line);
+    });
+    modal.querySelector(".shorts-description").textContent = isHangeul
+      ? "한글의 아름다움과 역사적 의미를 AI 기술로 재해석한 숏폼 영상입니다. 2인 팀 프로젝트로 제작했으며, 한글 AI아트 창작 공모전에서 최우수상을 수상했습니다."
+      : "화장품 안전성 평가 제도를 쉽고 친근하게 전달하는 AI 숏폼 영상입니다. 2인 팀 프로젝트로 제작했으며, 2026 화장품 안전성 평가 제도 숏폼 공모전에서 장려상을 수상했습니다.";
+    const chips = modal.querySelectorAll(".shorts-info-chip");
+    chips[0].textContent = "AI Short-form · Team Project";
+    chips[1].textContent = isHangeul ? "최우수상 · Top Excellence Award" : "장려상 · Encouragement Award";
+    chips[2].textContent = "2인 팀 프로젝트";
+    modal.querySelector(".shorts-direct-link").href = "https://www.youtube.com/shorts/" + youtubeId;
+    if (videoIframe) videoIframe.title = title.textContent;
+
     // 모달을 열 때 영상 주소를 다시 넣어서
     // 처음부터 자동 재생
     if (videoIframe) {
-      videoIframe.src = videoUrl;
+      videoIframe.src = "https://www.youtube-nocookie.com/embed/" + youtubeId + "?autoplay=1&playsinline=1&controls=1&rel=0";
     }
 
     modal.hidden = false;
@@ -522,7 +541,10 @@ function setupProjectFilters() {
     const backBtn = explorerHeader.querySelector(".mobile-explorer-back");
     if (backBtn) {
       backBtn.addEventListener("click", function () {
-        closeMobileExplorer();
+        const url = new URL(location.href);
+        url.searchParams.delete("category");
+        history.pushState(null, "", url);
+        syncFilterFromUrl();
       });
     }
   }
@@ -561,17 +583,18 @@ function setupProjectFilters() {
     }
   }
 
-  filterButtons.forEach(function (button) {
-    button.addEventListener("click", function (e) {
-      e.stopPropagation();
-      const filter = button.dataset.filter || "all";
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  const validFilters = new Set([...filterButtons].map(button => button.dataset.filter));
+  const mobileProjects = window.matchMedia("(max-width: 767px)");
+
+  function applyFilter(filter, showFolder) {
+      const button = [...filterButtons].find(item => item.dataset.filter === filter);
       const labelText = button.querySelector("strong")
         ? button.querySelector("strong").textContent.trim()
         : button.textContent.trim();
 
       filterButtons.forEach(function (item) {
         item.classList.toggle("selected", item.dataset.filter === filter);
+        item.setAttribute("aria-pressed", String(item.dataset.filter === filter));
       });
 
       cards.forEach(function (card) {
@@ -580,22 +603,32 @@ function setupProjectFilters() {
         card.classList.toggle("is-filter-hidden", !shouldShow);
       });
 
-      if (isMobile) {
+      if (mobileProjects.matches && showFolder) {
         openMobileExplorer(filter, labelText);
+      } else closeMobileExplorer();
+  }
+
+  function syncFilterFromUrl() {
+    const category = new URL(location.href).searchParams.get("category");
+    const valid = validFilters.has(category);
+    applyFilter(valid ? category : "all", valid);
+  }
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const filter = button.dataset.filter;
+      const url = new URL(location.href);
+      if (url.searchParams.get("category") !== filter) {
+        url.searchParams.set("category", filter);
+        history.pushState(null, "", url);
       }
+      applyFilter(filter, true);
     });
   });
-  const mobileProjects = window.matchMedia("(max-width: 767px)");
-  if (mobileProjects.matches) closeMobileExplorer();
-  mobileProjects.addEventListener("change", function () {
-    closeMobileExplorer();
-    if (!mobileProjects.matches) {
-      cards.forEach((card) => card.classList.remove("is-filter-hidden"));
-      filterButtons.forEach((button) =>
-        button.classList.toggle("selected", button.dataset.filter === "all"),
-      );
-    }
-  });
+  window.addEventListener("popstate", syncFilterFromUrl);
+  mobileProjects.addEventListener("change", syncFilterFromUrl);
+  syncFilterFromUrl();
 }
 
 // PC에서 카드 위에 마우스를 올리면 영상을 재생합니다.
@@ -605,12 +638,16 @@ function setupProjectPreviewVideos() {
     const videos = card.querySelectorAll("video");
     if (!videos.length || card.dataset.previewBound === "true") return;
     card.dataset.previewBound = "true";
+    const previewStart = Number(card.dataset.hoverStart) || 0;
+    function resetPreview(video) {
+      if (video.readyState >= 1) video.currentTime = previewStart;
+    }
     let hovering = false;
     function stop() {
       hovering = false;
       videos.forEach(function (video) {
         video.pause();
-        if (video.readyState >= 1 && video.currentTime !== 0) video.currentTime = 0;
+        resetPreview(video);
       });
     }
     videos.forEach(function (video) {
@@ -620,6 +657,13 @@ function setupProjectPreviewVideos() {
       video.preload = "metadata";
       video.removeAttribute("autoplay");
       video.pause();
+      if (previewStart > 0) {
+        video.addEventListener("loadedmetadata", () => resetPreview(video));
+        resetPreview(video);
+        video.addEventListener("timeupdate", () => {
+          if (video.currentTime < previewStart) resetPreview(video);
+        });
+      }
     });
     card.addEventListener("mouseenter", function () {
       if (!window.matchMedia("(hover: hover)").matches || hovering) return;
@@ -633,7 +677,7 @@ function setupProjectPreviewVideos() {
             .then(function () {
               if (!hovering) {
                 video.pause();
-                if (video.readyState >= 1) video.currentTime = 0;
+                resetPreview(video);
               }
             })
             .catch(function () {});
@@ -660,20 +704,27 @@ function setupProjectVideoModal() {
 
   const hunminIframe = document.getElementById("hunminModalIframe");
   const shortFormStories = {
+    "13": {
+      title: "제3회 ICN 26영화제X29초영화제",
+      description: "제3회 ICN 26영화제X29초영화제에 출품한 영상입니다.\n\n현재 공모전 결과 발표를 기다리고 있습니다.\n\n영상을 감상하거나, 아래 ‘공모전영상 보러가기’ 버튼으로 공식 출품 페이지를 확인할 수 있습니다.",
+      quote: "",
+      status: "출품작 · 결과 발표 대기",
+    },
+
     "03": {
       title: "2026 화장품 안전성 평가 제도\n숏폼 공모전 장려상 수상작",
       description:
         "2026 화장품 안전성 평가 제도를 쉽고 친근하게 전달하기 위해 제작한 AI 숏폼 영상입니다.\n\n공모전 주제를 누구나 쉽게 이해할 수 있도록\nAI를 활용한 이미지 제작부터 영상 편집,\n배경음악, 나레이션까지 직접 제작했습니다.\n\n짧은 시간 안에 핵심 메시지를 효과적으로 전달하는\n스토리텔링과 캐릭터 중심의 연출을 구성했습니다.\n\n본 작품은 2인 팀 프로젝트로 제작되었으며,\n'2026 화장품 안전성 평가 제도 숏폼 공모전'에서\n장려상을 수상한 작품입니다.",
       quote:
         "“AI 기술을 활용해 정보를 쉽고 재미있게 전달하는\n숏폼 콘텐츠를 제작했습니다.”",
-      status: "Award Winner",
+      status: "장려상 · Encouragement Award",
     },
     "04": {
-      title: "2026 한글 AI아트 창작 공모전",
+      title: "2026 한글 AI아트 창작 공모전\n최우수상 수상작",
       description:
-        "한글의 아름다움과 역사적 의미를\nAI 기술을 활용하여 재해석한 숏폼 프로젝트입니다.\n\nAI 이미지 생성부터 영상 제작,\n배경음악, 나레이션까지 직접 제작하여\n하나의 완성도 높은 콘텐츠로 제작했습니다.\n\n본 작품은 2인 팀 프로젝트로 진행되었으며,\n한글 AI 공모전에 출품한 작품입니다.",
+        "한글의 아름다움과 역사적 의미를\nAI 기술을 활용하여 재해석한 숏폼 프로젝트입니다.\n\nAI 이미지 생성부터 영상 제작,\n배경음악, 나레이션까지 직접 제작하여\n하나의 완성도 높은 콘텐츠로 제작했습니다.\n\n본 작품은 2인 팀 프로젝트로 진행되었으며,\n한글 AI아트 창작 공모전에서 최우수상을 수상한 작품입니다.",
       quote: "“AI로 전통을 새롭게 표현하며\n한글의 가치를 영상으로 담아냈습니다.”",
-      status: "Contest Entry",
+      status: "최우수상 · Top Excellence Award",
     },
   };
   function stopModalVideos() {
@@ -700,11 +751,17 @@ function setupProjectVideoModal() {
     stopModalVideos();
     const number = button.dataset.projectNumber || "01";
     const isHunmin = number === "02";
+    const isIcn = number === "13";
+    panel.classList.toggle("is-icn", isIcn);
+    document.getElementById("projectEntryStatus").hidden = !isIcn;
+    document.getElementById("projectContestLink").hidden = !isIcn;
     const story = shortFormStories[number];
     const isStory = isHunmin || Boolean(story);
     panel.classList.toggle("is-hunmin", isHunmin);
     panel.classList.toggle("is-project-story", isStory);
-    panel.classList.toggle("is-cosmetics", number === "03");
+    panel.classList.toggle("is-cosmetics", Boolean(story) && !isIcn);
+    panel.classList.toggle("award-gold", number === "04");
+    panel.classList.toggle("award-bronze", number === "03");
     [
       "hunminQuote",
       "hunminNote",
@@ -752,12 +809,12 @@ function setupProjectVideoModal() {
       youtubeLink.href =
         "https://www.youtube.com/watch?v=" + (isHunmin ? "uudhaBaXUUs" : youtubeId);
     const genreChip = document.getElementById("projectModalGenreChip");
-    if (genreChip) genreChip.textContent = story ? "AI Project" : "Video Project";
+    if (genreChip) genreChip.textContent = isIcn ? "Contest Entry" : story ? "AI Project" : "Video Project";
     panel.querySelectorAll("[data-story-chip]").forEach(function (chip) {
       chip.remove();
     });
     if (story) {
-      ["Team Project (2 People)", story.status].forEach(function (label) {
+      (isIcn ? [story.status] : ["Team Project (2 People)", story.status]).forEach(function (label) {
         const chip = document.createElement("span");
         chip.className = "shorts-info-chip";
         chip.dataset.storyChip = "true";
@@ -802,11 +859,12 @@ function setupProjectVideoModal() {
         portraitView.style.display = "none";
       }
 
-      if (ratioChip) ratioChip.textContent = story ? "9:16 Vertical" : "16:9 Landscape";
+      if (ratioChip) ratioChip.textContent = story && !isIcn ? "9:16 Vertical" : "16:9 Landscape";
       if (typeChip) typeChip.textContent = story ? "Short-form" : "Long-form";
 
       if (isStory && hunminIframe) {
         hunminIframe.hidden = false;
+        hunminIframe.title = title;
         hunminIframe.src =
           "https://www.youtube-nocookie.com/embed/" +
           (isHunmin ? "uudhaBaXUUs" : youtubeId) +

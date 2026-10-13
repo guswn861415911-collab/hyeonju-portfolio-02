@@ -624,6 +624,23 @@ body[data-page="home"] .site-frame {
   margin-bottom: 2rem;
 }
 
+/* Keep the Projects introduction aligned with the category buttons. */
+body[data-page="work"] .work-intro-layout { margin-bottom:2.6rem; }
+@media (min-width:1100px) {
+  body[data-page="work"] .work-intro-layout { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:2rem; align-items:end; }
+  body[data-page="work"] .work-intro-layout .work-heading { grid-column:1 / -1; }
+  body[data-page="work"] .work-intro-layout .filters { margin-bottom:0; }
+  body[data-page="work"] .work-intro-layout .work-description { margin:0; }
+}
+@media (max-width:1099px) {
+  body[data-page="work"] .work-intro-layout { display:flex; flex-direction:column; }
+  body[data-page="work"] .work-intro-layout .work-heading { order:0; margin-bottom:0; }
+  body[data-page="work"] .work-intro-layout .work-description { order:1; margin:1rem 0 1.5rem; }
+  body[data-page="work"] .work-intro-layout .desktop-filter-wrap { order:2; }
+  body[data-page="work"] .work-intro-layout .filters { margin-bottom:0; }
+  body[data-page="work"] .work-page.mobile-explorer-folder-open .work-intro-layout { display:none; }
+}
+
 .work-description {
   max-width: 18rem;
   margin: 1.25rem 0 0;
@@ -5746,4 +5763,53 @@ body :is(#projectVideoModal, #shortsModal, #detailPageModal, #plannerModal, #dia
   border: 1px solid #D9DEE4 !important;
   color: #52697F !important;
   box-shadow: none !important;
+}
+
+/* Modal pull quotes are retained only for the Hunminjeongeum long-form project.
+   display:none also removes their borders and margins without affecting copy/roles. */
+body:is([data-page="about"], [data-page="work"]) :is(dialog, [role="dialog"]) blockquote:not(#hunminQuote),
+body:is([data-page="about"], [data-page="work"]) #projectVideoModalPanel:not(.is-hunmin) #hunminQuote {
+  display: none !important;
+}
+
+/* ICN entry: a widescreen preview and iPad video screen. */
+body[data-page="work"] .folder-card .icn-preview {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+body[data-page="work"] .icn-preview video {
+  object-fit: contain;
+}
+body[data-page="work"] #projectVideoModalPanel.is-icn .ipad-chassis {
+  aspect-ratio: auto;
+}
+body[data-page="work"] #projectVideoModalPanel.is-icn .ipad-screen {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+/* Contest entry uses the shared copy / device layout without an award badge. */
+#projectEntryStatus[hidden],
+#projectContestLink[hidden],
+#projectVideoModalPanel.is-icn #hunminQuote,
+#projectVideoModalPanel.is-icn #hunminNote {
+  display: none;
+}
+.project-entry-status {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid #cbd8e8;
+  border-radius: 999px;
+  background: #eaf0f8;
+  color: #315774;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+#projectContestLink:not([hidden]) {
+  display: table;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #fff3c9;
+  border: 1px solid #edc85a;
+  text-decoration: none;
 }
