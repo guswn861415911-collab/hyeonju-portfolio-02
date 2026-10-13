@@ -706,9 +706,9 @@ function setupProjectVideoModal() {
   const shortFormStories = {
     "13": {
       title: "제3회 ICN 26영화제X29초영화제",
-      description: "제3회 ICN 26영화제X29초영화제에 출품한 영상입니다.\n\n현재 공모전 결과 발표를 기다리고 있습니다.\n\n영상을 감상하거나, 아래 ‘공모전영상 보러가기’ 버튼으로 공식 출품 페이지를 확인할 수 있습니다.",
+      description: "제3회 ICN 26영화제X29초영화제에 출품한 영상입니다.\n\n한 부부는 여행을 떠날 때마다 인천공항의 같은 자리에서 함께 사진을 남깁니다.\n젊은 날부터 중년, 노년이 될 때까지 반복되던 익숙한 순간들 속에서 두 사람의 시간도 함께 흘러갑니다.\n\n그러던 어느 날, 늘 곁을 지키던 남편의 자리가 비어 있고 할머니만 홀로 그 자리에 남습니다.\n잠시 빈자리를 바라보며 함께했던 시간을 떠올린 할머니는 작은 미소와 함께 다시 캐리어를 끌고 앞으로 나아갑니다.\n\n함께한 여행은 끝났지만, 그 시간과 기억을 품은 여행은 다시 계속됩니다.",
       quote: "",
-      status: "출품작 · 결과 발표 대기",
+      status: "출품작",
     },
 
     "03": {
@@ -753,8 +753,8 @@ function setupProjectVideoModal() {
     const isHunmin = number === "02";
     const isIcn = number === "13";
     panel.classList.toggle("is-icn", isIcn);
-    document.getElementById("projectEntryStatus").hidden = !isIcn;
     document.getElementById("projectContestLink").hidden = !isIcn;
+    document.getElementById("icnContribution").hidden = !isIcn;
     const story = shortFormStories[number];
     const isStory = isHunmin || Boolean(story);
     panel.classList.toggle("is-hunmin", isHunmin);
@@ -793,6 +793,11 @@ function setupProjectVideoModal() {
           ? "훈민정음 창제 :\n세종의 비밀 프로젝트, 글자 전쟁"
           : title;
     if (descEl) descEl.textContent = story ? story.description : description;
+    if (descEl && isIcn) {
+      const teamNote = document.createElement("span");
+      teamNote.textContent = "본 작품은 3인 팀 프로젝트로 제작되었으며,\n‘제3회 ICN 26영화제X29초영화제’에 출품한 작품입니다.";
+      descEl.append(document.createTextNode("\n\n"), teamNote);
+    }
     if (numEl) numEl.textContent = "PROJECT " + number;
     const quoteEl = document.getElementById("hunminQuote");
     const noteEl = document.getElementById("hunminNote");

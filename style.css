@@ -5457,8 +5457,8 @@ body[data-page="work"]
   #studyNotesModal,
   #lifePlannerModal
 ) {
-  --project-accent: #efe59b;
-  accent-color: #efe59b;
+  --project-accent: #fff38e;
+  accent-color: #fff38e;
 }
 body
   :is(
@@ -5482,7 +5482,7 @@ body
     .db-pagination button,
     mark
   ) {
-  background-color: #efe59b !important;
+  background-color: #fff38e !important;
 }
 body
   :is(
@@ -5495,7 +5495,7 @@ body
     #lifePlannerModal
   )
   :is(button, a, select, input):focus-visible {
-  outline-color: #efe59b !important;
+  outline-color: #fff38e !important;
 }
 body
   :is(
@@ -5512,8 +5512,8 @@ body
     button[aria-selected="true"],
     button[aria-checked="true"]
   ) {
-  background-color: #efe59b !important;
-  border-color: #efe59b;
+  background-color: #fff38e !important;
+  border-color: #fff38e;
 }
 body
   :is(
@@ -5531,13 +5531,13 @@ body
     .db-footer a,
     .db-pagination button
   ):hover {
-  background-color: #efe59b !important;
+  background-color: #fff38e !important;
 }
 body #detailPageModal .coupang-thumb-column button.is-active {
-  border-color: #efe59b;
+  border-color: #fff38e;
 }
 body #detailPageModal .coupang-detail-tabs button.is-active {
-  border-bottom-color: #efe59b;
+  border-bottom-color: #fff38e;
 }
 
 /* Shared badge, tag and CTA geometry for every project modal. Colors stay local. */
@@ -5752,8 +5752,8 @@ body[data-page="work"].has-custom-cursor
 /* 디핑북을 제외한 모달: 주요 버튼은 노랑, 정보 태그는 흰색 테두리형입니다. */
 body :is(#projectVideoModal, #shortsModal, #detailPageModal, #plannerModal, #diaryPlannerModal, #studyNotesModal, #lifePlannerModal)
   :is(.project-number-chip, .planner-project-number, .shorts-direct-link, .shorts-channel-link, .planner-blog-link) {
-  background: #FBF0A3 !important;
-  border: 1px solid #FBF0A3 !important;
+  background: #fff38e !important;
+  border: 1px solid #fff38e !important;
   color: #234566 !important;
 }
 
@@ -5788,22 +5788,10 @@ body[data-page="work"] #projectVideoModalPanel.is-icn .ipad-screen {
   aspect-ratio: 16 / 9;
 }
 /* Contest entry uses the shared copy / device layout without an award badge. */
-#projectEntryStatus[hidden],
 #projectContestLink[hidden],
 #projectVideoModalPanel.is-icn #hunminQuote,
 #projectVideoModalPanel.is-icn #hunminNote {
   display: none;
-}
-.project-entry-status {
-  display: inline-block;
-  padding: 9px 16px;
-  border: 1px solid #cbd8e8;
-  border-radius: 999px;
-  background: #eaf0f8;
-  color: #315774;
-  font-size: 13px;
-  font-weight: 700;
-  margin: 0 0 18px;
 }
 #projectContestLink:not([hidden]) {
   display: table;
@@ -5813,3 +5801,12 @@ body[data-page="work"] #projectVideoModalPanel.is-icn .ipad-screen {
   border: 1px solid #edc85a;
   text-decoration: none;
 }
+
+#projectVideoModalPanel.is-icn .project-video-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:12px; }
+#projectVideoModalPanel.is-icn .project-video-actions > :is(#hunminYoutubeLink, #projectContestLink) { margin:0; }
+#icnContribution { margin:0 0 20px; color:#536e90; }
+#icnContribution[hidden] { display:none; }
+#icnContribution h3 { margin:0 0 10px; padding-bottom:7px; border-bottom:1px solid #d5dfeb; font-size:13px; font-weight:600; }
+#icnContribution p { margin:0; font-size:13px; line-height:1.7; word-break:keep-all; overflow-wrap:anywhere; }
+/* Shared yellow for modal badges and action controls. */
+body :is(dialog, [role="dialog"]):not(#dippingbookModal):not(#legoModal) :is(.ac-actions a, .project-number-chip, .planner-project-number, .shorts-direct-link, .shorts-channel-link, .planner-blog-link, button[aria-pressed="true"], button[aria-checked="true"]) { background:#fff38e !important; border-color:#fff38e !important; }
