@@ -4,6 +4,7 @@
   if (!triggers.length) return;
   const projects = {
     hangeul: {
+      gallerySummary: '2026.10.08 · 영상 부문 최우수상',
       gallery: [
         { src: 'images/hangeul-awards/ceremony.png', caption: '최우수상 수상 현장', alt: '최우수상 수상 보드와 상장을 들고 작품 전시 화면 앞에 선 황현주' },
         { src: 'images/hangeul-awards/exhibition.png', caption: '작품 전시 기념사진', alt: '한글 AI아트 영상 전시 화면 옆에서 최우수상 수상 보드를 든 황현주' },
@@ -20,6 +21,11 @@
       responsibilities: ['기획', 'AI 영상 생성', '자막 디자인', '영상 편집']
     },
     cosmetics: {
+      gallerySummary: '2026.10.15 · 숏폼 영상 공모전 장려상',
+      gallery: [
+        { src: 'images/cosmetics-awards/ceremony.png', caption: '장려상 수상 현장', alt: '2026 화장품 안전성 평가 제도 숏폼 영상 공모전 시상식에서 상장을 들고 있는 황현주' },
+        { src: 'images/cosmetics-awards/certificate.jpg', caption: '장려상 상장', alt: '2026년 10월 15일 한국의약품수출입협회가 수여한 송서현·황현주의 화장품 안전성 평가 제도 영상 콘텐츠 공모전 장려상 상장' }
+      ],
       title: '2026 화장품 안전성 평가 제도\n숏폼 공모전 장려상 수상작',
       award: '장려상 · Encouragement Award', tier: 'bronze', video: 'vJjWN50Z5XM',
       paragraphs: [
@@ -95,7 +101,7 @@
     overflow = document.body.style.overflow;
     hadModalClass = document.body.classList.contains('modal-open');
     document.body.style.overflow = 'hidden'; document.body.classList.add('modal-open');
-    document.dispatchEvent(new CustomEvent('awardcase:prepare', { detail: { modal, gallery: project.gallery || [] } }));
+    document.dispatchEvent(new CustomEvent('awardcase:prepare', { detail: { modal, gallery: project.gallery || [], gallerySummary: project.gallerySummary || '' } }));
     positionPhone();
     modal.showModal(); modal.scrollTop = 0;
     document.dispatchEvent(new CustomEvent('awardcase:opened', { detail: { modal } }));

@@ -1,7 +1,7 @@
 /* Optional award records: existing copy and links remain the original DOM nodes. */
 (() => {
   let active = null;
-  document.addEventListener('awardcase:prepare', ({ detail: { modal, gallery } }) => {
+  document.addEventListener('awardcase:prepare', ({ detail: { modal, gallery, gallerySummary } }) => {
     active?.cleanup(); active = null;
     modal.classList.toggle('has-award-gallery', gallery.length > 0);
     if (!gallery.length) return;
@@ -17,7 +17,8 @@
     heading.after(shell); shell.append(scroll); scroll.append(description); role.after(tags);
     const records = document.createElement('section'); records.className = 'ac-records';
     records.setAttribute('aria-labelledby', 'acRecordsTitle');
-    records.innerHTML = '<header class="ac-records-header"><div><h3 id="acRecordsTitle">시상식 &amp; 수상 기록</h3><p>2026.10.08 · 영상 부문 최우수상</p></div><p>이미지를 클릭하면 크게 볼 수 있어요.</p></header><div class="ac-records-grid"></div>';
+    records.innerHTML = '<header class="ac-records-header"><div><h3 id="acRecordsTitle">시상식 &amp; 수상 기록</h3><p class="ac-records-summary"></p></div><p>이미지를 클릭하면 크게 볼 수 있어요.</p></header><div class="ac-records-grid"></div>';
+    records.querySelector('.ac-records-summary').textContent = gallerySummary;
     modal.querySelector('.ac-layout').after(records);
     gallery.forEach((item, index) => {
       const figure = document.createElement('figure');
