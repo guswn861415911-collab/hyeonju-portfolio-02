@@ -2,6 +2,32 @@
  * About 모바일 프로필과 슬라이드의 기본 스타일입니다.
  * 수정할 위치 안내: 코드-읽는-순서.md
  */
+/* Keep the desktop/tablet portrait beside the introduction without fixed minimum widths. */
+@media (min-width: 768px) {
+  body[data-page="about"] :is(.about-copy, .about-profile, .about-profile-shell) {
+    min-width: 0;
+  }
+  body[data-page="about"] .about-profile {
+    align-items: flex-start;
+  }
+  body[data-page="about"] .portrait {
+    height: auto;
+    aspect-ratio: 548 / 520;
+  }
+  body[data-page="about"] .about-contact-row {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(8px, 1.5vw, 24px);
+    padding: clamp(8px, 1.2vw, 16px);
+  }
+  body[data-page="about"] .about-contact-value {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+  body[data-page="about"] .portrait-caption {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
 @media (max-width: 767px) {
   /* Shared profile and six-slide layout, at every viewport size. */
   body[data-page="about"] .about-page {

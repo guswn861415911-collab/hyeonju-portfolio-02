@@ -1417,8 +1417,8 @@ body[data-page="about"] .about-page {
 
 body[data-page="about"] .about-hero {
   display: grid;
-  grid-template-columns: minmax(360px, 0.92fr) minmax(560px, 1.08fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(20px, 3.5vw, 56px);
   align-items: end;
   margin-bottom: 42px;
 }
@@ -1950,17 +1950,6 @@ body[data-page="about"] .about-mobile-only {
 }
 
 @media (max-width: 1200px) {
-  body[data-page="about"] .about-hero {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-  body[data-page="about"] .about-profile {
-    justify-content: flex-start;
-  }
-  body[data-page="about"] .about-profile-shell {
-    width: min(100%, 620px);
-    margin-left: 0;
-  }
   body:is([data-page="about"], [data-page="work"]) .shorts-modal {
     grid-template-columns: 1fr;
     justify-items: center;
