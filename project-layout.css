@@ -1,4 +1,5 @@
 /* Project-only responsive layout; existing typography and device artwork are retained. */
+.folder-card[data-media-project="seoul-night"] { --folder-color:#DCE8BD; }
 .new-project-preview { background:#101820; }
 .new-project-preview img, .new-project-preview video { display:block; width:100%; height:100%; object-fit:contain; }
 #projectMediaModal { border:0; margin:auto; padding:34px; width:min(1380px,94vw); max-width:94vw; max-height:92dvh; border-radius:36px; background:linear-gradient(125deg,#f9fafc,#f4f6f9); color:#193f60; overflow:auto; overscroll-behavior:contain; box-sizing:border-box; font-family:'Pretendard',sans-serif; box-shadow:0 24px 80px #13263845; }
