@@ -38,11 +38,11 @@
 #awardCaseModal .ac-expand { position:absolute; right:8px; top:8px; display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:#f9fbfce8; color:#315877; }
 #awardCaseModal .ac-expand svg { width:15px; height:15px; }
 #awardCaseModal .ac-records figcaption { margin-top:8px; color:#234566; font-size:13px; line-height:1.5; }
-@media(min-width:768px) {
+@media(min-width:901px) {
   #awardCaseModal.has-award-gallery .ac-layout { grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:5%; }
   #awardCaseModal.has-award-gallery .ac-phone { width:280px; }
 }
-@media(max-width:767px) {
+@media(max-width:900px) {
   #awardCaseModal.has-award-gallery .ac-description-scroll { max-height:none; overflow:visible; padding-right:0; }
   #awardCaseModal.has-award-gallery .ac-scroll-shell::after { display:none; }
   #awardCaseModal.has-award-gallery .ac-scroll-shell::before { display:none; }
@@ -68,4 +68,4 @@
 #awardImageViewer .av-caption { margin:0; text-align:center; font-size:14px; }
 #awardImageViewer .modal-scroll-hint { display:none !important; }
 #awardCaseModal.has-award-gallery .project-neighbors.is-compact { position:relative; bottom:auto; margin-top:16px; background:transparent; }
-@media(max-width:767px) { #awardImageViewer { padding:10px; } #awardImageViewer button { padding:5px 9px; } }
+@media(max-width:900px) { #awardImageViewer { padding:10px; } #awardImageViewer button { padding:5px 9px; } }

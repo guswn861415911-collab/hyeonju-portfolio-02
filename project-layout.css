@@ -1,0 +1,70 @@
+/* Project-only responsive layout; existing typography and device artwork are retained. */
+.new-project-preview { background:#101820; }
+.new-project-preview img { display:block; width:100%; height:100%; object-fit:contain; }
+#projectMediaModal { border:0; margin:auto; padding:34px; width:min(1380px,94vw); max-width:94vw; max-height:92dvh; border-radius:36px; background:linear-gradient(125deg,#f9fafc,#f4f6f9); color:#193f60; overflow:auto; overscroll-behavior:contain; box-sizing:border-box; font-family:'Pretendard',sans-serif; box-shadow:0 24px 80px #13263845; }
+#projectMediaModal::backdrop { background:#2333429c; backdrop-filter:blur(10px); }
+#projectMediaModal * { box-sizing:border-box; }
+#projectMediaModal .ac-close { position:absolute; top:18px; right:18px; width:38px; height:38px; border:0; border-radius:50%; background:#e5e9ef; color:#234566; font:26px/1 Arial; z-index:3; cursor:pointer; }
+.pm-layout { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:5%; align-items:start; }
+.pm-copy { min-width:0; }
+.pm-kicker { font-size:12px; font-weight:800; color:#7386a9; letter-spacing:.12em; }
+.pm-copy h2 { margin:12px 0 24px; font-size:32px; line-height:1.25; letter-spacing:-.045em; word-break:keep-all; }
+.pm-copy h3 { margin:20px 0 10px; padding-bottom:9px; border-bottom:1px solid #d5dfeb; font-size:13px; color:#7588a6; }
+.pm-copy p, .pm-copy li { font-size:13px; line-height:1.85; color:#7185a7; word-break:keep-all; overflow-wrap:anywhere; }
+.pm-paragraphs p { margin:0 0 18px; }
+.pm-features ul { padding-left:20px; }
+.pm-actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
+.pm-actions a { display:inline-flex; min-height:36px; align-items:center; padding:8px 15px; border-radius:999px; background:#fff38e; color:#123f60; font-size:12px; font-weight:700; text-decoration:none; }
+.pm-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+.pm-tags span { border:1px solid #ccd8e8; background:#fff9; padding:9px 13px; border-radius:30px; font-size:11px; font-weight:700; color:#536e90; }
+.pm-device { padding:10px; border:1px solid #45505a; border-radius:24px; background:#222a32; box-shadow:0 22px 40px #14233330; }
+.pm-device video { display:block; width:100%; height:auto; max-height:65dvh; aspect-ratio:16/9; object-fit:contain; background:#080808; border-radius:14px; }
+#projectMediaModal [hidden] { display:none; }
+@media(min-width:901px) {
+  body #projectVideoModalPanel, body #detailPageModal .detail-page-modal { display:grid !important; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) !important; align-items:start !important; gap:30px !important; max-height:92dvh !important; overflow:auto !important; min-height:0 !important; }
+  body #projectVideoModalPanel > .shorts-modal-copy, body #detailPageModal .detail-page-modal-copy { min-width:0; width:100% !important; max-width:none !important; }
+  body #projectVideoModalPanel > .project-modal-view, body #detailPageModal .project-laptop-wrap, #awardCaseModal .ac-layout > .ac-phone-wrap, .pm-layout > .pm-media { position:sticky; top:42px; align-self:start; min-width:0; width:100%; max-width:100%; margin-top:30px; }
+  body #projectVideoModalPanel .ipad-pro { width:100% !important; max-width:100% !important; }
+  body #projectVideoModalPanel .ipad-screen { height:auto !important; aspect-ratio:16/9 !important; }
+  #awardCaseModal .ac-layout { align-items:start; }
+  #awardCaseModal .ac-phone { width:min(280px,32dvh); }
+  body [data-goodnotes-modal] .planner-layout { align-items:start !important; }
+  body [data-goodnotes-modal] .planner-device { align-self:start !important; position:sticky; top:40px; }
+}
+@media(max-width:900px) {
+  body #projectVideoModalPanel, body #detailPageModal .detail-page-modal { display:block !important; width:calc(100vw - 20px) !important; max-width:none !important; max-height:calc(100dvh - 20px) !important; min-height:0 !important; overflow:auto !important; padding:44px 18px 24px !important; box-sizing:border-box; }
+  body .responsive-project-panel .mobile-project-copy, body #projectVideoModalPanel .shorts-modal-copy, body #detailPageModal .detail-page-modal-copy { width:100% !important; max-width:none !important; min-width:0; }
+  body .responsive-project-panel .project-modal-view, body .responsive-project-panel .project-laptop-wrap { min-width:0 !important; width:100% !important; max-width:100% !important; margin:18px auto !important; }
+  body .responsive-project-panel .ipad-pro { width:min(100%,560px) !important; max-width:100% !important; }
+  body #projectVideoModalPanel .ipad-chassis { padding:8px !important; border-radius:24px !important; aspect-ratio:auto !important; }
+  body #projectVideoModalPanel .ipad-screen { height:auto !important; aspect-ratio:16/9 !important; }
+  body .responsive-project-panel .project-laptop-player, body .responsive-project-panel .project-laptop-shell { width:100% !important; min-width:0 !important; }
+  body .responsive-project-panel .project-laptop-screen { height:auto !important; aspect-ratio:16/10 !important; }
+  #projectMediaModal { width:calc(100vw - 20px); max-width:none; padding:44px 18px 24px; border-radius:24px; max-height:calc(100dvh - 20px); }
+  .pm-layout { display:block; }
+  .pm-copy h2 { font-size:25px; }
+  .pm-media { margin:20px 0; }
+  .pm-device { padding:7px; border-radius:18px; }
+  .pm-device video { border-radius:12px; }
+  #awardCaseModal .ac-phone { width:min(250px,55dvh); }
+  #awardCaseModal .ac-copy > .ac-phone-wrap { margin:20px 0; }
+  #awardCaseModal .ac-actions { margin-bottom:24px; }
+  body .responsive-project-panel .project-video-actions { margin-bottom:24px !important; }
+  body :is(#dippingbookModal,#legoModal) .db-footer { position:static !important; margin:18px 0; padding:0; justify-content:flex-start; }
+  body :is(#dippingbookModal,#legoModal) .db-device-art { max-width:100%; margin:20px auto; }
+}
+/* One footer for every project, including narrow screens; no popover support required. */
+body .responsive-project-panel .project-neighbors.is-compact { display:flex !important; position:relative !important; bottom:auto; grid-column:1 / -1; width:100%; clear:both; margin:24px 0 0; padding:12px 8px; gap:12px; z-index:2; }
+body .responsive-project-panel .project-neighbors[hidden] { display:none !important; }
+body .responsive-project-panel .project-mobile-scroll-cue, body .responsive-project-panel .project-neighbors::after { display:none !important; }
+body .responsive-project-panel .project-neighbor { display:grid !important; position:static; transform:none; min-height:64px; flex:1; width:0; min-width:0; padding:8px; }
+body .responsive-project-panel .project-neighbor-title { white-space:normal; overflow-wrap:anywhere; line-height:1.45; }
+body .responsive-project-panel .project-neighbor:disabled { opacity:.35; cursor:default !important; }
+body .responsive-project-panel .project-neighbor::before { display:none; }
+body .responsive-project-panel .project-neighbor-arrow { grid-row:1 / 3; }
+
+@media(max-width:900px) {
+ body :is(#dippingbookModal,#legoModal) .db-hero-copy { display:block; }
+ body :is(#dippingbookModal,#legoModal) .db-hero-copy > * { grid-row:auto; }
+}
+body .responsive-project-panel > #cursorTrailCanvas { width:100% !important; height:100% !important; }

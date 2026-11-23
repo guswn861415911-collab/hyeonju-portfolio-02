@@ -58,20 +58,6 @@
       <div class="ac-actions"><a class="ac-youtube" target="_blank" rel="noopener noreferrer">Open on YouTube <span aria-hidden="true">↗</span></a><a href="https://www.youtube.com/@Study_ebeb/shorts" target="_blank" rel="noopener noreferrer">@Study_ebeb <span aria-hidden="true">↗</span></a></div>
     </div><div class="ac-phone-wrap"><div class="ac-phone"><div class="ac-phone-status" aria-hidden="true"><b>9:41</b><span>●●● 5G ▰</span></div><div class="ac-island" aria-hidden="true"></div><iframe class="ac-video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div></div>`;
   document.body.append(modal);
-  // Keep one player; only change its position for the mobile reading order.
-  const mobileLayout = window.matchMedia('(max-width: 767px)');
-  const phone = modal.querySelector('.ac-phone-wrap');
-  function positionPhone() {
-    const mobileFirst = mobileLayout.matches;
-    const parent = modal.querySelector(mobileFirst ? '.ac-copy' : '.ac-layout');
-    const before = mobileFirst ? modal.querySelector('.ac-description-heading') : null;
-    if (phone.parentElement !== parent) {
-      if (parent.moveBefore) parent.moveBefore(phone, before);
-      else parent.insertBefore(phone, before);
-    }
-  }
-  mobileLayout.addEventListener('change', positionPhone);
-  positionPhone();
   let opener, overflow, hadModalClass, cursors = [];
   const video = modal.querySelector('.ac-video');
   triggers.forEach(button => button.addEventListener('click', () => {
@@ -102,7 +88,6 @@
     hadModalClass = document.body.classList.contains('modal-open');
     document.body.style.overflow = 'hidden'; document.body.classList.add('modal-open');
     document.dispatchEvent(new CustomEvent('awardcase:prepare', { detail: { modal, gallery: project.gallery || [], gallerySummary: project.gallerySummary || '' } }));
-    positionPhone();
     modal.showModal(); modal.scrollTop = 0;
     document.dispatchEvent(new CustomEvent('awardcase:opened', { detail: { modal } }));
     cursors = ['cursorTrailCanvas','customCursor'].flatMap(id => {

@@ -33,7 +33,7 @@
       button.addEventListener('click', () => openViewer(gallery, index, button, modal, scroll));
     });
     function updateFade() {
-      const desktop = matchMedia('(min-width:768px)').matches;
+      const desktop = matchMedia('(min-width:901px)').matches;
       shell.classList.toggle('has-more', desktop && scroll.scrollHeight - scroll.clientHeight - scroll.scrollTop > 2);
       scroll.tabIndex = desktop && scroll.scrollHeight > scroll.clientHeight + 2 ? 0 : -1;
     }

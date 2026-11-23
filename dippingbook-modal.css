@@ -134,7 +134,7 @@
   letter-spacing: 0.03em;
   white-space: nowrap;
 }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .db-team-label { margin-top: 7px; padding: 4px 5px; font-size: 8px; }
 }
 .db-tool-art {
@@ -583,7 +583,7 @@ body.has-custom-cursor :is(#dippingbookModal, #legoModal) * {
 }
 
 /* Mobile case study: readable content instead of a scaled desktop canvas. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   :is(#dippingbookModal, #legoModal) {
     width: calc(100vw - 16px);
     max-width: none;
@@ -835,7 +835,7 @@ body.has-custom-cursor :is(#dippingbookModal, #legoModal) * {
   }
 }
 /* Mobile hero order: introduction, device mockup, project metadata, CTA. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   :is(#dippingbookModal, #legoModal) .db-hero-copy {
     display: contents;
   }
@@ -879,7 +879,7 @@ body.has-custom-cursor :is(#dippingbookModal, #legoModal) * {
 .db-tab-rail {
   display: contents;
 }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   :is(#dippingbookModal, #legoModal) .db-scroll-guide {
     display: flex;
     flex-direction: column;
@@ -986,7 +986,7 @@ body.has-custom-cursor :is(#dippingbookModal, #legoModal) * {
 }
 
 /* 모달 하나가 소개부터 마지막 패널까지 스크롤을 담당합니다. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   :is(#dippingbookModal, #legoModal) {
     max-height: calc(var(--db-viewport-height, 100dvh) - 16px);
     overflow-y: auto;

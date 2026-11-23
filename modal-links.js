@@ -1,21 +1,6 @@
 /* Shareable modal URLs. Reuse existing open/close handlers and media cleanup. */
 document.addEventListener('DOMContentLoaded', () => {
-  const definitions = [
-    ['dippingbook', '[data-dippingbook-open]', 'dippingbookModal'],
-    ['lego', '[data-lego-open]', 'legoModal'],
-    ['hangeul', '[data-award-case="hangeul"]', 'awardCaseModal'],
-    ['cosmetics', '[data-award-case="cosmetics"]', 'awardCaseModal'],
-    ['icn', '[data-video-open][data-project-number="13"]', 'projectVideoModal', '#projectModalClose'],
-    ['hunmin', '[data-video-open][data-project-number="02"]', 'projectVideoModal', '#projectModalClose'],
-    ['skinex-ppf', '[data-detail-open][data-project-number="05"]', 'detailPageModal', '#detailPageModalClose'],
-    ['wheel-decal', '[data-detail-open][data-project-number="06"]', 'detailPageModal', '#detailPageModalClose'],
-    ['ipass-filter', '[data-detail-open][data-project-number="07"]', 'detailPageModal', '#detailPageModalClose'],
-    ['forest-filter', '[data-detail-open][data-project-number="08"]', 'detailPageModal', '#detailPageModalClose'],
-    ['planner', '[data-planner-open][aria-controls="plannerModal"]', 'plannerModal'],
-    ['diary-planner', '[data-planner-open][aria-controls="diaryPlannerModal"]', 'diaryPlannerModal'],
-    ['study-notes', '[data-planner-open][aria-controls="studyNotesModal"]', 'studyNotesModal'],
-    ['life-planner', '[data-planner-open][aria-controls="lifePlannerModal"]', 'lifePlannerModal'],
-  ];
+  const definitions = window.portfolioProjects.map(p => [p.slug, p.selector, p.modal, p.close]);
   const routes = new Map();
   for (const [slug, selector, id, closeSelector] of definitions) {
     const buttons = [...document.querySelectorAll(selector)];
@@ -29,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ? modal.open : !modal.hidden && modal.style.display !== 'none';
   const currentRoute = () => routes.get(location.hash.slice(1));
   // Separate controls from each project's own slide/tab arrows.
-  const projectRoutes = [...routes.values()].filter(route => route.buttons.some(button => button.closest('#projectGrid')));
+  const projectRoutes = [...routes.values()];
   const projectNav = document.createElement('nav');
   projectNav.className = 'project-neighbors';
-  projectNav.setAttribute('popover', 'manual');
+
   projectNav.setAttribute('aria-label', '이전 및 다음 프로젝트');
   projectNav.innerHTML = ['previous', 'next'].map((direction, index) =>
     `<button type="button" class="project-neighbor project-neighbor--${direction}"><span class="project-neighbor-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${index ? 'M4 12h16m-6-6 6 6-6 6' : 'M20 12H4m6-6-6 6 6 6'}"/></svg></span><span class="project-neighbor-label">${index ? '다음' : '이전'} 프로젝트</span><span class="project-neighbor-title"></span></button>`
@@ -42,16 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   transitionCover.className = 'project-switch-cover';
   transitionCover.setAttribute('aria-hidden', 'true');
   document.body.append(transitionCover);
-  let navRoute = null;
-  let navFrame;
-  let navUntil = 0;
   let switchingProject = false;
   const navButtons = [...projectNav.querySelectorAll('button')];
   navButtons.forEach((button, index) => button.addEventListener('click', event => {
     event.stopPropagation();
     if (!active || syncing) return;
-    const position = projectRoutes.indexOf(active);
-    const next = projectRoutes[position + (index ? 1 : -1)];
+    const projects = visibleProjects();
+    const position = projects.indexOf(active);
+    const next = projects[position + (index ? 1 : -1)];
     if (!next) return;
     const state = { ...history.state };
     if (state.portfolioModal) state.portfolioModal = next.slug;
@@ -61,54 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
     syncFromUrl();
   }));
 
-  function positionProjectNav() {
-    cancelAnimationFrame(navFrame);
-    if (projectRoutes.length < 2 || !('showPopover' in projectNav)) return;
-    if (!active || !isOpen(active) || syncing || !projectRoutes.includes(active)) {
-      if (projectNav.matches(':popover-open')) projectNav.hidePopover();
-    } else {
-      const panel = active.modal.matches('dialog') ? active.modal : active.modal.querySelector('[role="dialog"]');
-      const rect = panel.getBoundingClientRect();
-      // Use a sticky in-panel footer when the outside gutters are too narrow.
-      const gutter = Math.min(rect.left, innerWidth - rect.right);
-      {
-        const compact = innerWidth < 1000 || gutter < 112;
-        if (compact) {
-          if (projectNav.matches(':popover-open')) projectNav.hidePopover();
-          projectNav.removeAttribute('popover');
-        } else projectNav.setAttribute('popover', 'manual');
-        projectNav.classList.toggle('is-compact', compact);
-        const parent = compact ? panel : active.modal;
-        if (projectNav.parentElement !== parent) parent.append(projectNav);
-        if (navRoute !== active) {
-          if (projectNav.matches(':popover-open')) projectNav.hidePopover();
-          parent.append(projectNav);
-          navRoute = active;
-          const position = projectRoutes.indexOf(active);
-          navButtons.forEach((button, index) => {
-            const neighbor = projectRoutes[position + (index ? 1 : -1)];
-            button.hidden = !neighbor;
-            if (!neighbor) return;
-            const card = neighbor.buttons.find(item => item.closest('#projectGrid'));
-            const title = card.querySelector('.folder-card-meta-copy p')?.textContent.trim() || card.dataset.projectTitle || neighbor.slug;
-            button.querySelector('.project-neighbor-title').textContent = title;
-            button.setAttribute('aria-label', `${index ? '다음' : '이전'} 프로젝트: ${title}`);
-          });
-        }
-        projectNav.style.setProperty('--neighbor-width', Math.min(164, gutter - 24) + 'px');
-        projectNav.style.setProperty('--neighbor-left', rect.left / 2 + 'px');
-        projectNav.style.setProperty('--neighbor-right', (innerWidth + rect.right) / 2 + 'px');
-        projectNav.style.setProperty('--neighbor-top', (rect.top + rect.height / 2) + 'px');
-        if (!compact && !projectNav.matches(':popover-open')) projectNav.showPopover();
-      }
-    }
-    if ((active || syncing) && performance.now() < navUntil) navFrame = requestAnimationFrame(positionProjectNav);
+  function visibleProjects() {
+    const filtered = projectRoutes.filter(route => route.buttons.some(button => !button.classList.contains('is-filter-hidden')));
+    return filtered.includes(active) ? filtered : projectRoutes;
   }
-  window.addEventListener('resize', () => {
-    navUntil = performance.now() + 450;
-    positionProjectNav();
+  function positionProjectNav() {
+    if (!active || !isOpen(active) || syncing) { projectNav.hidden = true; return; }
+    const panel = active.modal.matches('dialog') ? active.modal : active.modal.querySelector('[role="dialog"]');
+    projectNav.classList.add('is-compact'); projectNav.hidden = false;
+    if (projectNav.parentElement !== panel) panel.append(projectNav);
+    const projects = visibleProjects(), position = projects.indexOf(active);
+    navButtons.forEach((button,index)=>{
+      const neighbor = projects[position + (index ? 1 : -1)];
+      button.hidden = false; button.disabled = !neighbor;
+      const card = neighbor?.buttons.find(item=>item.closest('#projectGrid')) || neighbor?.buttons[0];
+      const title = card?.querySelector('.folder-card-meta-copy p')?.textContent.trim() || card?.dataset.projectTitle || neighbor?.slug || (index ? '마지막 프로젝트' : '첫 번째 프로젝트');
+      button.querySelector('.project-neighbor-title').textContent = title;
+      button.setAttribute('aria-label', (index ? '다음' : '이전') + ' 프로젝트: ' + title);
+    });
+  }
+  window.addEventListener('resize', positionProjectNav);
+  document.addEventListener('keydown', event => {
+    if (!active || syncing || event.defaultPrevented || !['ArrowLeft','ArrowRight'].includes(event.key)) return;
+    if (document.querySelector('#awardImageViewer[open]')) return;
+    if (event.target.closest('video, audio, iframe, input, textarea, select, [contenteditable], [role="slider"], [role="tablist"], .planner-device, .av-stage')) return;
+    event.preventDefault();
+    navButtons[event.key === 'ArrowRight' ? 1 : 0].click();
   });
-  if (projectRoutes.length > 1 && 'showPopover' in projectNav) positionProjectNav();
 
   function closedByUser() {
     if (syncing || !active || isOpen(active)) return;
@@ -163,12 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
           if (switchingProject) next.modal.dataset.projectSwitch = 'true';
           const button = next.buttons.find(button => button.getClientRects().length) || next.buttons[0];
           button.click();
-          if (isOpen(next)) active = next;
+          if (isOpen(next)) {
+            active = next;
+            const panel = next.modal.matches('dialog') ? next.modal : next.modal.querySelector('[role="dialog"]');
+            [next.modal, panel, ...panel.querySelectorAll('.ac-description-scroll, .db-panels, .detail-page-scroll-area')].forEach(el => el.scrollTop = 0);
+          }
         }
       }
     } finally {
       syncing = false;
-      navUntil = performance.now() + 450;
       positionProjectNav();
       if (switchingProject) {
         switchingProject = false;
@@ -186,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', () => {
         if (syncing || !isOpen(route)) return;
         active = route;
-        navUntil = performance.now() + 450;
         positionProjectNav();
         if (currentRoute() !== route) {
           history.pushState({ ...history.state, portfolioModal:route.slug }, '', '#' + route.slug);

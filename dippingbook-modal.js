@@ -14,7 +14,7 @@
   const tabs = [...modal.querySelectorAll("[data-db-tab]")];
   const panels = [...modal.querySelectorAll('[role="tabpanel"]')];
   const count = modal.querySelector(".db-count");
-  const mobile = window.matchMedia("(max-width: 767px)");
+  const mobile = window.matchMedia("(max-width: 900px)");
   const strip = modal.querySelector(".db-tabs");
   const tabRail = document.createElement("div");
   tabRail.className = "db-tab-rail";
@@ -70,7 +70,7 @@
     });
     count.textContent = index + 1 + " / " + tabs.length;
     if (focus) tabs[index].focus();
-    if (modal.open && window.matchMedia("(max-width: 767px)").matches) {
+    if (modal.open && window.matchMedia("(max-width: 900px)").matches) {
       strip.scrollLeft +=
         tabs[index].getBoundingClientRect().left - strip.getBoundingClientRect().left - 4;
       const nav = modal.querySelector(".db-nav");

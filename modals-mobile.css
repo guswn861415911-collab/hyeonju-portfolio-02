@@ -3,7 +3,7 @@
  * 수정할 위치 안내: 코드-읽는-순서.md
  */
 /* Mobile-only reading order and device sizing. DippingBook is excluded. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   body .mobile-project-modal {
     width: calc(100vw - 20px) !important;
     max-width: none !important;
@@ -175,7 +175,7 @@
 }
 
 /* Mobile devices: landscape iPad and portrait commerce iPhone. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   body #projectVideoModalPanel.mobile-project-modal #landscapeModalView .ipad-screen {
     aspect-ratio: 4 / 3 !important;
     background: #090b0f;
@@ -387,7 +387,7 @@
 }
 
 /* Mobile mockups: flat presentation and a more compact landscape tablet. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   body
     .mobile-project-modal
     :is(
@@ -424,7 +424,7 @@
 
 /* GoodNotes 09–12: native mobile dialogs must flow from the top,
    rather than center a desktop grid taller than the viewport. */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   body[data-page="work"]
     :is(#plannerModal, #diaryPlannerModal, #studyNotesModal, #lifePlannerModal)[open] {
     display: block !important;
