@@ -48,7 +48,7 @@
     modal.scrollTop=0;
   }
   modal.renderProject=render;
-  document.querySelectorAll('[data-media-project]').forEach(button=>button.addEventListener('click',()=>{
+  document.querySelectorAll('[data-media-project="seoul-night"]').forEach(button=>button.addEventListener('click',()=>{
     if(modal.open)return;
     opener=button;previousOverflow=document.body.style.overflow;
     document.querySelectorAll('video').forEach(v=>v.pause());

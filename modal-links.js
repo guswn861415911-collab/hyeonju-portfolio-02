@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
 
   function visibleProjects() {
+    // CINELIQ introduces the full portfolio, so its next project is always Hangeul.
+    if (active?.slug === 'cineliq') return projectRoutes;
     const filtered = projectRoutes.filter(route => route.buttons.some(button => !button.classList.contains('is-filter-hidden')));
     return filtered.includes(active) ? filtered : projectRoutes;
   }
@@ -78,12 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     active = null;
     positionProjectNav();
     if (currentRoute() !== previous) return;
-    if (history.state?.portfolioModal === previous.slug) {
-      history.back();
-    } else {
-      // A shared link has no in-page history entry to return to.
-      history.replaceState(history.state, '', location.pathname + location.search);
-    }
+    // Closing is not browser Back: older entries (including embedded players)
+    // may point at another project. Clear only this modal's URL and state.
+    const state = { ...history.state };
+    delete state.portfolioModal;
+    history.replaceState(state, '', location.pathname + location.search);
   }
 
   function closeRoute(route) {

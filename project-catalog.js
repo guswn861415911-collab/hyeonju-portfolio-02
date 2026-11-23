@@ -1,6 +1,6 @@
 /* One ordered registry for cards, deep links and project navigation. */
 window.portfolioProjects = [
-  {slug:'cineliq', selector:'[data-media-project="cineliq"]', modal:'projectMediaModal', category:'web', title:'CINELIQ', subtitle:'Camera technique library · Web service', kicker:'WEB SERVICE / UI·UX DESIGN', poster:'images/project-posters/cineliq.jpg', video:'videos/cineliq-preview.mp4'},
+  {slug:'cineliq', selector:'[data-media-project="cineliq"]', modal:'cineliqModal', category:'web', title:'CINELIQ', subtitle:'Camera technique library · Web service', kicker:'WEB SERVICE / UI·UX DESIGN', poster:'images/project-posters/cineliq.jpg', video:'videos/cineliq-preview.mp4'},
   {slug:'hangeul', selector:'[data-award-case="hangeul"]', modal:'awardCaseModal'},
   {slug:'cosmetics', selector:'[data-award-case="cosmetics"]', modal:'awardCaseModal'},
   {slug:'hunmin', selector:'[data-video-open][data-project-number="02"]', modal:'projectVideoModal', close:'#projectModalClose'},

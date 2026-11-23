@@ -26,13 +26,13 @@
 @media(min-width:901px) {
   body #projectVideoModalPanel, body #detailPageModal .detail-page-modal { display:grid !important; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) !important; align-items:start !important; gap:30px !important; max-height:92dvh !important; overflow:auto !important; min-height:0 !important; }
   body #projectVideoModalPanel > .shorts-modal-copy, body #detailPageModal .detail-page-modal-copy { min-width:0; width:100% !important; max-width:none !important; }
-  body #projectVideoModalPanel > .project-modal-view, body #detailPageModal .project-laptop-wrap, #awardCaseModal .ac-layout > .ac-phone-wrap, .pm-layout > .pm-media { position:sticky; top:42px; align-self:start; min-width:0; width:100%; max-width:100%; margin-top:30px; }
+  body #projectVideoModalPanel > .project-modal-view, body #detailPageModal .project-laptop-wrap, #awardCaseModal .ac-layout > .ac-phone-wrap, .pm-layout > .pm-media { position:relative; top:auto; align-self:start; min-width:0; width:100%; max-width:100%; margin-top:30px; }
   body #projectVideoModalPanel .ipad-pro { width:100% !important; max-width:100% !important; }
   body #projectVideoModalPanel .ipad-screen { height:auto !important; aspect-ratio:16/9 !important; }
   #awardCaseModal .ac-layout { align-items:start; }
   #awardCaseModal .ac-phone { width:min(280px,32dvh); }
   body [data-goodnotes-modal] .planner-layout { align-items:start !important; }
-  body [data-goodnotes-modal] .planner-device { align-self:start !important; position:sticky; top:40px; }
+  body [data-goodnotes-modal] .planner-device { align-self:start !important; position:relative; top:auto; }
 }
 @media(max-width:900px) {
   body #projectVideoModalPanel, body #detailPageModal .detail-page-modal { display:block !important; width:calc(100vw - 20px) !important; max-width:none !important; max-height:calc(100dvh - 20px) !important; min-height:0 !important; overflow:auto !important; padding:44px 18px 24px !important; box-sizing:border-box; }
@@ -57,7 +57,7 @@
   body :is(#dippingbookModal,#legoModal) .db-device-art { max-width:100%; margin:20px auto; }
 }
 /* One footer for every project, including narrow screens; no popover support required. */
-body .responsive-project-panel .project-neighbors.is-compact { display:flex !important; position:relative !important; bottom:auto; grid-column:1 / -1; width:100%; clear:both; margin:24px 0 0; padding:12px 8px; gap:12px; z-index:2; }
+body .responsive-project-panel .project-neighbors.is-compact { display:flex !important; position:sticky !important; bottom:0 !important; grid-column:1 / -1; width:100%; clear:both; margin:24px 0 0; padding:12px 8px; gap:12px; z-index:30; background:#f5f7fa !important; border-top:1px solid #d5dfeb; border-radius:12px; }
 body .responsive-project-panel .project-neighbors[hidden] { display:none !important; }
 body .responsive-project-panel .project-mobile-scroll-cue, body .responsive-project-panel .project-neighbors::after { display:none !important; }
 body .responsive-project-panel .project-neighbor { display:grid !important; position:static; transform:none; min-height:64px; flex:1; width:0; min-width:0; padding:8px; }
