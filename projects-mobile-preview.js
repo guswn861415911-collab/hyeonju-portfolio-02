@@ -5,7 +5,7 @@
 (() => {
   const grid = document.getElementById("projectGrid");
   if (!grid) return;
-  const mobile = matchMedia("(max-width: 767px)");
+  const mobile = matchMedia("(hover: none), (pointer: coarse)");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const entries = [...grid.querySelectorAll(".folder-card")]
     .map((card) => ({
@@ -80,7 +80,7 @@
       document.hidden ||
       document.body.classList.contains("modal-open") ||
       document.querySelector("dialog[open]") ||
-      !grid.closest(".mobile-explorer-folder-open")
+      (matchMedia("(max-width: 767px)").matches && !grid.closest(".mobile-explorer-folder-open"))
     ) {
       stopAll();
       return;
