@@ -1,5 +1,5 @@
 /* CINELIQ-only refinements on the existing case-study design system. */
-#cineliqModal { width:min(1426px,94vw,150dvh); overflow-x:clip; }
+#cineliqModal { --cineliq-accent:#DCE8BD; --cineliq-accent-dark:#87966B; --cineliq-accent-text:#202820; width:min(1426px,94vw,150dvh); overflow-x:clip; }
 #cineliqModal .db-shell { --db-number-size:clamp(20px,2.1cqw,30px); --db-title-size:clamp(28px,3.6cqw,46px); --db-lead-size:clamp(16px,1.6cqw,21px); }
 #cineliqModal .db-close { top:16px; right:16px; width:38px; height:38px; font-size:28px; z-index:4; }
 #cineliqModal .db-hero { grid-template-columns:minmax(0,44fr) minmax(0,56fr); gap:24px; padding:34px 3.3%; align-items:center; }
@@ -16,9 +16,9 @@
 #cineliqModal .db-project-meta p { font-size:clamp(10px,.9cqw,13px); line-height:1.6; overflow-wrap:anywhere; }
 #cineliqModal .db-team-label { font-size:8px; padding:4px 6px; }
 #cineliqModal .db-tags span,
-#cineliqModal .db-footer a,
-#cineliqModal .db-tabs button[aria-selected="true"] { background:#0B0B0B; color:#FFFFFF; }
-#cineliqModal .db-panel-heading > b { color:#888888; }
+#cineliqModal .db-footer a { background:#0B0B0B; color:#FFFFFF; }
+#cineliqModal .db-tabs button[aria-selected="true"] { background:var(--cineliq-accent); color:var(--cineliq-accent-text); }
+#cineliqModal .db-panel-heading > b { color:var(--cineliq-accent-dark); }
 #cineliqModal .cq-media { width:100%; min-width:0; padding-top:22px; }
 #cineliqModal .cq-devices { position:relative; padding:20px 13% 20px 0; }
 #cineliqModal .cq-laptop { width:100%; margin:0; }
