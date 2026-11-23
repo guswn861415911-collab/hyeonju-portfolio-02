@@ -14,7 +14,7 @@
 .pm-copy h2 { margin:12px 0 24px; font-size:32px; line-height:1.25; letter-spacing:-.045em; word-break:keep-all; }
 .pm-copy h3 { margin:20px 0 10px; padding-bottom:9px; border-bottom:1px solid #d5dfeb; font-size:13px; color:#7588a6; }
 .pm-copy p, .pm-copy li { font-size:13px; line-height:1.85; color:#7185a7; word-break:keep-all; overflow-wrap:anywhere; }
-.pm-paragraphs p { margin:0 0 18px; }
+.pm-paragraphs p { margin:0 0 18px; white-space:pre-line; }
 .pm-features ul { padding-left:20px; }
 .pm-actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
 .pm-actions a { display:inline-flex; min-height:36px; align-items:center; padding:8px 15px; border-radius:999px; background:#fff38e; color:#123f60; font-size:12px; font-weight:700; text-decoration:none; }
